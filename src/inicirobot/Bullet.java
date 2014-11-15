@@ -18,7 +18,6 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
     private double speed;
     private double power;
     private Robot owner;
-    //tonteria
 
     public Bullet(double x, double y, double angle, Robot owner) {
         
