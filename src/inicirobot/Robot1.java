@@ -23,6 +23,7 @@ public class Robot1 extends Robot{
     @Override
     public void onTouchWall() {
         System.out.println("-----------------------------------" + this.angle);
+        //Prova torrillas patata
         this.right(90);   
     }
     
