@@ -9,6 +9,7 @@ package inicirobot;
  *
  * @author atorrillas
  */
+
 public class Robot2 extends Robot{
 
     public Robot2(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
