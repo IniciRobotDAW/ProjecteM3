@@ -18,7 +18,10 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
     private double speed;
     private double power;
     private Robot owner;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Ricard
 
     public Bullet(double x, double y, double angle, Robot owner) {
         
