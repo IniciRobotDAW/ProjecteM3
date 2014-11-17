@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+//import java.awt.geom.Rectangle2D;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.*;
@@ -100,8 +100,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public int getBulletsLoad() {
         return bulletsLoad;
     }
-    
-    
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -144,8 +142,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public void setBulletsLoad(int bulletsLoad) {
         this.bulletsLoad = bulletsLoad;
     }
-    
-    
     
     //************//
     //**Funcions**//

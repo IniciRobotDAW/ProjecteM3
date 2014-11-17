@@ -27,15 +27,15 @@ public class IniciRobot {
         
         
         //Cos
-        RobotPiece cos1 = new RobotPiece("/resources/images/greenbody.png",xIniciR1, yIniciR1, 0, 0);
+        RobotPiece cos1 = new RobotPiece("/resources/images/ricardbody.png",xIniciR1, yIniciR1, 0, 0);
         RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png",xIniciR2, yIniciR2, 0, 0);
         
         //Turret
-        RobotPiece turret1 = new RobotPiece("/resources/images/greenTurret.png",xIniciR1, yIniciR1, 8, -10);
+        RobotPiece turret1 = new RobotPiece("/resources/images/ricardTurret.png",xIniciR1, yIniciR1, 8, -10);
         RobotPiece turret2 = new RobotPiece("/resources/images/arnauTurret.png",xIniciR2, yIniciR2, 8, -10);
         
         //Radar
-        RobotPiece radar1 = new RobotPiece("/resources/images/yellowRadar.png",xIniciR1, yIniciR1, 7, 9);
+        RobotPiece radar1 = new RobotPiece("/resources/images/ricardRadar.png",xIniciR1, yIniciR1, 7, 9);
         RobotPiece radar2 = new RobotPiece("/resources/images/arnauRadar.png",xIniciR2, yIniciR2, 7, 9);
         
         // Robot sencer
