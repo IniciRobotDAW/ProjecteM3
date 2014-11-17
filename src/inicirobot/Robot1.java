@@ -20,7 +20,7 @@ public class Robot1 extends Robot{
         this.fire();
         this.left(90);
     }
-    
+
     @Override
     public void onTouchWall() {
         this.left(90);   
@@ -32,13 +32,15 @@ public class Robot1 extends Robot{
     }
     
     @Override
-    public void onHitByBullet(){
+    public void onHitByBullet(){ 
+        this.back(10);
         this.right(20);
+        
     }
 
     @Override
     public void run() {
-       
+        
         while(true){
             
             this.ahead(100);

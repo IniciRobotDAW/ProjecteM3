@@ -158,6 +158,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.body.paintObj(g, c);
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
+        
 
 //        g2d.setStroke(new BasicStroke(5f));
         //g2d.setColor(Color.red);
@@ -463,7 +464,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Fa girar totes les peçes del robot
      * @param a 
      */
-    private void giraRobotSencer(float a) {
+    private void rotateRobot(float a) {
         this.body.setAngle(this.body.getAngle() + a);
         this.turret.setAngle(this.turret.getAngle() + a);
         this.radar.setAngle(this.radar.getAngle() + a);
@@ -481,7 +482,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
             if (!this.touchRobotRotate()) {
                 
-                this.giraRobotSencer(1);
+                this.rotateRobot(1);
                 if (this.checkTouchBullet()) {
                     this.onHitByBullet();
                     return;
@@ -509,7 +510,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         for (float i = 0; i < a; i++) {
             if (!this.touchRobotRotate()) {
                 
-                this.giraRobotSencer(-1);
+                this.rotateRobot(-1);
                 if (this.checkTouchBullet()) {
                     this.onHitByBullet();
                     return;
@@ -638,7 +639,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 Point2D before = new Point2D.Double(x + 15, y + 15);
                 Point2D after = new Point2D.Double();
                 after = transformer.transform(before, after);
-
+                
                 Bullet b = new Bullet(before.getX(), before.getY(), this.turret.getAngle(), this);
 
                 Board.getBullets().add(b);
