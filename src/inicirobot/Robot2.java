@@ -18,7 +18,9 @@ public class Robot2 extends Robot{
     
     @Override
     public void onTouchRobot() {       
-        this.right(90);
+       this.back(10);
+       this.left(10);
+       
     }
     
     @Override
@@ -28,22 +30,24 @@ public class Robot2 extends Robot{
     
     @Override
     public void onScannedRobot() {
-       this.fire();
+//       this.fire();
     }
     
     @Override
     public void onHitByBullet() {
-        System.out.println("TOOOOOOOOOC");
-       
-//        this.right(360);
-//        this.fire();
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAA");
+        this.back(45);
+        this.fire();
         
     }
     
     @Override
     public void run() {
+        this.right(90);
         while(true){
-            this.ahead(100);
+            
+            this.back(100);
+            this.left(45);
         }
     }  
 }

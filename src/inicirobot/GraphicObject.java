@@ -8,6 +8,7 @@ package inicirobot;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 
+
 /**
  *
  * @author atorrillas

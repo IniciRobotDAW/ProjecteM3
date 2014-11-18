@@ -9,11 +9,13 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+//import java.awt.geom.Rectangle2D;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.*;
 import robotlibrary3.*;
+
+
 
 /**
  *
@@ -29,6 +31,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     private int width;
     private int height;
     private double lastReload = System.nanoTime();
+    private int bulletsLoad; 
 
     /** Constructor */
     public Robot(double x, double y, float angle, int speed, int lives, RobotPiece body, RobotPiece turret, RobotPiece radar, int width, int height, double lastReload) {
@@ -42,6 +45,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = width;
         this.height = height;
         this.lastReload = System.nanoTime();
+        
+        this.lives = 20;
+        this.bulletsLoad = 40;
 
     }
 
@@ -54,6 +60,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
+        
+        this.lives = 20;
+        this.bulletsLoad = 40;
 
     }
 
@@ -89,8 +98,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public double getLastReload() {
         return lastReload;
     }
-    
-    
+
+    public int getBulletsLoad() {
+        return bulletsLoad;
+    }
 
     public void setSpeed(int speed) {
         this.speed = speed;
@@ -130,10 +141,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.lastReload = lastReload;
     }
 
+    public void setBulletsLoad(int bulletsLoad) {
+        this.bulletsLoad = bulletsLoad;
+    }
+    
     //************//
     //**Funcions**//
     //************//
-    
+
     /**
      * Paint the robot / Pinta el robot
      * @param g
@@ -145,8 +160,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.body.paintObj(g, c);
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
-
-//        g2d.setStroke(new BasicStroke(5f));
+        
+        
+        //g2d.setStroke(new BasicStroke(5f));
         //g2d.setColor(Color.red);
         //Point2D.Double p = new Point2D.Double(500,500);
         //g2d.drawLine((int)p.getX(), (int)p.getY(), (int)p.getX(), (int)p.getY());
@@ -214,12 +230,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 //        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p4final.getX(), (int) p4final.getY());
 
     }
-
-    /**
-     * When you touch another robot /
-     * Quan tocas un altre robot...
-     */
-    public abstract void onTouchRobot();
 
     /**
      * Take the following line of where go the robot /
@@ -357,8 +367,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.place(xt, yt);
                 
                 
-                System.out.println(this.angle +" "+this);
-
                 try {
                     Thread.sleep(4);
                 } catch (InterruptedException ex) {
@@ -414,7 +422,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
                 this.checkScannedRobot();
                 this.place(xt, yt);
-
+                
+                
                 try {
                     Thread.sleep(4);
                 } catch (InterruptedException ex) {
@@ -440,16 +449,16 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onTouchWall();
                 return;
             }
-            if (this.touchRobotMov(3)) {
+            if (this.touchRobotMov(0)) {
                 this.onTouchRobot();
                 return;
             }
-            
+
             if (this.checkTouchBullet()) {
                 this.onHitByBullet();
                 return;
             }
-            
+     
         }
     }
 
@@ -458,7 +467,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Fa girar totes les peçes del robot
      * @param a 
      */
-    private void giraRobotSencer(float a) {
+    private void rotateRobot(float a) {
         this.body.setAngle(this.body.getAngle() + a);
         this.turret.setAngle(this.turret.getAngle() + a);
         this.radar.setAngle(this.radar.getAngle() + a);
@@ -476,7 +485,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
             if (!this.touchRobotRotate()) {
                 
-                this.giraRobotSencer(1);
+                this.rotateRobot(1);
                 if (this.checkTouchBullet()) {
                     this.onHitByBullet();
                     return;
@@ -504,7 +513,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         for (float i = 0; i < a; i++) {
             if (!this.touchRobotRotate()) {
                 
-                this.giraRobotSencer(-1);
+                this.rotateRobot(-1);
                 if (this.checkTouchBullet()) {
                     this.onHitByBullet();
                     return;
@@ -622,21 +631,25 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Disparar
      */
     public void fire() {
+        
+        if (this.bulletsLoad>0){
         long reload = System.nanoTime();
         
-        if(this.lastReload+415182347<reload){
-            AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.turret.getAngle()),
-                    x + (this.width / 2) + 2, y + (this.height / 2) + 3);
+            if(this.lastReload+415182347<reload){
+                AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.turret.getAngle()),
+                        x + (this.width / 2) + 2, y + (this.height / 2) + 3);
 
-            Point2D before = new Point2D.Double(x + 15, y + 15);
-            Point2D after = new Point2D.Double();
-            after = transformer.transform(before, after);
+                Point2D before = new Point2D.Double(x + 15, y + 15);
+                Point2D after = new Point2D.Double();
+                after = transformer.transform(before, after);
+                
+                Bullet b = new Bullet(before.getX(), before.getY(), this.turret.getAngle(), this);
 
-            Bullet b = new Bullet(before.getX(), before.getY(), this.turret.getAngle(), this);
+                Board.getBullets().add(b);
+                this.setLastReload(reload);
+                this.setBulletsLoad(this.bulletsLoad-1);
 
-            Board.getBullets().add(b);
-            System.out.println("FIREEEEE");
-            this.setLastReload(reload);
+            }
         }
 
     }
@@ -859,6 +872,11 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     public abstract void onHitByBullet();
 
+    /**
+     * When you touch another robot /
+     * Quan tocas un altre robot...
+     */
+    public abstract void onTouchRobot();
     
     /**
      * Running robot /
