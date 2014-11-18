@@ -15,6 +15,8 @@ import java.util.logging.*;
 import javax.swing.*;
 import robotlibrary3.*;
 
+
+
 /**
  *
  * @author atorrillas, rbarberan abstract
@@ -146,7 +148,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     //************//
     //**Funcions**//
     //************//
-       
+
     /**
      * Paint the robot / Pinta el robot
      * @param g
@@ -159,8 +161,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
         
-
-//        g2d.setStroke(new BasicStroke(5f));
+        
+        //g2d.setStroke(new BasicStroke(5f));
         //g2d.setColor(Color.red);
         //Point2D.Double p = new Point2D.Double(500,500);
         //g2d.drawLine((int)p.getX(), (int)p.getY(), (int)p.getX(), (int)p.getY());
