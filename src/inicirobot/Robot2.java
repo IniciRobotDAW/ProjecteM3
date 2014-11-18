@@ -18,26 +18,30 @@ public class Robot2 extends Robot{
     
     @Override
     public void onTouchRobot() {       
-        this.back(10);
-        fire();
+        try{
+            this.right(90);
+        }catch(Error e){
+            this.left(90);
+        }
     }
     
     @Override
     public void onTouchWall() {
-        this.left(90);
+        this.right(90);
     }
     
     @Override
     public void onScannedRobot() {
-       this.fire();
+
     }
     
     @Override
     public void onHitByBullet() {
-
-//        this.right(45);
-//        this.fire();
-        
+       try{
+            this.back(10);
+        }catch(Error e){
+            this.ahead(10);
+        }
     }
     
     @Override
