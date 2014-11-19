@@ -263,7 +263,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
             for (int e = 0; e < 4; e++) {
                 Line2D.Double nxtline = nextLine(linies.get(e));
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 4; i++) {
                     if (nxtline.intersectsLine(liniest2.get(i))) {
                         toca = true;
                     }
@@ -276,9 +276,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
             for (int e = 0; e < 4; e++) {
                 Line2D.Double nxtline = nextLine(linies.get(e));
-                for (int i = 0; i < 3; i++) {
-
-                    if (linies.get(e).intersectsLine(liniest2.get(i))) {
+                for (int i = 0; i < 4; i++) {
+                    if (nxtline.intersectsLine(liniest2.get(i))) {
                         toca = true;
                     }
                 }
@@ -302,7 +301,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             ArrayList<Line2D.Double> liniest2 = Board.getTank2().getBoundLines();
 
             Line2D.Double nxtline = nextLine(linies.get(pos));
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (nxtline.intersectsLine(liniest2.get(i))) {
                     toca = true;
                 }
@@ -313,7 +312,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             ArrayList<Line2D.Double> liniest2 = Board.getTank1().getBoundLines();
 
             Line2D.Double nxtline = nextLine(linies.get(pos));
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (nxtline.intersectsLine(liniest2.get(i))) {
                     toca = true;
                 }
@@ -446,7 +445,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onTouchWall();
                 return;
             }
-            if (this.touchRobotMov(3)) {
+            if (this.touchRobotMov(2)) {
                 this.onTouchRobot();
                 return;
             }
@@ -737,19 +736,19 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.angle), x + this.width / 2, y + this.height / 2);
 
-        Point2D p1 = new Point2D.Double(x + 10, y + 10);
+        Point2D p1 = new Point2D.Double(x + 15, y + 15);
         Point2D p1final = new Point2D.Double();
         p1final = transformer.transform(p1, p1final);
 
-        Point2D p2 = new Point2D.Double(x + this.width - 10, y + 10);
+        Point2D p2 = new Point2D.Double(x + this.width - 15, y + 15);
         Point2D p2final = new Point2D.Double();
         p2final = transformer.transform(p2, p2final);
 
-        Point2D p3 = new Point2D.Double(x + this.width - 10, y + this.height - 10);
+        Point2D p3 = new Point2D.Double(x + this.width - 15, y + this.height - 15);
         Point2D p3final = new Point2D.Double();
         p3final = transformer.transform(p3, p3final);
 
-        Point2D p4 = new Point2D.Double(x + 10, y + this.height - 10);
+        Point2D p4 = new Point2D.Double(x + 15, y + this.height - 15);
         Point2D p4final = new Point2D.Double();
         p4final = transformer.transform(p4, p4final);
 
