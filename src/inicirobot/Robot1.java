@@ -27,7 +27,7 @@ public class Robot1 extends Robot{
     
     @Override
     public void onScannedRobot() {
-//        this.fire();
+        this.fire();
     }
 
     @Override
