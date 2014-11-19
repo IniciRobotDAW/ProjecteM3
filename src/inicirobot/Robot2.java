@@ -19,7 +19,7 @@ public class Robot2 extends Robot{
     @Override
     public void onTouchRobot() {       
        this.back(10);
-       this.left(10);
+//       this.left(10);
        
     }
     
