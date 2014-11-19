@@ -15,6 +15,8 @@ import java.util.logging.*;
 import javax.swing.*;
 import robotlibrary3.*;
 
+
+
 /**
  *
  * @author atorrillas, rbarberan abstract
@@ -45,7 +47,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.lastReload = System.nanoTime();
         
         this.lives = 20;
-        this.bulletsLoad = 40;
+        this.bulletsLoad = 10;
 
     }
 
@@ -60,7 +62,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = this.body.getHeight();
         
         this.lives = 20;
-        this.bulletsLoad = 40;
+        this.bulletsLoad = 10;
 
     }
 
@@ -146,7 +148,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     //************//
     //**Funcions**//
     //************//
-       
+
     /**
      * Paint the robot / Pinta el robot
      * @param g
@@ -159,8 +161,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
         
-
-//        g2d.setStroke(new BasicStroke(5f));
+        
+        //g2d.setStroke(new BasicStroke(5f));
         //g2d.setColor(Color.red);
         //Point2D.Double p = new Point2D.Double(500,500);
         //g2d.drawLine((int)p.getX(), (int)p.getY(), (int)p.getX(), (int)p.getY());
@@ -343,6 +345,34 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             return false;
         }
     }
+    
+    /**
+     * Chenge de pos of robot /
+     * Cambia 2px la pos del robot
+     */
+    private void reposRobot(){
+        if(this.x<this.x+2){
+            double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y + 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+
+        } else {
+            double xt = this.x - 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y - 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+        }
+
+        if(this.y<this.y+2){
+            double xt = this.x - 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y - 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+
+        } else {
+            double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y + 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+        }
+    }
 
     /**
      * The robot going forward /
@@ -390,11 +420,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             if (this.touchRobotMov(0)) {
-                this.onTouchRobot();
-                return;
+                
+               this.reposRobot();
+               this.onTouchRobot();
+               return;
             }
 
             if (this.checkTouchBullet()) {
+                
                 this.onHitByBullet();
                 return;
             }
@@ -446,8 +479,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             if (this.touchRobotMov(2)) {
+                this.reposRobot();
                 this.onTouchRobot();
                 return;
+               
             }
             
             if (this.checkTouchBullet()) {
@@ -832,7 +867,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             
             ArrayList<Line2D.Double> liniest2 = Board.getTank2().getBoundLines();
             
-            for(int e = 0; e<3; e++ ){
+            for(int e = 0; e<4; e++ ){
                  if(ln.intersectsLine(liniest2.get(e))) {
                       scanned = true;
                       this.onScannedRobot();
@@ -846,7 +881,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             
             ArrayList<Line2D.Double> liniest2 = Board.getTank1().getBoundLines();
             
-            for(int e = 0; e<3; e++ ){
+            for(int e = 0; e<4; e++ ){
                  if(ln.intersectsLine(liniest2.get(e))) {
                       scanned = true;
                       this.onScannedRobot();
