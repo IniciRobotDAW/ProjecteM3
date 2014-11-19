@@ -346,6 +346,34 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             return false;
         }
     }
+    
+    /**
+     * Chenge de pos of robot /
+     * Cambia 2px la pos del robot
+     */
+    private void reposRobot(){
+        if(this.x<this.x+2){
+            double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y + 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+
+        } else {
+            double xt = this.x - 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y - 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+        }
+
+        if(this.y<this.y+2){
+            double xt = this.x - 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y - 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+
+        } else {
+            double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
+            double yt = this.y + 2 * Math.cos(Math.toRadians(this.getAngle()));
+            this.place(xt, yt);
+        }
+    }
 
     /**
      * The robot going forward /
@@ -393,34 +421,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             if (this.touchRobotMov(0)) {
-//                double xt = xi + i * Math.sin(Math.toRadians(this.getAngle()));
-//                double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
                 
-                if (this.x > Board.WIDTH - this.width) {
-//                    this.x = this.x - 2;
-                    double xt = this.x - 2 * Math.sin(Math.toRadians(this.getAngle()));
-                    this.place(xt, this.y);
-
-                } else if (this.x <= 0) {
-//                    this.x = this.x + 2;
-                    double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
-                    this.place(xt, this.y);
-
-                }
-
-                if (this.y > Board.HEIGHT - this.height) {
-//                    this.y = this.y - 2;
-                    double yt = yi - 2 * Math.cos(Math.toRadians(this.getAngle()));
-                    this.place(this.x, yt);
-                    
-                } else if (this.y <= 0) {
-//                    this.y = this.y + 2;
-                    double yt = yi + 2 * Math.cos(Math.toRadians(this.getAngle()));
-                    this.place(this.x, yt);
-                }
-
-                this.onTouchRobot();
-                return;
+               this.reposRobot();
+               this.onTouchRobot();
+               return;
             }
 
             if (this.checkTouchBullet()) {
@@ -477,32 +481,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             if (this.touchRobotMov(2)) {
-//                 double xt = xi + i * Math.sin(Math.toRadians(this.getAngle()));
-//                 double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
-                
-                if (this.x > Board.WIDTH - this.width) {
-//                    this.x = this.x - 2;
-                    double xt = this.x - 2 * Math.sin(Math.toRadians(this.getAngle()));
-                    this.place(xt, this.y);
-
-                } else if (this.x <= 0) {
-//                    this.x = this.x + 2;
-                    double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
-                    this.place(xt, this.y);
-
-                }
-
-                if (this.y > Board.HEIGHT - this.height) {
-//                    this.y = this.y - 2;
-                    double yt = yi - 2 * Math.cos(Math.toRadians(this.getAngle()));
-                    this.place(this.x, yt);
-                    
-                } else if (this.y <= 0) {
-//                    this.y = this.y + 2;
-                    double yt = yi + 2 * Math.cos(Math.toRadians(this.getAngle()));
-                    this.place(this.x, yt);
-                }
-
+                this.reposRobot();
                 this.onTouchRobot();
                 return;
                

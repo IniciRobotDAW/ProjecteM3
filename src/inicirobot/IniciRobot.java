@@ -22,7 +22,7 @@ public class IniciRobot {
         int xIniciR1 = 300;
         int yIniciR1 = 200;
         
-        int xIniciR2 = 500;
+        int xIniciR2 = 400;
         int yIniciR2 = 200;
         
         

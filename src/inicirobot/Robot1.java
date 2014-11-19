@@ -28,7 +28,7 @@ public class Robot1 extends Robot{
     
     @Override
     public void onScannedRobot() {
-        this.fire();
+//        this.fire();
     }
     
     @Override
@@ -40,7 +40,7 @@ public class Robot1 extends Robot{
 
     @Override
     public void run() {
-        this.right(90);
+        this.left(90);
         
         while(true){
             
