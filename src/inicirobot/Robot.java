@@ -393,11 +393,15 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             if (this.touchRobotMov(0)) {
+                double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
+                double yt = this.y - 2 * Math.cos(Math.toRadians(this.getAngle()));
+                this.place(xt, yt);
                 this.onTouchRobot();
                 return;
             }
 
             if (this.checkTouchBullet()) {
+                
                 this.onHitByBullet();
                 return;
             }
@@ -450,6 +454,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             if (this.touchRobotMov(2)) {
+                double xt = this.x + 2 * Math.sin(Math.toRadians(this.getAngle()));
+                double yt = this.y - 2 * Math.cos(Math.toRadians(this.getAngle()));
+                this.place(xt, yt);
+               
                 this.onTouchRobot();
                 return;
             }
