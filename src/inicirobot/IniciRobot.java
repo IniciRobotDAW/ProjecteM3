@@ -5,38 +5,18 @@
  */
 package inicirobot;
 
-
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Ellipse2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+//import libraries.*;
 import robotlibrary3.*;
 
 /**
  *
  * @author atorrillas
  */
-public class IniciRobot extends JPanel{
+public class IniciRobot{
 
     /**
      * @param args the command line arguments
      */
-    
-    @Override
-    public void paint(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.RED);
-        g2d.fillOval(0, 0, 30, 30);
-        g2d.drawOval(0, 50, 30, 30);		
-        g2d.fillRect(50, 0, 30, 30);
-        g2d.drawRect(50, 50, 30, 30);
-
-        g2d.draw(new Ellipse2D.Double(0, 100, 30, 30));
-    }
-    
     public static void main(String[] args) {
         
         int xIniciR1 = 300;
@@ -61,7 +41,7 @@ public class IniciRobot extends JPanel{
         // Robot sencer
         Robot1 r1 = new Robot1(xIniciR1, yIniciR1, cos1, turret1, radar1);
         Robot2 r2 = new Robot2(xIniciR2, yIniciR2, cos2, turret2, radar2);
-        
-        BattleWindow Panel = new BattleWindow(r1, r2);
+
+        new BattleWindow(r1, r2);
     }
 }
