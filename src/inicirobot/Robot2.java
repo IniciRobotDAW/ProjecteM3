@@ -17,7 +17,6 @@ public class Robot2 extends Robot{
     }
     
     @Override
-
     public void onTouchRobot() {       
        this.right(90);
     }
