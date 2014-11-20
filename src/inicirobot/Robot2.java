@@ -42,11 +42,5 @@ public class Robot2 extends Robot{
         while(true){
             this.back(100);
         }
-    }  
+    }
 }
-
-
-    
-   
-    
-
