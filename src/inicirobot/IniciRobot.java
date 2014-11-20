@@ -5,7 +5,7 @@
  */
 package inicirobot;
 
-
+//import libraries.*;
 import robotlibrary3.*;
 
 /**
@@ -42,6 +42,6 @@ public class IniciRobot {
         Robot1 r1 = new Robot1(xIniciR1, yIniciR1, cos1, turret1, radar1);
         Robot2 r2 = new Robot2(xIniciR2, yIniciR2, cos2, turret2, radar2);
 
-        new BattleWindow(r1, r2);     
+        new BattleWindow(r1, r2);
     }
 }
