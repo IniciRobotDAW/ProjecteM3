@@ -42,11 +42,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-/build/
-/dist/
-nbproject/private/private.xml
-nbproject/private/private.properties
-nbproject/private/private.xml
-nbproject/private/private.xml
-nbproject/private/private.xml
-nbproject/private/private.xml
+
+# Netbeans
+nbproject/
+build/
+dist/
+nbbuild/
+nbdist/
+nbactions.xml
+nb-configuration.xml
