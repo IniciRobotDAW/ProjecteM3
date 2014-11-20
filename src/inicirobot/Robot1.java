@@ -15,36 +15,30 @@ public class Robot1 extends Robot {
     }
 
     @Override
-    public void onTouchRobot() {
-
-        this.left(90);
+    public void onTouchRobot() {       
+       this.right(90);
     }
-
+    
     @Override
     public void onTouchWall() {
-
-        this.left(90);
-
+        this.right(90);
     }
-
+    
     @Override
     public void onScannedRobot() {
         this.fire();
     }
-
+    
     @Override
     public void onHitByBullet() {
-        this.back(10);
-        this.right(20);
+        this.fire();
     }
-
+    
     @Override
     public void run() {
         this.right(90);
-        while (true) {
-
+        while(true){
             this.back(100);
-
         }
     }
 }
