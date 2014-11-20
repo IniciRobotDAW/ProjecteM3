@@ -44,10 +44,10 @@ Temporary Items
 .apdisk
 
 # Netbeans
-nbproject/private/
+nbproject/
 build/
-nbbuild/
 dist/
+nbbuild/
 nbdist/
 nbactions.xml
 nb-configuration.xml
