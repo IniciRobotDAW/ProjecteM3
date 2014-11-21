@@ -46,7 +46,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = height;
         this.lastReload = System.nanoTime();
         
-        this.lives = 20;
+        this.lives = 3;
         this.bulletsLoad = 10;
 
     }
@@ -61,7 +61,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
-        this.lives = 20;
+        this.lives = 3;
         this.bulletsLoad = 10;
 
     }
@@ -156,11 +156,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     @Override
     public void paintObj(Graphics g, JComponent c) {
-        Graphics2D g2d = (Graphics2D) g;
-        this.body.paintObj(g, c);
-        this.turret.paintObj(g, c);
-        this.radar.paintObj(g, c);
-        
+        if(this.lives>0){
+            
+            Graphics2D g2d = (Graphics2D) g;
+            this.body.paintObj(g, c);
+            this.turret.paintObj(g, c);
+            this.radar.paintObj(g, c);
         
         //g2d.setStroke(new BasicStroke(5f));
         //g2d.setColor(Color.red);
@@ -228,7 +229,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 //        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p2final.getX(), (int) p2final.getY());
 //        g2d.drawLine((int) p3final.getX(), (int) p3final.getY(), (int) p3final.getX(), (int) p3final.getY());
 //        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p4final.getX(), (int) p4final.getY());
-
+        }
     }
 
     /**
