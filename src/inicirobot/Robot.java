@@ -163,19 +163,19 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             this.turret.paintObj(g, c);
             this.radar.paintObj(g, c);
         
-        //g2d.setStroke(new BasicStroke(5f));
-        //g2d.setColor(Color.red);
-        //Point2D.Double p = new Point2D.Double(500,500);
-        //g2d.drawLine((int)p.getX(), (int)p.getY(), (int)p.getX(), (int)p.getY());
-
-        //g2d.setColor(Color.blue);
-        //Point2D.Double p2 = this.movePoint((int)p.getX(), (int)p.getY(), 90, 90);
-        //g2d.drawLine((int)p2.getX(), (int)p2.getY(), (int)p2.getX(), (int)p2.getY());
-        //Point2D.Double pinicial = new Point2D.Double(500, 400);
-        //g2d.drawLine((int)pinicial.getX(), (int)pinicial.getY(), (int)pinicial.getX(), (int)pinicial.getY());
+//        g2d.setStroke(new BasicStroke(5f));
+//        g2d.setColor(Color.red);
+//        Point2D.Double p = new Point2D.Double(500,500);
+//        g2d.drawLine((int)p.getX(), (int)p.getY(), (int)p.getX(), (int)p.getY());
+//
+//        g2d.setColor(Color.blue);
+//        Point2D.Double p2 = this.movePoint((int)p.getX(), (int)p.getY(), 90, 90);
+//        g2d.drawLine((int)p2.getX(), (int)p2.getY(), (int)p2.getX(), (int)p2.getY());
+//        Point2D.Double pinicial = new Point2D.Double(500, 400);
+//        g2d.drawLine((int)pinicial.getX(), (int)pinicial.getY(), (int)pinicial.getX(), (int)pinicial.getY());
 //        AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.angle), x + this.width / 2, y + this.height / 2);
 
-        //Punts de fora
+//        //Punts de fora
 //        Point2D p1 = new Point2D.Double(x, y);
 //        Point2D p1final = new Point2D.Double();
 //        p1final = transformer.transform(p1, p1final);
@@ -209,7 +209,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 //        Point2D p4finali = new Point2D.Double();
 //        p4finali = transformer.transform(p4i, p4finali);
 
-        //pintar linies exteriors
+//        //pintar linies exteriors
 //        g2d.setColor(Color.blue);
 //        g2d.drawLine((int) p1final.getX(), (int) p1final.getY(), (int) p2final.getX(), (int) p2final.getY());
 //        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p3final.getX(), (int) p3final.getY());
