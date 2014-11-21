@@ -23,6 +23,7 @@ import javax.swing.Timer;
 public class BattleWindow extends JFrame implements ActionListener {
     
     public Board board;
+    public statesDisplay display;
     public JPanel info;  
     Timer timer;
 
@@ -35,8 +36,19 @@ public class BattleWindow extends JFrame implements ActionListener {
             board.setBounds(0, 0, 800, 600);
             board.setBackground(Color.BLACK);
             
+            
+            display = new statesDisplay();
+            display.setLayout(null);
+            display.setBounds(
+                    Board.getWIDTH(),
+                    Board.getHEIGHT()-Board.getHEIGHT(),
+                    this.getWidth()-Board.getWIDTH(),
+                    Board.getHEIGHT());
+            display.setBackground(Color.cyan);
+            
             getContentPane().setLayout(null);
             this.add(board);
+            this.add(display);
 
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setResizable(false);
@@ -51,6 +63,7 @@ public class BattleWindow extends JFrame implements ActionListener {
 
             Graphics2D g2d = (Graphics2D) g;
             this.board.repaint();
+            this.display.repaint();
     }
 
     @Override

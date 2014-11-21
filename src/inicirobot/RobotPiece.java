@@ -8,7 +8,8 @@ package inicirobot;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
-import robotlibrary3.*;
+//import robotlibrary3.*;
+import libraries.*;
 
 /**
  *

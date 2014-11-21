@@ -9,11 +9,11 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-//import java.awt.geom.Rectangle2D;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.*;
-import robotlibrary3.*;
+//import robotlibrary3.*;
+import libraries.*;
 
 
 
@@ -46,8 +46,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = height;
         this.lastReload = System.nanoTime();
         
-        this.lives = 20;
-        this.bulletsLoad = 10;
+        this.lives = 5;
+        this.bulletsLoad = 40;
 
     }
 
@@ -61,8 +61,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
-        this.lives = 20;
-        this.bulletsLoad = 10;
+        this.lives = 5;
+        this.bulletsLoad = 40;
 
     }
 
@@ -809,8 +809,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         Line2D.Double l2 = new Line2D.Double(punts.get(1), punts.get(2));
         Line2D.Double l3 = new Line2D.Double(punts.get(2), punts.get(3));
         Line2D.Double l4 = new Line2D.Double(punts.get(3), punts.get(1));
-        
-
+       
         linies.add(l1);
         linies.add(l2);
         linies.add(l3);
@@ -838,6 +837,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                             if(Board.getBullets().get(t).isVisible() != false){
                                 tocat = true;
                                 this.setLives(this.getLives()-1);
+                                if(this.lives <= 0){
+                                    this.setVisible(false);
+                                }
                             }
                             Board.getBullets().get(t).setVisible(false);
                         }
