@@ -279,7 +279,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             for (int e = 0; e < 4; e++) {
                 Line2D.Double nxtline = nextLine(linies.get(e));
                 for (int i = 0; i < 4; i++) {
-
                     if (nxtline.intersectsLine(liniest2.get(i))) {
                         toca = true;
                     }
@@ -453,8 +452,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
                 this.checkScannedRobot();
                 this.place(xt, yt);
-                
-                
+
                 try {
                     Thread.sleep(4);
                 } catch (InterruptedException ex) {
@@ -486,12 +484,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
                
             }
-
+            
             if (this.checkTouchBullet()) {
                 this.onHitByBullet();
                 return;
             }
-     
+            
         }
     }
 
