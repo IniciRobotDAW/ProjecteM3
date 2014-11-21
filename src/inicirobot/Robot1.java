@@ -53,8 +53,4 @@ public class Robot1 extends Robot {
     }
 }
 
-            this.back(1);
-        }
-    }
-}
-
+    
