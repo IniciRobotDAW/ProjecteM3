@@ -46,14 +46,13 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = height;
         this.lastReload = System.nanoTime();
         
-<<<<<<< HEAD
+
         this.lives = 3;
         this.bulletsLoad = 10;
-=======
-        this.lives = 20;
-        this.bulletsLoad = 40;
 
->>>>>>> origin/master
+
+
+
 
     }
 
@@ -67,14 +66,11 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
-<<<<<<< HEAD
+
         this.lives = 3;
         this.bulletsLoad = 10;
-=======
-        this.lives = 20;
-        this.bulletsLoad = 40;
 
->>>>>>> origin/master
+
 
     }
 
@@ -510,7 +506,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     /**
      * Turns all pieces of the robot /
-     * Fa girar totes les peçes del robot
+     * Fa girar totes les peÃ§es del robot
      * @param a 
      */
     private void rotateRobot(float a) {
@@ -666,7 +662,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.x = x;
         this.y = y;
 
-        //Coloquem les peçes
+        //Coloquem les peÃ§es
         this.body.place(x, y);
         this.turret.place(x, y);
         this.radar.place(x, y);
@@ -926,7 +922,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     
     /**
      * Running robot /
-     * Execució del robot
+     * ExecuciÃ³ del robot
      */
     public abstract void run();
 
