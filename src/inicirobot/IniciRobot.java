@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package inicirobot;
-
-//import libraries.*;
-import robotlibrary3.*;
+import libraries.*;
+//import robotlibrary3.*;
 
 /**
  *

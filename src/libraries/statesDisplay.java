@@ -5,38 +5,21 @@
  */
 package libraries;
 
-import java.awt.Graphics;
-import java.awt.Toolkit;
+import java.util.Vector;
 import javax.swing.JPanel;
+import static libraries.Board.bullets;
 
 /**
  *
  * @author rbarberan
  */
-public class statesDisplay extends JPanel {
-    public static final int WIDTH = 100;
-    public static final int HEIGHT = 100;
-//    private static SimulatorRobot tank1;
-//    private static SimulatorRobot tank2;
-//
-//    public statesDisplay(SimulatorRobot r1,SimulatorRobot r2) {		
-//            setDoubleBuffered(true);
-//            tank1=r1; 
-//            tank2=r2; 
-//    }
+public class statesDisplay extends JPanel{
     
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);                
-        Toolkit.getDefaultToolkit().sync();
-        g.dispose();
-    }
+    public static final int WIDTH = 50;
+    public static final int HEIGHT = 50;
 
-    public static int getWIDTH() {
-            return WIDTH;
+    public statesDisplay() {
+        
     }
-
-    public static int getHEIGHT() {
-            return HEIGHT;
-    }
+    
 }

@@ -5,9 +5,9 @@
  */
 package inicirobot;
 import java.awt.*;
-import java.awt.geom.Point2D;
 import javax.swing.JComponent;
-import robotlibrary3.*;
+//import robotlibrary3.*;
+import libraries.*;
 
 /**
  *

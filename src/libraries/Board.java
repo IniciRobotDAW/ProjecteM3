@@ -87,7 +87,6 @@ public class Board extends JPanel{
             } else {  
                 Board.bullets.remove(b);
             }			
-        }	
-
+        }
     }
 }
