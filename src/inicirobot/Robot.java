@@ -46,8 +46,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = height;
         this.lastReload = System.nanoTime();
         
+<<<<<<< HEAD
         this.lives = 3;
         this.bulletsLoad = 10;
+=======
+        this.lives = 20;
+        this.bulletsLoad = 40;
+
+>>>>>>> origin/master
 
     }
 
@@ -61,8 +67,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
+<<<<<<< HEAD
         this.lives = 3;
         this.bulletsLoad = 10;
+=======
+        this.lives = 20;
+        this.bulletsLoad = 40;
+
+>>>>>>> origin/master
 
     }
 
@@ -453,7 +465,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
                 this.checkScannedRobot();
                 this.place(xt, yt);
-
+                
+                
                 try {
                     Thread.sleep(4);
                 } catch (InterruptedException ex) {
@@ -479,18 +492,19 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onTouchWall();
                 return;
             }
+
             if (this.touchRobotMov(2)) {
                 this.reposRobot();
                 this.onTouchRobot();
                 return;
                
             }
-            
+
             if (this.checkTouchBullet()) {
                 this.onHitByBullet();
                 return;
             }
-            
+     
         }
     }
 

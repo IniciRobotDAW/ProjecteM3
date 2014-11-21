@@ -8,48 +8,37 @@ package inicirobot;
 /**
  * @author rbarberan
  */
-
-public class Robot1 extends Robot{
+public class Robot1 extends Robot {
 
     public Robot1(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, cos, turret, radar);
     }
-      
-    @Override
-    public void onTouchRobot() {
-        this.left(90);
-    }
 
     @Override
+    public void onTouchRobot() {       
+       this.right(90);
+    }
+    
+    @Override
     public void onTouchWall() {
-        this.left(90);
+        this.right(90);
     }
     
     @Override
     public void onScannedRobot() {
         this.fire();
     }
-
+    
     @Override
-    public void onHitByBullet(){
-        this.back(10);
-        this.right(20);
+    public void onHitByBullet() {
+        this.fire();
     }
-
+    
     @Override
     public void run() {
         this.right(90);
         while(true){
-            
             this.back(100);
-            
         }
-    }    
+    }
 }
-    
-
-
-    
-   
-    
-
