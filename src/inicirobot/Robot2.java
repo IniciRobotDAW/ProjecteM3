@@ -34,7 +34,7 @@ public class Robot2 extends Robot{
     @Override
     public void onHitByBullet() {
         System.out.println(this.getLives() + " " + "Robot 2");
-//        this.fire();
+        this.fire();
     }
     
     @Override

@@ -33,7 +33,7 @@ public class Robot1 extends Robot{
     @Override
     public void onHitByBullet() {
         System.out.println(this.getLives() + " " + "Robot 1");
-//        this.fire();
+        this.fire();
     }
     
     @Override

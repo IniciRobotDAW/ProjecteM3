@@ -16,7 +16,6 @@ import java.util.ArrayList;
  */
 public interface SimulatorRobot extends SimulatorObject,Runnable{
    
-   
     public abstract ArrayList<Point2D.Double> getBoundPoints(); 
     public abstract ArrayList<Line2D.Double> getBoundLines();
     
