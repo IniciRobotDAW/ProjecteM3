@@ -6,24 +6,27 @@
 package inicirobot;
 
 /**
+ *
  * @author rbarberan
  */
 
-public class Robot1 extends Robot{
+public class Robot3 extends Robot{
 
-    public Robot1(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
+    public Robot3(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, cos, turret, radar);
     }
-      
+    
     @Override
     public void onTouchRobot() {       
-       this.right(90);
-       this.back(10);
+        this.back(10);
+        this.fire();
+        this.left(90);
+        
     }
     
     @Override
     public void onTouchWall() {
-        this.left(45);
+        this.right(180);
     }
     
     @Override
@@ -33,13 +36,11 @@ public class Robot1 extends Robot{
     
     @Override
     public void onHitByBullet() {
-        System.out.println(this.getLives() + " " + "Robot 1");
-        this.fire();
+        System.out.println(this.getLives() + " " + "Robot 3");
     }
     
     @Override
     public void run() {
-        this.right(90);
         while(true){
             this.ahead(100);
         }

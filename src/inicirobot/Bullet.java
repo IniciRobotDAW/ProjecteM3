@@ -53,9 +53,10 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
         Graphics2D g2d = (Graphics2D) g;
         
         for (int i = 0; i < Board.robots.size(); i++) {
+            g2d.setColor(Color.WHITE);
             if(Board.robots.get(0) == this.owner){
                 g2d.setColor(Color.red);
-            } else {
+            } else if(Board.robots.get(1) == this.owner){
                 g2d.setColor(Color.orange);
             }
         }

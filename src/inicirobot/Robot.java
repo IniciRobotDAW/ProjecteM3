@@ -260,32 +260,33 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         for (int i = 0; i < Board.robots.size(); i++) {
         
-            if (Board.robots.get(0) == this) {
+            if (Board.robots.get(i) != this) {
 
                 ArrayList<Line2D.Double> linies = this.getBoundLinesToRotate();
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(1).getBoundLines();
+                ArrayList<Line2D.Double> liniest2 = Board.robots.get(i).getBoundLines();
 
                 for (int e = 0; e < 4; e++) {
                     Line2D.Double nxtline = nextLine(linies.get(e));
                     for (int j = 0; j < 4; j++) {
-                        if (nxtline.intersectsLine(liniest2.get(i))) {
+                        if (nxtline.intersectsLine(liniest2.get(j))) {
                             toca = true;
                         }
                     }
                 }
 
-            } else {
-                ArrayList<Line2D.Double> linies = this.getBoundLinesToRotate();
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
-
-                for (int e = 0; e < 4; e++) {
-                    Line2D.Double nxtline = nextLine(linies.get(e));
-                    for (int j = 0; j < 4; j++) {
-                        if (nxtline.intersectsLine(liniest2.get(i))) {
-                            toca = true;
-                        }
-                    }
-                }
+//            } else {
+//                
+//                ArrayList<Line2D.Double> linies = this.getBoundLinesToRotate();
+//                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
+//
+//                for (int e = 0; e < 4; e++) {
+//                    Line2D.Double nxtline = nextLine(linies.get(e));
+//                    for (int j = 0; j < 4; j++) {
+//                        if (nxtline.intersectsLine(liniest2.get(j))) {
+//                            toca = true;
+//                        }
+//                    }
+//                }
             }
         }
         return toca;
@@ -302,10 +303,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         
         for (int i = 0; i < Board.robots.size(); i++) {
         
-            if (Board.robots.get(0) == this) {
+            if (Board.robots.get(i) != this) {
 
                 ArrayList<Line2D.Double> linies = this.getBoundLines();
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(1).getBoundLines();
+                ArrayList<Line2D.Double> liniest2 = Board.robots.get(i).getBoundLines();
 
                 Line2D.Double nxtline = nextLine(linies.get(pos));
                 for (int j = 0; j < 4; j++) {
@@ -314,16 +315,16 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                     }
                 }
 
-            } else {
-                ArrayList<Line2D.Double> linies = this.getBoundLines();
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
-
-                Line2D.Double nxtline = nextLine(linies.get(pos));
-                for (int j = 0; j < 4; j++) {
-                    if (nxtline.intersectsLine(liniest2.get(j))) {
-                        toca = true;
-                    }
-                }
+//            } else {
+//                ArrayList<Line2D.Double> linies = this.getBoundLines();
+//                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
+//
+//                Line2D.Double nxtline = nextLine(linies.get(pos));
+//                for (int j = 0; j < 4; j++) {
+//                    if (nxtline.intersectsLine(liniest2.get(j))) {
+//                        toca = true;
+//                    }
+//                }
             }
         }
 
@@ -824,6 +825,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return (linies);
     }
 
+    public void die(){
+        this.setVisible(false);
+    }
+    
     /**
      * Look if touch a bullet /
      * Mirar si toca una bala
@@ -843,9 +848,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                             if(Board.getBullets().get(t).isVisible() != false){
                                 tocat = true;
                                 this.setLives(this.getLives()-1);
-                                if(this.lives <= 0){
-                                    this.setVisible(false);
-                                }
+//                                if(this.lives <= 0){
+//                                    this.die();
+//                                }
                             }
                             Board.getBullets().get(t).setVisible(false);
                         }
@@ -868,13 +873,13 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         for (int i = 0; i < Board.robots.size(); i++) {
         
-            if(Board.robots.get(0)==this){
+            if(Board.robots.get(i) != this){
 
                 Point2D pfradar = this.movePoint(this.radar.x+18 , this.radar.y+20, this.radar.angle, 800);
 
                 Line2D.Double ln = new Line2D.Double((int)this.radar.x+18, (int)this.radar.y+20, (int)pfradar.getX(), (int)pfradar.getY());
 
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(1).getBoundLines();
+                ArrayList<Line2D.Double> liniest2 = Board.robots.get(i).getBoundLines();
 
                 for(int e = 0; e<4; e++ ){
                      if(ln.intersectsLine(liniest2.get(e))) {
@@ -883,19 +888,19 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                       }
                  }
 
-            } else {
-                Point2D pfradar = this.movePoint(this.radar.x+18 , this.radar.y+20, this.radar.angle, 800);
-
-                Line2D.Double ln = new Line2D.Double((int)this.radar.x+18, (int)this.radar.y+20, (int)pfradar.getX(), (int)pfradar.getY());
-
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
-
-                for(int e = 0; e<4; e++ ){
-                     if(ln.intersectsLine(liniest2.get(e))) {
-                          scanned = true;
-                          this.onScannedRobot();
-                      }
-                 }
+//            } else {
+//                Point2D pfradar = this.movePoint(this.radar.x+18 , this.radar.y+20, this.radar.angle, 800);
+//
+//                Line2D.Double ln = new Line2D.Double((int)this.radar.x+18, (int)this.radar.y+20, (int)pfradar.getX(), (int)pfradar.getY());
+//
+//                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
+//
+//                for(int e = 0; e<4; e++ ){
+//                     if(ln.intersectsLine(liniest2.get(e))) {
+//                          scanned = true;
+//                          this.onScannedRobot();
+//                      }
+//                 }
             }
         }
         
