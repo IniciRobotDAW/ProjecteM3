@@ -9,6 +9,7 @@ package libraries;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class BattleWindow extends JFrame implements ActionListener {
 
     public BattleWindow(ArrayList<SimulatorRobot> r) {
 
-            setSize(1000, 700);    
+            setSize(1000, 600);    
 
             board = new Board(r);
             board.setLayout(null);
@@ -38,7 +39,7 @@ public class BattleWindow extends JFrame implements ActionListener {
             board.setBackground(Color.BLACK);
             
             
-            display = new statesDisplay();
+            display = new statesDisplay(r);
             display.setLayout(null);
             display.setBounds(
                     Board.getWIDTH(),

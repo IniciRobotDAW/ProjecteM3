@@ -5,9 +5,13 @@
  */
 package libraries;
 
-import java.util.Vector;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import static libraries.Board.bullets;
+import static libraries.Board.robots;
 
 /**
  *
@@ -15,10 +19,19 @@ import static libraries.Board.bullets;
  */
 public class statesDisplay extends JPanel{
     
-    public static final int WIDTH = 50;
-    public static final int HEIGHT = 50;
+//    public static final int WIDTH = 50;
+//    public static final int HEIGHT = 50;
 
-    public statesDisplay() {
+    public static ArrayList<SimulatorRobot> robots;
+    
+    public statesDisplay(ArrayList<SimulatorRobot> r) {
+        this.robots = r;
+       
+    }
+    
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
         
     }
     
