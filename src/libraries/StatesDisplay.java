@@ -42,25 +42,36 @@ public class StatesDisplay extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
+        int dNomRobot = 30;
+        int dGetXY = 50;
+        int dGetL = 70;
+        int dGetB = 90;
+        int interlinieat = 90;
+        
         for (int i = 0; i < Board.robots.size(); i++) {
             String xr1 = String.valueOf(Math.rint(Board.robots.get(i).getX() * 100) / 100);
             String yr1 = String.valueOf(Math.rint(Board.robots.get(i).getY() * 100) / 100);
             String br1 = String.valueOf(Board.robots.get(i).getBulletsLoad());
             String lr1 = String.valueOf(Board.robots.get(i).getLives());
-
-            g.drawString("ROBOT 1", 10, 30);
-            g.drawString("X-->", 10, 50);
-            g.drawString(xr1, 40, 50);
-            g.drawString("Y-->", 100, 50);
-            g.drawString(yr1, 130, 50);
-
-            g.drawString("LIVES-->", 10, 70);
-            g.drawString(lr1, 70, 70);
-            g.drawString("BULLETS-->", 10, 90);
-            g.drawString(br1, 80, 90);
+          
+            int numRobot = i+1;
+            g.drawString("ROBOT "+numRobot, 10, dNomRobot);
+            g.drawString("X-->", 10, dGetXY);
+            g.drawString(xr1, 40, dGetXY);
+            g.drawString("Y-->", 100, dGetXY);
+            g.drawString(yr1, 130, dGetXY);
+            g.drawString("LIVES-->", 10, dGetL);
+            g.drawString(lr1, 70, dGetL);
+            g.drawString("BULLETS-->", 10, dGetB);
+            g.drawString(br1, 80, dGetB);
+            
+            dNomRobot = dNomRobot + interlinieat;
+            dGetXY = dGetXY + interlinieat;
+            dGetL = dGetL + interlinieat;
+            dGetB = dGetB + interlinieat;
 
         }
-
+        
     }
 
     public StatesDisplay(Graphics g, Double xr1) {
