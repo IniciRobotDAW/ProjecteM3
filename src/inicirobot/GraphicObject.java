@@ -36,7 +36,8 @@ public abstract class GraphicObject {
     }
 
     //Getters i setters
-     public double getX() {
+
+    public double getX() {
         return x;
     }
 

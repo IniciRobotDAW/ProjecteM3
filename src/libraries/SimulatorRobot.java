@@ -18,5 +18,10 @@ public interface SimulatorRobot extends SimulatorObject,Runnable{
    
     public abstract ArrayList<Point2D.Double> getBoundPoints(); 
     public abstract ArrayList<Line2D.Double> getBoundLines();
+    public abstract int getLives();
+    public abstract int getBulletsLoad();
+    public abstract double getX();
+    public abstract double getY();
+    
     
 }

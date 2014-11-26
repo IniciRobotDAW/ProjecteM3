@@ -37,9 +37,10 @@ public class Robot1 extends Robot {
     public void run() {
         this.right(90);
         while(true){
-            this.ahead(100);
+            this.back(100);
         }
     }
+
 }
 
     
