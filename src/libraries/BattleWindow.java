@@ -31,7 +31,7 @@ public class BattleWindow extends JFrame implements ActionListener {
 
     public BattleWindow(ArrayList<SimulatorRobot> r) {
 
-            setSize(1000, 600);    
+            setSize(1000, 700);    
 
             board = new Board(r);
             board.setLayout(null);
