@@ -51,10 +51,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.bulletsLoad = 40;
 
 
-
-
-
-
     }
 
     public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
@@ -77,6 +73,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     }
 
     //getters i setters
+   
+    
     public int getSpeed() {
         return speed;
     }
@@ -166,13 +164,15 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     @Override
     public void paintObj(Graphics g, JComponent c) {
-        if(this.lives>0){
+        
             
             Graphics2D g2d = (Graphics2D) g;
             this.body.paintObj(g, c);
             this.turret.paintObj(g, c);
             this.radar.paintObj(g, c);
-        
+           
+            
+            
 //        g2d.setStroke(new BasicStroke(5f));
 //        g2d.setColor(Color.red);
 //        Point2D.Double p = new Point2D.Double(500,500);
@@ -184,7 +184,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 //        Point2D.Double pinicial = new Point2D.Double(500, 400);
 //        g2d.drawLine((int)pinicial.getX(), (int)pinicial.getY(), (int)pinicial.getX(), (int)pinicial.getY());
 //        AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.angle), x + this.width / 2, y + this.height / 2);
-
 //        //Punts de fora
 //        Point2D p1 = new Point2D.Double(x, y);
 //        Point2D p1final = new Point2D.Double();
@@ -218,28 +217,25 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 //        Point2D p4i = new Point2D.Double(x + 2, y + this.height - 2);
 //        Point2D p4finali = new Point2D.Double();
 //        p4finali = transformer.transform(p4i, p4finali);
-
 //        //pintar linies exteriors
 //        g2d.setColor(Color.blue);
 //        g2d.drawLine((int) p1final.getX(), (int) p1final.getY(), (int) p2final.getX(), (int) p2final.getY());
 //        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p3final.getX(), (int) p3final.getY());
 //        g2d.drawLine((int) p3final.getX(), (int) p3final.getY(), (int) p4final.getX(), (int) p4final.getY());
 //        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p1final.getX(), (int) p1final.getY());
-
-        //pintar linies interiors
+            //pintar linies interiors
 //        g2d.setColor(Color.yellow);
 //        g2d.drawLine((int) p1finali.getX(), (int) p1finali.getY(), (int) p2finali.getX(), (int) p2finali.getY());
 //        g2d.drawLine((int) p2finali.getX(), (int) p2finali.getY(), (int) p3finali.getX(), (int) p3finali.getY());
 //        g2d.drawLine((int) p3finali.getX(), (int) p3finali.getY(), (int) p4finali.getX(), (int) p4finali.getY());
 //        g2d.drawLine((int) p4finali.getX(), (int) p4finali.getY(), (int) p1finali.getX(), (int) p1finali.getY());
-
-        //pintar punts exteriors
+            //pintar punts exteriors
 //        g2d.setColor(Color.red);
 //        g2d.drawLine((int) p1final.getX(), (int) p1final.getY(), (int) p1final.getX(), (int) p1final.getY());
 //        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p2final.getX(), (int) p2final.getY());
 //        g2d.drawLine((int) p3final.getX(), (int) p3final.getY(), (int) p3final.getX(), (int) p3final.getY());
 //        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p4final.getX(), (int) p4final.getY());
-        }
+        
     }
 
     /**

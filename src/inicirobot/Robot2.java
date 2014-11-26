@@ -23,7 +23,7 @@ public class Robot2 extends Robot{
     
     @Override
     public void onTouchWall() {
-//        this.right(90);
+        this.right(90);
     }
     
     @Override
