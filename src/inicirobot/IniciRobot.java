@@ -12,7 +12,7 @@ import libraries.*;
  *
  * @author atorrillas
  */
-public class IniciRobot{
+public class IniciRobot {
 
     /**
      * @param args the command line arguments
@@ -22,7 +22,7 @@ public class IniciRobot{
         int xIniciR1 = 300;
         int yIniciR1 = 200;
         
-        int xIniciR2 = 400;
+        int xIniciR2 = 500;
         int yIniciR2 = 200;
         
         int xIniciR3 = 500;

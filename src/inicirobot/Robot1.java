@@ -8,16 +8,13 @@ package inicirobot;
 /**
  * @author rbarberan
  */
-
-public class Robot1 extends Robot{
-
+public class Robot1 extends Robot {
     public Robot1(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, cos, turret, radar);
     }
-      
+
     @Override
     public void onTouchRobot() {       
-       this.right(90);
        this.back(10);
     }
     
@@ -33,7 +30,6 @@ public class Robot1 extends Robot{
     
     @Override
     public void onHitByBullet() {
-        System.out.println(this.getLives() + " " + "Robot 1");
         this.fire();
     }
     
@@ -45,3 +41,5 @@ public class Robot1 extends Robot{
         }
     }
 }
+
+    

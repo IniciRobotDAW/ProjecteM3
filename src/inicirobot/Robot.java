@@ -46,8 +46,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = height;
         this.lastReload = System.nanoTime();
         
+
         this.lives = 5;
         this.bulletsLoad = 40;
+
+
+
+
+
 
     }
 
@@ -61,8 +67,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
-        this.lives = 5;
-        this.bulletsLoad = 40;
+
+        this.lives = 3;
+        this.bulletsLoad = 10;
+
+
+
 
     }
 
@@ -161,68 +171,96 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
         
-        g2d.setStroke(new BasicStroke(5f));
-        AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.angle), x + this.width / 2, y + this.height / 2);
-        
-        //Diametre de gir
-//        g2d.setColor(Color.red);
-//        Point2D.Double p = new Point2D.Double(this.getX()+15,this.getY()-15);
-//        g2d.drawOval((int)p.getX(),(int)p.getY(), 100, 100);
-
-        //Punts de fora
-        Point2D p1 = new Point2D.Double(x, y);
-        Point2D p1final = new Point2D.Double();
-        p1final = transformer.transform(p1, p1final);
-
-        Point2D p2 = new Point2D.Double(x + this.width, y);
-        Point2D p2final = new Point2D.Double();
-        p2final = transformer.transform(p2, p2final);
-
-        Point2D p3 = new Point2D.Double(x + this.width, y + this.height);
-        Point2D p3final = new Point2D.Double();
-        p3final = transformer.transform(p3, p3final);
-
-        Point2D p4 = new Point2D.Double(x, y + this.height);
-        Point2D p4final = new Point2D.Double();
-        p4final = transformer.transform(p4, p4final);
-
-//        //punts de dins
-        Point2D p1i = new Point2D.Double(x + 2, y + 2);
-        Point2D p1finali = new Point2D.Double();
-        p1finali = transformer.transform(p1i, p1finali);
-
-        Point2D p2i = new Point2D.Double(x + this.width - 2, y + 2);
-        Point2D p2finali = new Point2D.Double();
-        p2finali = transformer.transform(p2i, p2finali);
-
-        Point2D p3i = new Point2D.Double(x + this.width - 2, y + this.height - 2);
-        Point2D p3finali = new Point2D.Double();
-        p3finali = transformer.transform(p3i, p3finali);
-
-        Point2D p4i = new Point2D.Double(x + 2, y + this.height - 2);
-        Point2D p4finali = new Point2D.Double();
-        p4finali = transformer.transform(p4i, p4finali);
-
-        //pintar linies exteriors
-        g2d.setColor(Color.blue);
-        g2d.drawLine((int) p1final.getX(), (int) p1final.getY(), (int) p2final.getX(), (int) p2final.getY());
-        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p3final.getX(), (int) p3final.getY());
-        g2d.drawLine((int) p3final.getX(), (int) p3final.getY(), (int) p4final.getX(), (int) p4final.getY());
-        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p1final.getX(), (int) p1final.getY());
-
-        //pintar linies interiors
-        g2d.setColor(Color.yellow);
-        g2d.drawLine((int) p1finali.getX(), (int) p1finali.getY(), (int) p2finali.getX(), (int) p2finali.getY());
-        g2d.drawLine((int) p2finali.getX(), (int) p2finali.getY(), (int) p3finali.getX(), (int) p3finali.getY());
-        g2d.drawLine((int) p3finali.getX(), (int) p3finali.getY(), (int) p4finali.getX(), (int) p4finali.getY());
-        g2d.drawLine((int) p4finali.getX(), (int) p4finali.getY(), (int) p1finali.getX(), (int) p1finali.getY());
-
-        //pintar punts exteriors
-        g2d.setColor(Color.red);
-        g2d.drawLine((int) p1final.getX(), (int) p1final.getY(), (int) p1final.getX(), (int) p1final.getY());
-        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p2final.getX(), (int) p2final.getY());
-        g2d.drawLine((int) p3final.getX(), (int) p3final.getY(), (int) p3final.getX(), (int) p3final.getY());
-        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p4final.getX(), (int) p4final.getY());
+//        g2d.setStroke(new BasicStroke(5f));
+//        AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.angle), x + this.width / 2, y + this.height / 2);
+//        
+//        //Diametre de gir
+////        g2d.setColor(Color.red);
+////        Point2D.Double p = new Point2D.Double(this.getX()+15,this.getY()-15);
+////        g2d.drawOval((int)p.getX(),(int)p.getY(), 100, 100);
+//
+//        //Punts de fora
+//        Point2D p1 = new Point2D.Double(x, y);
+//        Point2D p1final = new Point2D.Double();
+//        p1final = transformer.transform(p1, p1final);
+//
+//        Point2D p2 = new Point2D.Double(x + this.width, y);
+//        Point2D p2final = new Point2D.Double();
+//        p2final = transformer.transform(p2, p2final);
+//
+//        Point2D p3 = new Point2D.Double(x + this.width, y + this.height);
+//        Point2D p3final = new Point2D.Double();
+//        p3final = transformer.transform(p3, p3final);
+//
+//        Point2D p4 = new Point2D.Double(x, y + this.height);
+//        Point2D p4final = new Point2D.Double();
+//        p4final = transformer.transform(p4, p4final);
+//
+//=======
+//        if(this.lives>0){
+//            
+//            Graphics2D g2d = (Graphics2D) g;
+//            this.body.paintObj(g, c);
+//            this.turret.paintObj(g, c);
+//            this.radar.paintObj(g, c);
+//        
+////        g2d.setStroke(new BasicStroke(5f));
+////        g2d.setColor(Color.red);
+////        Point2D.Double p = new Point2D.Double(500,500);
+////        g2d.drawLine((int)p.getX(), (int)p.getY(), (int)p.getX(), (int)p.getY());
+////
+////        g2d.setColor(Color.blue);
+////        Point2D.Double p2 = this.movePoint((int)p.getX(), (int)p.getY(), 90, 90);
+////        g2d.drawLine((int)p2.getX(), (int)p2.getY(), (int)p2.getX(), (int)p2.getY());
+////        Point2D.Double pinicial = new Point2D.Double(500, 400);
+////        g2d.drawLine((int)pinicial.getX(), (int)pinicial.getY(), (int)pinicial.getX(), (int)pinicial.getY());
+////        AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.angle), x + this.width / 2, y + this.height / 2);
+//
+////        //Punts de fora
+////        Point2D p1 = new Point2D.Double(x, y);
+////        Point2D p1final = new Point2D.Double();
+////        p1final = transformer.transform(p1, p1final);
+////
+////        Point2D p2 = new Point2D.Double(x + this.width, y);
+////        Point2D p2final = new Point2D.Double();
+////        p2final = transformer.transform(p2, p2final);
+////
+////        Point2D p3 = new Point2D.Double(x + this.width, y + this.height);
+////        Point2D p3final = new Point2D.Double();
+////        p3final = transformer.transform(p3, p3final);
+////
+////        Point2D p4 = new Point2D.Double(x, y + this.height);
+////        Point2D p4final = new Point2D.Double();
+////        p4final = transformer.transform(p4, p4final);
+////
+//>>>>>>> origin/Arnau
+//
+//
+//
+////        //pintar linies exteriors
+////        g2d.setColor(Color.blue);
+////        g2d.drawLine((int) p1final.getX(), (int) p1final.getY(), (int) p2final.getX(), (int) p2final.getY());
+////        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p3final.getX(), (int) p3final.getY());
+////        g2d.drawLine((int) p3final.getX(), (int) p3final.getY(), (int) p4final.getX(), (int) p4final.getY());
+////        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p1final.getX(), (int) p1final.getY());
+//
+//
+//        //pintar linies interiors
+////        g2d.setColor(Color.yellow);
+////        g2d.drawLine((int) p1finali.getX(), (int) p1finali.getY(), (int) p2finali.getX(), (int) p2finali.getY());
+////        g2d.drawLine((int) p2finali.getX(), (int) p2finali.getY(), (int) p3finali.getX(), (int) p3finali.getY());
+////        g2d.drawLine((int) p3finali.getX(), (int) p3finali.getY(), (int) p4finali.getX(), (int) p4finali.getY());
+////        g2d.drawLine((int) p4finali.getX(), (int) p4finali.getY(), (int) p1finali.getX(), (int) p1finali.getY());
+//
+//        //pintar punts exteriors
+////        g2d.setColor(Color.red);
+////        g2d.drawLine((int) p1final.getX(), (int) p1final.getY(), (int) p1final.getX(), (int) p1final.getY());
+////        g2d.drawLine((int) p2final.getX(), (int) p2final.getY(), (int) p2final.getX(), (int) p2final.getY());
+////        g2d.drawLine((int) p3final.getX(), (int) p3final.getY(), (int) p3final.getX(), (int) p3final.getY());
+////        g2d.drawLine((int) p4final.getX(), (int) p4final.getY(), (int) p4final.getX(), (int) p4final.getY());
+//
+//
+////       
 
     }
 
@@ -454,7 +492,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
                 this.checkScannedRobot();
                 this.place(xt, yt);
-
+                
+                
                 try {
                     Thread.sleep(4);
                 } catch (InterruptedException ex) {
@@ -480,24 +519,25 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onTouchWall();
                 return;
             }
+
             if (this.touchRobotMov(2)) {
                 this.reposRobot();
                 this.onTouchRobot();
                 return;
                
             }
-            
+
             if (this.checkTouchBullet()) {
                 this.onHitByBullet();
                 return;
             }
-            
+     
         }
     }
 
     /**
      * Turns all pieces of the robot /
-     * Fa girar totes les peçes del robot
+     * Fa girar totes les peÃ§es del robot
      * @param a 
      */
     private void rotateRobot(float a) {
@@ -653,7 +693,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.x = x;
         this.y = y;
 
-        //Coloquem les peçes
+        //Coloquem les peÃ§es
         this.body.place(x, y);
         this.turret.place(x, y);
         this.radar.place(x, y);
@@ -922,7 +962,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     
     /**
      * Running robot /
-     * Execució del robot
+     * ExecuciÃ³ del robot
      */
     public abstract void run();
 
