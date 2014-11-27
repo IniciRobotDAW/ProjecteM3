@@ -46,7 +46,7 @@ public class BattleWindow extends JFrame implements ActionListener {
                     Board.getHEIGHT()-Board.getHEIGHT(),
                     this.getWidth()-Board.getWIDTH(),
                     Board.getHEIGHT());
-            display.setBackground(Color.orange);
+            display.setBackground(Color.LIGHT_GRAY);
             
             getContentPane().setLayout(null);
             this.add(board);

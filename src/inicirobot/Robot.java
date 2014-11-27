@@ -25,12 +25,15 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     private int speed;
     private int lives;
+    private int startLives;
     private RobotPiece body;
     private RobotPiece turret;
     private RobotPiece radar;
     private int width;
     private int height;
-    private double lastReload = System.nanoTime();
+    private long lastReload = System.currentTimeMillis();
+    private int reloadTime;
+    private int startBulletsLoad; 
     private int bulletsLoad; 
 
     /** Constructor */
@@ -44,11 +47,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.radar = radar;
         this.width = width;
         this.height = height;
-        this.lastReload = System.nanoTime();
-        
 
-        this.lives = 5;
-        this.bulletsLoad = 40;
+        this.startLives = 5;
+        this.lives = this.startLives;
+        
+        this.startBulletsLoad = 40;
+        this.bulletsLoad = this.startBulletsLoad;
+        
+        this.reloadTime = 500;
 
 
     }
@@ -64,11 +70,13 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = this.body.getHeight();
         
 
-        this.lives = 3;
-        this.bulletsLoad = 10;
-
-
-
+        this.startLives = 5;
+        this.lives = this.startLives;
+        
+        this.startBulletsLoad = 40;
+        this.bulletsLoad = this.startBulletsLoad;
+        
+        this.reloadTime = 500;
 
     }
 
@@ -103,7 +111,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return height;
     }
 
-    public double getLastReload() {
+    public long getLastReload() {
         return lastReload;
     }
 
@@ -111,6 +119,20 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return bulletsLoad;
     }
 
+    public int getStartLives() {
+        return startLives;
+    }
+
+    public int getStartBulletsLoad() {
+        return startBulletsLoad;
+    }
+
+    public int getReloadTime() {
+        return reloadTime;
+    }
+
+    
+    
     public void setSpeed(int speed) {
         this.speed = speed;
     }
@@ -145,13 +167,28 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.body.setAngle(this.angle);
     }
 
-    public void setLastReload(double lastReload) {
+    public void setLastReload(long lastReload) {
         this.lastReload = lastReload;
     }
 
     public void setBulletsLoad(int bulletsLoad) {
         this.bulletsLoad = bulletsLoad;
     }
+
+    public void setStartLives(int startLives) {
+        this.startLives = startLives;
+    }
+
+    public void setStartBulletsLoad(int startBulletsLoad) {
+        this.startBulletsLoad = startBulletsLoad;
+    }
+
+    public void setReloadTime(int reloadTime) {
+        this.reloadTime = reloadTime;
+    }
+    
+    
+    
     
     //************//
     //**Funcions**//
@@ -613,9 +650,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public void fire() {
         
         if (this.bulletsLoad>0){
-        long reload = System.nanoTime();
         
-            if(this.lastReload+415182347<reload){
+        long reload = System.currentTimeMillis();
+   
+            if(this.lastReload+this.reloadTime<reload){
                 AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.turret.getAngle()),
                         x + (this.width / 2) + 2, y + (this.height / 2) + 3);
 
@@ -627,6 +665,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
                 Board.getBullets().add(b);
                 this.setLastReload(reload);
+                
                 this.setBulletsLoad(this.bulletsLoad-1);
 
             }
@@ -790,9 +829,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                             if(Board.getBullets().get(t).isVisible() != false){
                                 tocat = true;
                                 this.setLives(this.getLives()-1);
-//                                if(this.lives <= 0){
-//                                    this.die();
-//                                }
+                                if(this.lives <= 0){
+                                    this.die();
+                                }
                             }
                             Board.getBullets().get(t).setVisible(false);
                         }

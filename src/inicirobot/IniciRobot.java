@@ -19,14 +19,14 @@ public class IniciRobot {
      */
     public static void main(String[] args) {
         
-        int xIniciR1 = 300;
-        int yIniciR1 = 200;
+        int xIniciR1 = 100;
+        int yIniciR1 = 300;
         
-        int xIniciR2 = 100;
+        int xIniciR2 = 200;
         int yIniciR2 = 300;
         
-        int xIniciR3 = 500;
-        int yIniciR3 = 200;
+        int xIniciR3 = 300;
+        int yIniciR3 = 300;
         
         
         //Cos

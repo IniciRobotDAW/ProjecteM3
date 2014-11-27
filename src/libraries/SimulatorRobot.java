@@ -5,6 +5,7 @@
  */
 package libraries;
 
+import inicirobot.RobotPiece;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
@@ -19,9 +20,15 @@ public interface SimulatorRobot extends SimulatorObject,Runnable{
     public abstract ArrayList<Point2D.Double> getBoundPoints(); 
     public abstract ArrayList<Line2D.Double> getBoundLines();
     public abstract int getLives();
+    public abstract int getStartLives();
     public abstract int getBulletsLoad();
+    public abstract int getStartBulletsLoad();
     public abstract double getX();
     public abstract double getY();
-    
+    public abstract RobotPiece getBody();
+    public abstract RobotPiece getTurret();
+    public abstract RobotPiece getRadar();
+    public abstract long getLastReload();
+    public abstract int getReloadTime();
     
 }

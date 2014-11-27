@@ -5,17 +5,11 @@
  */
 package libraries;
 
-import java.awt.Graphics;
-import java.awt.Toolkit;
-import java.util.ArrayList;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-
-import inicirobot.*;
-import java.lang.String;
 import java.awt.*;
-import java.util.Vector;
+import java.util.*;
 import javax.swing.*;
+
+import java.lang.*;
 
 import static libraries.Board.bullets;
 import static libraries.Board.robots;
@@ -42,34 +36,84 @@ public class StatesDisplay extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        int dNomRobot = 30;
-        int dGetXY = 50;
-        int dGetL = 70;
-        int dGetB = 90;
+        int dDibuixRobot = 35;
+        
+        int dRec = 10;
+        int dGetL = 60;
+        int dGetB = 35;
+        int dGetBd = 42;
+        int dBpro2 = 38;
+        int dBpro = 40;
+        int dBliv = 42;
+        int dBrec = 50;
         int interlinieat = 90;
         
         for (int i = 0; i < Board.robots.size(); i++) {
-            String xr1 = String.valueOf(Math.rint(Board.robots.get(i).getX() * 100) / 100);
-            String yr1 = String.valueOf(Math.rint(Board.robots.get(i).getY() * 100) / 100);
-            String br1 = String.valueOf(Board.robots.get(i).getBulletsLoad());
-            String lr1 = String.valueOf(Board.robots.get(i).getLives());
-          
-            int numRobot = i+1;
-            g.drawString("ROBOT "+numRobot, 10, dNomRobot);
-            g.drawString("X-->", 10, dGetXY);
-            g.drawString(xr1, 40, dGetXY);
-            g.drawString("Y-->", 100, dGetXY);
-            g.drawString(yr1, 130, dGetXY);
-            g.drawString("LIVES-->", 10, dGetL);
-            g.drawString(lr1, 70, dGetL);
-            g.drawString("BULLETS-->", 10, dGetB);
-            g.drawString(br1, 80, dGetB);
+             
+            Color colors = new Color (35, 52, 5);
+            g.setColor(colors);
+            g.fillRect(5, dRec, 180, 80);
+                        
+            //Rodona bullets
+            int angle = (int) (((float)Board.robots.get(i).getBulletsLoad() / (float)Board.robots.get(i).getStartBulletsLoad()) * 360);
+            g.setColor(Color.gray);
+            g.fillArc(58, dBpro2, 29, 29, 50, 360);
+            g.setColor(Color.black);
+            g.fillArc(60, dBpro, 25, 25, 50, angle);
             
-            dNomRobot = dNomRobot + interlinieat;
-            dGetXY = dGetXY + interlinieat;
+            //Vides
+            int lr1 = Board.robots.get(i).getLives();
+            int vides = ((lr1*70)/Board.robots.get(i).getStartLives());
+            g.setColor(Color.red);
+            g.fillRect(100, dBliv, 70, 5);
+            g.setColor(Color.green);
+            g.fillRect(100, dBliv, vides, 5);
+            g.setColor(Color.black);
+            
+            //Reload
+            
+            
+            if (Board.robots.get(i).getLastReload()+Board.robots.get(i).getReloadTime()<System.currentTimeMillis()){
+               g.setColor(Color.green);
+              
+            } else {
+                g.setColor(Color.red);   
+            }
+
+            g.fillArc(100, dBrec, 10, 11, 0, 360);
+            g.setColor(Color.black);
+            
+            //Robot
+            String br1 = String.valueOf(Board.robots.get(i).getBulletsLoad());
+            g.setColor(Color.white);
+            g.drawString(br1, 66, dBpro+17);
+            g.setColor(Color.black);
+            g.drawImage(Board.robots.get(i).getBody().getImage(), 10, dDibuixRobot, null);
+            
+            //Desplaçament del Turret + turret
+            double dxt = Board.robots.get(i).getTurret().getDx();
+            int dxtf = (int)dxt;
+            double dxy = Board.robots.get(i).getTurret().getDy();
+            int dytf = (int)dxy; 
+            g.drawImage(Board.robots.get(i).getTurret().getImage(), 10+dxtf, dDibuixRobot+dytf, null);
+            
+            //Desplaçament del radar + radar
+            double dxr = Board.robots.get(i).getRadar().getDx();
+            int dxrf = (int)dxr;
+            double dyr = Board.robots.get(i).getRadar().getDy();
+            int dyrf = (int)dyr;
+            g.drawImage(Board.robots.get(i).getRadar().getImage(), 10+dxrf, dDibuixRobot+dyrf, null);
+            
+            //Suma posicio
+            dRec = dRec + interlinieat;
+            dDibuixRobot = dDibuixRobot + interlinieat;
             dGetL = dGetL + interlinieat;
             dGetB = dGetB + interlinieat;
-
+            dBpro = dBpro + interlinieat;
+            dBpro2 = dBpro2 + interlinieat;
+            dBliv = dBliv +  interlinieat;
+            dBrec = dBrec +  interlinieat;
+            dGetBd = dGetBd +interlinieat;
         }
         
     }
