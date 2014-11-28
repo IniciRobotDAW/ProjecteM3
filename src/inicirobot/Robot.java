@@ -779,13 +779,17 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         return (linies);
     }
-
+    
+    /**
+     * 
+     */
     public void die(){
         this.setVisible(false);
-        try{
-            this.wait();
-        }catch(Exception e){
-            System.out.println(e);
+        System.out.println("dead");
+        try {
+            Thread.sleep(999999999);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

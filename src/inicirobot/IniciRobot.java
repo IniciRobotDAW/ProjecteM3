@@ -5,6 +5,7 @@
  */
 package inicirobot;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import libraries.*;
 //import robotlibrary3.*;
 
@@ -28,31 +29,39 @@ public class IniciRobot {
         int xIniciR3 = 300;
         int yIniciR3 = 300;
         
+        int xIniciR4 = 400;
+        int yIniciR4 = 300;
+        
         
         //Cos
         RobotPiece cos1 = new RobotPiece("/resources/images/ricardbody.png",xIniciR1, yIniciR1, 0, 0);
         RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png",xIniciR2, yIniciR2, 0, 0);
         RobotPiece cos3 = new RobotPiece("/resources/images/body.png",xIniciR3, yIniciR3, 0, 0);
+        RobotPiece cos4 = new RobotPiece("/resources/images/body.png",xIniciR4, yIniciR4, 0, 0);
         
         //Turret
         RobotPiece turret1 = new RobotPiece("/resources/images/ricardTurret.png",xIniciR1, yIniciR1, 8, -10);
         RobotPiece turret2 = new RobotPiece("/resources/images/arnauTurret.png",xIniciR2, yIniciR2, 8, -10);
         RobotPiece turret3 = new RobotPiece("/resources/images/turret.png",xIniciR3, yIniciR3, 8, -10);
+        RobotPiece turret4 = new RobotPiece("/resources/images/turret.png",xIniciR4, yIniciR4, 8, -10);
         
         //Radar
         RobotPiece radar1 = new RobotPiece("/resources/images/ricardRadar.png",xIniciR1, yIniciR1, 7, 9);
         RobotPiece radar2 = new RobotPiece("/resources/images/arnauRadar.png",xIniciR2, yIniciR2, 7, 9);
         RobotPiece radar3 = new RobotPiece("/resources/images/radar.png",xIniciR3, yIniciR3, 7, 9);
+        RobotPiece radar4 = new RobotPiece("/resources/images/radar.png",xIniciR4, yIniciR4, 7, 9);
         
         // Robot sencer
         Robot1 r1 = new Robot1(xIniciR1, yIniciR1, cos1, turret1, radar1);
         Robot2 r2 = new Robot2(xIniciR2, yIniciR2, cos2, turret2, radar2);
         Robot3 r3 = new Robot3(xIniciR3, yIniciR3, cos3, turret3, radar3);
+        Robot3 r4 = new Robot3(xIniciR4, yIniciR4, cos4, turret4, radar4);
 
         ArrayList<SimulatorRobot> r = new ArrayList<SimulatorRobot>();
         r.add(r1);
         r.add(r2);
         r.add(r3);
+        r.add(r4);
         
         new BattleWindow(r);
     }
