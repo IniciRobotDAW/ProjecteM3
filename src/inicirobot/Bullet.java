@@ -6,6 +6,7 @@
 package inicirobot;
 import java.awt.*;
 import javax.swing.JComponent;
+import java.util.Random;
 //import robotlibrary3.*;
 import libraries.*;
 
@@ -24,7 +25,7 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
         super(x, y, angle);
         
         this.speed = 3;
-        this.power = 5;
+        this.power = 6;
         this.owner = owner;   
     }
 
@@ -60,11 +61,17 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
                 g2d.setColor(Color.orange);
             }
         }
+//        Random rand = new Random();
+//        float rc = rand.nextFloat();
+//        float gc = rand.nextFloat();
+//        float bc = rand.nextFloat();
+//        
+//        g2d.setColor(new Color(rc, gc, bc));
         
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
    
         g2d.fillOval((int)x, (int)y, (int)power, (int)power);
-   
+        
     }
 
     //touchwall

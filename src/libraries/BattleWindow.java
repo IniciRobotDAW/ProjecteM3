@@ -6,14 +6,19 @@
 package libraries;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Label;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -31,33 +36,43 @@ public class BattleWindow extends JFrame implements ActionListener {
 
     public BattleWindow(ArrayList<SimulatorRobot> r) {
 
-            setSize(1000, 700);    
-
-            board = new Board(r);
-            board.setLayout(null);
-            board.setBounds(0, 0, 800, 600);
-            board.setBackground(Color.darkGray);
+        setSize(1000, 700);    
+        
+        setLayout(new BorderLayout());
+        
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/bg.jpg"));
+        
+        JLabel background=new JLabel(new ImageIcon(ii.getImage()));
+	add(background);
+	background.setLayout(new FlowLayout());
             
-            display = new StatesDisplay(r);
+        board = new Board(r);
+        board.setLayout(new BorderLayout());
 
-            display.setLayout(null);
-            display.setBounds(
-                    Board.getWIDTH(),
-                    Board.getHEIGHT()-Board.getHEIGHT(),
-                    this.getWidth()-Board.getWIDTH(),
-                    Board.getHEIGHT());
-            display.setBackground(Color.LIGHT_GRAY);
-            
-            getContentPane().setLayout(null);
-            this.add(board);
-            this.add(display);
+        board.setBounds(0, 0, 800, 600);
 
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setResizable(false);
-            setVisible(true);
+        board.add(background);
 
-            timer = new Timer(5, this);
-            timer.start();
+        display = new StatesDisplay(r);
+
+        display.setLayout(null);
+        display.setBounds(
+                Board.getWIDTH(),
+                Board.getHEIGHT()-Board.getHEIGHT(),
+                this.getWidth()-Board.getWIDTH(),
+                Board.getHEIGHT());
+        display.setBackground(Color.LIGHT_GRAY);
+
+        getContentPane().setLayout(null);
+        this.add(board);
+        this.add(display);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setVisible(true);
+
+        timer = new Timer(5, this);
+        timer.start();
     }
 
     @Override

@@ -51,7 +51,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        this.startBulletsLoad = 40;
+        this.startBulletsLoad = 20;
         this.bulletsLoad = this.startBulletsLoad;
         
         this.reloadTime = 500;
@@ -73,7 +73,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        this.startBulletsLoad = 40;
+        this.startBulletsLoad = 20;
         this.bulletsLoad = this.startBulletsLoad;
         
         this.reloadTime = 500;

@@ -36,7 +36,7 @@ public class StatesDisplay extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        int dDibuixRobot = 35;
+        int dDibuixRobot = 45;
         
         int dRec = 10;
         int dGetL = 60;
@@ -44,8 +44,8 @@ public class StatesDisplay extends JPanel {
         int dGetBd = 42;
         int dBpro2 = 38;
         int dBpro = 40;
-        int dBliv = 42;
-        int dBrec = 50;
+        int dBliv = 49;
+        int dBrec = 17;
         int interlinieat = 90;
         
         for (int i = 0; i < Board.robots.size(); i++) {
@@ -71,8 +71,6 @@ public class StatesDisplay extends JPanel {
             g.setColor(Color.black);
             
             //Reload
-            
-            
             if (Board.robots.get(i).getLastReload()+Board.robots.get(i).getReloadTime()<System.currentTimeMillis()){
                g.setColor(Color.green);
               
@@ -80,10 +78,10 @@ public class StatesDisplay extends JPanel {
                 g.setColor(Color.red);   
             }
 
-            g.fillArc(100, dBrec, 10, 11, 0, 360);
+            g.fillArc(22, dBrec, 10, 11, 0, 360);
             g.setColor(Color.black);
             
-            //Robot
+            //Bullets
             String br1 = String.valueOf(Board.robots.get(i).getBulletsLoad());
             g.setColor(Color.white);
             g.drawString(br1, 66, dBpro+17);
