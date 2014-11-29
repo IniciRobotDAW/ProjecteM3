@@ -5,7 +5,6 @@
  */
 package libraries;
 
-import inicirobot.Robot1;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -82,14 +81,6 @@ public class Board extends JPanel {
 
     public void act() {
         SimulatorBullet b = null;
-        SimulatorRobot r = null;
-
-        for (int i = 0; i < Board.robots.size(); i++) {
-            r = robots.get(i);
-            if (!r.isVisible()) {
-                Board.deadRobots.add(r);
-            }
-        }
 
         for (int j = 0; j < bullets.size(); j++) {
             b = bullets.get(j);

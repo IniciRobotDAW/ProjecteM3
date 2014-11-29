@@ -12,7 +12,6 @@ import java.awt.geom.Point2D;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.*;
-//import robotlibrary3.*;
 import libraries.*;
 
 
@@ -272,9 +271,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 ArrayList<Line2D.Double> linies = this.getBoundLines();
                 ArrayList<Line2D.Double> liniest2 = Board.robots.get(i).getBoundLines();
 
-                Line2D.Double nxtline = nextLine(linies.get(pos));
+                Line2D.Double nxtline = nextLine(linies.get(pos));                
                 for (int j = 0; j < 4; j++) {
-                    if (nxtline.intersectsLine(liniest2.get(j))) {
+                    if (nxtline.intersectsLine(liniest2.get(j))) {                        
                         toca = true;
                     }
                 }
@@ -799,9 +798,15 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public boolean checkWin(){
         
         boolean win = false;
+        int deads = 0;
         
-        if(Board.robots.size() == 1){
-            win = true;
+        for (int i = 0; i < Board.robots.size(); i++) {
+            if(Board.robots.get(i).getLives() <= 0){
+                deads++;
+                if(deads == Board.robots.size() -1 ){
+                    win = true;
+                }
+            }
         }
         
         return win;
@@ -812,15 +817,15 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Dicta el que pasa al morir
      */
     public void die(){
-        
-        Board.robots.remove(this);
+
+        this.setVisible(false);
         try{
             Thread.sleep(999999);
         }catch(InterruptedException ex){
             Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }
+}
     
     /**
      * Look if touch a bullet /
@@ -830,6 +835,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public boolean checkTouchBullet() {
 
         boolean tocat = false;
+        this.setVisible(true);
 
         ArrayList<Line2D.Double> linies = this.getBoundLines();
 
@@ -872,13 +878,15 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 Line2D.Double ln = new Line2D.Double((int)this.radar.x+18, (int)this.radar.y+20, (int)pfradar.getX(), (int)pfradar.getY());
 
                 ArrayList<Line2D.Double> liniest2 = Board.robots.get(i).getBoundLines();
-
-                for(int e = 0; e<4; e++ ){
-                     if(ln.intersectsLine(liniest2.get(e))) {
-                          scanned = true;
-                          this.onScannedRobot();
-                      }
-                 }
+                
+                if(Board.robots.get(i).isVisible()){
+                    for(int e = 0; e<4; e++ ){
+                        if(ln.intersectsLine(liniest2.get(e))) {
+                            scanned = true;
+                            this.onScannedRobot();
+                        }
+                    }
+                }
             }
         }
         return scanned;
