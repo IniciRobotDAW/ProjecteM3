@@ -17,13 +17,15 @@ public class Robot2 extends Robot{
     }
     
     @Override
-    public void onTouchRobot() {       
-       this.back(100);
+    public void onTouchRobot() {  
+        
+       this.right(360);
+       this.fire();
     }
     
     @Override
     public void onTouchWall() {
-        this.back(100);
+        this.left(90);
     }
     
     @Override
@@ -43,9 +45,9 @@ public class Robot2 extends Robot{
     
     @Override
     public void run() {
-        this.right(90);
+        
         while(true){
-            this.ahead(1);
+            this.ahead(100);
         }
     }
 }

@@ -24,17 +24,18 @@ import libraries.*;
 public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     private int speed;
-    private int lives;
-    private int startLives;
+    
+    private int startLives = 5;
+    private int lives = this.startLives;
     private RobotPiece body;
     private RobotPiece turret;
     private RobotPiece radar;
     private int width;
     private int height;
     private long lastReload = System.currentTimeMillis();
-    private int reloadTime;
-    private int startBulletsLoad; 
-    private int bulletsLoad; 
+    private int reloadTime = 500;
+    private int startBulletsLoad = 50; 
+    private int bulletsLoad =  this.startBulletsLoad;; 
 
     /** Constructor */
     public Robot(double x, double y, float angle, int speed, int lives, RobotPiece body, RobotPiece turret, RobotPiece radar, int width, int height, double lastReload) {
@@ -51,10 +52,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        this.startBulletsLoad = 100;
-        this.bulletsLoad = this.startBulletsLoad;
-        
-        this.reloadTime = 500;
+//        this.startBulletsLoad = 100;
+//        this.bulletsLoad = 
+//        
+//        this.reloadTime = 500;
 
 
     }
@@ -69,14 +70,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
-
-        this.startLives = 5;
-        this.lives = this.startLives;
+//
+//        this.startLives = 5;
+//        this.lives = this.startLives;
+//        
+       
+       
         
-        this.startBulletsLoad = 100;
-        this.bulletsLoad = this.startBulletsLoad;
-        
-        this.reloadTime = 500;
+     
 
     }
 

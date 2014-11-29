@@ -21,13 +21,13 @@ public class Robot4 extends Robot{
 //        this.back(10);
 //        this.fire();
 //        this.left(90);
-        this.ahead(100);
+        this.left(180);
         
     }
     
     @Override
     public void onTouchWall() {
-        this.back(100);
+        this.left(20);
     }
     
     @Override
@@ -49,7 +49,7 @@ public class Robot4 extends Robot{
     public void run() {
         this.right(90);
         while(true){
-            this.ahead(1);
+            this.ahead(100);
         }
     }
 }
