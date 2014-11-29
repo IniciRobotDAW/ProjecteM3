@@ -24,7 +24,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     private int speed;
     
-    private int startLives = 5;
+    private int startLives = 1;
     private int lives = this.startLives;
     private RobotPiece body;
     private RobotPiece turret;
@@ -819,6 +819,16 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public void die(){
 
         this.setVisible(false);
+        
+        ImageIcon db = new ImageIcon(this.getClass().getResource("/resources/images/deathBody.png"));
+        this.body.setImage(db.getImage());
+        
+        ImageIcon dt = new ImageIcon(this.getClass().getResource("/resources/images/deathTurret.png"));
+        this.turret.setImage(dt.getImage());
+        
+        ImageIcon dr = new ImageIcon(this.getClass().getResource("/resources/images/deathRadar.png"));
+        this.radar.setImage(dr.getImage());
+        
         try{
             Thread.sleep(999999);
         }catch(InterruptedException ex){

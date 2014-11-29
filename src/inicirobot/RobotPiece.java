@@ -99,6 +99,7 @@ public class RobotPiece extends GraphicObject{
         at.translate(x+dx, y+dy);
         at.rotate(Math.toRadians(this.angle), (this.width /2 ), (this.height /2));
         
+        
         g2d.drawImage(this.getImage(), at, c);
   
     }
