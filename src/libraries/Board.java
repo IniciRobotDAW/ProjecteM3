@@ -5,6 +5,7 @@
  */
 package libraries;
 
+import inicirobot.Robot1;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -22,11 +23,13 @@ public class Board extends JPanel {
 
     public static Vector<SimulatorBullet> bullets;
     public static ArrayList<SimulatorRobot> robots;
-    
+    public static ArrayList<SimulatorRobot> deadRobots;
+
     public Board(ArrayList<SimulatorRobot> r) {
 
         setDoubleBuffered(true);
         this.bullets = new Vector<SimulatorBullet>();
+        this.deadRobots = new ArrayList<SimulatorRobot>();
         this.robots = r;
 
         for (int i = 0; i < robots.size(); i++) {
@@ -34,7 +37,7 @@ public class Board extends JPanel {
                 new Thread(robots.get(i)).start();
             }
         }
-        
+
     }
 
     @Override
@@ -81,10 +84,10 @@ public class Board extends JPanel {
         SimulatorBullet b = null;
         SimulatorRobot r = null;
 
-        for (int i = 0; i < robots.size(); i++) {
+        for (int i = 0; i < Board.robots.size(); i++) {
             r = robots.get(i);
             if (!r.isVisible()) {
-                Board.robots.remove(r);
+                Board.deadRobots.add(r);
             }
         }
 
@@ -98,5 +101,5 @@ public class Board extends JPanel {
         }
 
     }
-    
+
 }

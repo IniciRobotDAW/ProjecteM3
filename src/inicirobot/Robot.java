@@ -51,7 +51,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        this.startBulletsLoad = 20;
+        this.startBulletsLoad = 100;
         this.bulletsLoad = this.startBulletsLoad;
         
         this.reloadTime = 500;
@@ -73,7 +73,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        this.startBulletsLoad = 20;
+        this.startBulletsLoad = 100;
         this.bulletsLoad = this.startBulletsLoad;
         
         this.reloadTime = 500;
@@ -205,7 +205,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.body.paintObj(g, c);
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
-
+        
     }
 
     /**
@@ -250,20 +250,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                         }
                     }
                 }
-
-//            } else {
-//                
-//                ArrayList<Line2D.Double> linies = this.getBoundLinesToRotate();
-//                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
-//
-//                for (int e = 0; e < 4; e++) {
-//                    Line2D.Double nxtline = nextLine(linies.get(e));
-//                    for (int j = 0; j < 4; j++) {
-//                        if (nxtline.intersectsLine(liniest2.get(j))) {
-//                            toca = true;
-//                        }
-//                    }
-//                }
             }
         }
         return toca;
@@ -291,20 +277,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                         toca = true;
                     }
                 }
-
-//            } else {
-//                ArrayList<Line2D.Double> linies = this.getBoundLines();
-//                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
-//
-//                Line2D.Double nxtline = nextLine(linies.get(pos));
-//                for (int j = 0; j < 4; j++) {
-//                    if (nxtline.intersectsLine(liniest2.get(j))) {
-//                        toca = true;
-//                    }
-//                }
             }
         }
-
         return toca;
     }
 
@@ -415,6 +389,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onHitByBullet();
                 return;
             }
+            
+            if (this.checkWin()) {
+                this.win();
+                return;
+            }
+            
         }
     }
 
@@ -473,6 +453,11 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
             if (this.checkTouchBullet()) {
                 this.onHitByBullet();
+                return;
+            }
+            
+            if (this.checkWin()) {
+                this.win();
                 return;
             }
      
@@ -805,9 +790,35 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         return (linies);
     }
-
+    
+    /**
+     * check if you win /
+     * Verificar si has guanyat
+     */
+    public boolean checkWin(){
+        
+        boolean win = false;
+        
+        if(Board.robots.size() == 1){
+            win = true;
+        }
+        
+        return win;
+        
+    }
+    
+    /**
+     * Dicta el que pasa al morir
+     */
     public void die(){
-        this.setVisible(false);
+        
+        Board.robots.remove(this);
+        try{
+            Thread.sleep(999999);
+        }catch(InterruptedException ex){
+            Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     /**
@@ -839,7 +850,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 }
             }
         }
-        
         return tocat;  
     }
     
@@ -868,25 +878,16 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                           this.onScannedRobot();
                       }
                  }
-
-//            } else {
-//                Point2D pfradar = this.movePoint(this.radar.x+18 , this.radar.y+20, this.radar.angle, 800);
-//
-//                Line2D.Double ln = new Line2D.Double((int)this.radar.x+18, (int)this.radar.y+20, (int)pfradar.getX(), (int)pfradar.getY());
-//
-//                ArrayList<Line2D.Double> liniest2 = Board.robots.get(0).getBoundLines();
-//
-//                for(int e = 0; e<4; e++ ){
-//                     if(ln.intersectsLine(liniest2.get(e))) {
-//                          scanned = true;
-//                          this.onScannedRobot();
-//                      }
-//                 }
             }
         }
-        
         return scanned;
     }
+    
+    /**
+     * When you win... /
+     * Quan guanyes...
+     */
+    public abstract void win();
     
     /**
      * When the reobot scans and other robot... /
