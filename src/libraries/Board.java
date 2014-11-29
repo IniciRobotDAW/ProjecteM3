@@ -81,18 +81,17 @@ public class Board extends JPanel {
     public void act() {
         SimulatorBullet b = null;
         SimulatorRobot r = null;
-//        ArrayList<SimulatorRobot> deadRobots = new ArrayList<>();
 
-        if (robots.size() > 2) {
-            for (int i = 0; i < robots.size(); i++) {
-                r = robots.get(i);
-                if (!r.isVisible()) {
-                    Board.robots.remove(r);
-                }
-            }
-        } else {
-            Board.robots.clear();
-        }
+//        if (robots.size() > 2) {
+//            for (int i = 0; i < robots.size(); i++) {
+//                r = robots.get(i);
+//                if (!r.isVisible()) {
+//                    Board.robots.remove(r);
+//                }
+//            }
+//        } else {
+//            Board.robots.clear();
+//        }
 
         for (int j = 0; j < bullets.size(); j++) {
             b = bullets.get(j);
