@@ -23,11 +23,13 @@ public class Board extends JPanel {
 
     public static Vector<SimulatorBullet> bullets;
     public static ArrayList<SimulatorRobot> robots;
+    public static ArrayList<SimulatorRobot> deadRobots;
 
     public Board(ArrayList<SimulatorRobot> r) {
 
         setDoubleBuffered(true);
         this.bullets = new Vector<SimulatorBullet>();
+        this.deadRobots = new ArrayList<SimulatorRobot>();
         this.robots = r;
 
         for (int i = 0; i < robots.size(); i++) {
@@ -82,16 +84,12 @@ public class Board extends JPanel {
         SimulatorBullet b = null;
         SimulatorRobot r = null;
 
-//        if (robots.size() > 2) {
-//            for (int i = 0; i < robots.size(); i++) {
-//                r = robots.get(i);
-//                if (!r.isVisible()) {
-//                    Board.robots.remove(r);
-//                }
-//            }
-//        } else {
-//            Board.robots.clear();
-//        }
+        for (int i = 0; i < Board.robots.size(); i++) {
+            r = robots.get(i);
+            if (!r.isVisible()) {
+                Board.deadRobots.add(r);
+            }
+        }
 
         for (int j = 0; j < bullets.size(); j++) {
             b = bullets.get(j);

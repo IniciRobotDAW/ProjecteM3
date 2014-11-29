@@ -30,7 +30,12 @@ public class Robot1 extends Robot {
     
     @Override
     public void onHitByBullet() {
-        this.fire();
+//        this.fire();
+    }
+    
+    @Override
+    public void win(){
+        this.left(360);
     }
     
     @Override
@@ -38,7 +43,7 @@ public class Robot1 extends Robot {
         this.right(90);
 //        this.ahead(100);
         while(true){
-            this.fire();
+//            this.fire();
             this.ahead(1);
            
         }

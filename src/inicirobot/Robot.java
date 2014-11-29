@@ -51,7 +51,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        this.startBulletsLoad = 20;
+        this.startBulletsLoad = 100;
         this.bulletsLoad = this.startBulletsLoad;
         
         this.reloadTime = 500;
@@ -73,7 +73,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        this.startBulletsLoad = 20;
+        this.startBulletsLoad = 100;
         this.bulletsLoad = this.startBulletsLoad;
         
         this.reloadTime = 500;
@@ -205,7 +205,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.body.paintObj(g, c);
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
-
+        
     }
 
     /**
@@ -389,6 +389,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onHitByBullet();
                 return;
             }
+            
+            if (this.checkWin()) {
+                this.win();
+                return;
+            }
+            
         }
     }
 
@@ -447,6 +453,11 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
             if (this.checkTouchBullet()) {
                 this.onHitByBullet();
+                return;
+            }
+            
+            if (this.checkWin()) {
+                this.win();
                 return;
             }
      
@@ -781,9 +792,32 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     }
     
     /**
-     * 
+     * check if you win /
+     * Verificar si has guanyat
+     */
+    public boolean checkWin(){
+        
+        boolean win = false;
+        
+        if(Board.robots.size() == 1){
+            win = true;
+        }
+        
+        return win;
+        
+    }
+    
+    /**
+     * Dicta el que pasa al morir
      */
     public void die(){
+        
+        Board.robots.remove(this);
+        try{
+            Thread.sleep(999999);
+        }catch(InterruptedException ex){
+            Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -848,6 +882,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         }
         return scanned;
     }
+    
+    /**
+     * When you win... /
+     * Quan guanyes...
+     */
+    public abstract void win();
     
     /**
      * When the reobot scans and other robot... /

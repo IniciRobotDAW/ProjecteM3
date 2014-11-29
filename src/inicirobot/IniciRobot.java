@@ -61,10 +61,10 @@ public class IniciRobot {
         
         // Robot sencer
         Robot1 r1 = new Robot1(xIniciR1, yIniciR1, cos1, turret1, radar1);
-        Robot1 r2 = new Robot1(xIniciR2, yIniciR2, cos2, turret2, radar2);
-        Robot1 r3 = new Robot1(xIniciR3, yIniciR3, cos3, turret3, radar3);
-        Robot1 r4 = new Robot1(xIniciR4, yIniciR4, cos4, turret4, radar4);
-        Robot1 r5 = new Robot1(xIniciR5, yIniciR5, cos5, turret5, radar5);
+        Robot2 r2 = new Robot2(xIniciR2, yIniciR2, cos2, turret2, radar2);
+        Robot3 r3 = new Robot3(xIniciR3, yIniciR3, cos3, turret3, radar3);
+        Robot4 r4 = new Robot4(xIniciR4, yIniciR4, cos4, turret4, radar4);
+        Robot4 r5 = new Robot4(xIniciR5, yIniciR5, cos5, turret5, radar5);
 
 
         ArrayList<SimulatorRobot> r = new ArrayList<SimulatorRobot>();

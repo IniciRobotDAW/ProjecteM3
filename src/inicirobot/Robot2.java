@@ -28,20 +28,24 @@ public class Robot2 extends Robot{
     
     @Override
     public void onScannedRobot() {
-        this.fire();
+//        this.fire();
     }
     
     @Override
     public void onHitByBullet() {
-        System.out.println(this.getLives() + " " + "Robot 2");
-        this.fire();
+//        this.fire();
+    }
+    
+    @Override
+    public void win(){
+        System.out.println("He guanyat"); 
     }
     
     @Override
     public void run() {
         this.right(90);
         while(true){
-            this.ahead(100);
+            this.ahead(1);
         }
     }
 }
