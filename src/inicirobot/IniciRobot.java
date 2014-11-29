@@ -5,6 +5,7 @@
  */
 package inicirobot;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import libraries.*;
 //import robotlibrary3.*;
 
@@ -49,6 +50,7 @@ public class IniciRobot {
         RobotPiece turret3 = new RobotPiece("/resources/images/turret.png",xIniciR3, yIniciR3, 8, -10);
         RobotPiece turret4 = new RobotPiece("/resources/images/greenTurret.png",xIniciR4, yIniciR4, 8, -10);
         RobotPiece turret5 = new RobotPiece("/resources/images/pinkTurret.png",xIniciR5, yIniciR5, 8, -10);
+
         
         //Radar
         RobotPiece radar1 = new RobotPiece("/resources/images/ricardRadar.png",xIniciR1, yIniciR1, 7, 9);
@@ -64,12 +66,14 @@ public class IniciRobot {
         Robot1 r4 = new Robot1(xIniciR4, yIniciR4, cos4, turret4, radar4);
         Robot1 r5 = new Robot1(xIniciR5, yIniciR5, cos5, turret5, radar5);
 
+
         ArrayList<SimulatorRobot> r = new ArrayList<SimulatorRobot>();
         r.add(r1);
         r.add(r2);
         r.add(r3);
         r.add(r4);
         r.add(r5);
+
         
         new BattleWindow(r);
     }

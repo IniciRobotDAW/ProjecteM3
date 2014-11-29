@@ -10,9 +10,9 @@ package inicirobot;
  * @author rbarberan
  */
 
-public class Robot3 extends Robot{
+public class Robot4 extends Robot{
 
-    public Robot3(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
+    public Robot4(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, cos, turret, radar);
     }
     
