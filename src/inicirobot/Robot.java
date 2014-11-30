@@ -24,18 +24,24 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     private int speed;
     
-    private int startLives = 1;
-    private int lives = this.startLives;
+    
     private RobotPiece body;
     private RobotPiece turret;
     private RobotPiece radar;
     private int width;
     private int height;
+    
     private long lastReload = System.currentTimeMillis();
     private int reloadTime = 500;
+    
+    private int startLives = 5;
+    private int lives = this.startLives;
     private int startBulletsLoad = 50; 
-    private int bulletsLoad =  this.startBulletsLoad;; 
-
+    private int bulletsLoad =  this.startBulletsLoad;
+   
+    private int velMov = 5;
+    private int velComp = 1;
+   
     /** Constructor */
     public Robot(double x, double y, float angle, int speed, int lives, RobotPiece body, RobotPiece turret, RobotPiece radar, int width, int height, double lastReload) {
         super(x, y, angle);
@@ -50,13 +56,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         this.startLives = 5;
         this.lives = this.startLives;
-        
-//        this.startBulletsLoad = 100;
-//        this.bulletsLoad = 
-//        
-//        this.reloadTime = 500;
-
-
     }
 
     public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
@@ -69,20 +68,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
-//
-//        this.startLives = 5;
-//        this.lives = this.startLives;
-//        
-       
-       
-        
-     
-
     }
 
     //getters i setters
-   
-    
     public int getSpeed() {
         return speed;
     }
@@ -131,8 +119,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return reloadTime;
     }
 
-    
-    
+    public int getVelMov() {
+        return velMov;
+    }
+      
     public void setSpeed(int speed) {
         this.speed = speed;
     }
@@ -186,9 +176,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public void setReloadTime(int reloadTime) {
         this.reloadTime = reloadTime;
     }
-    
-    
-    
+
+    public void setVelMov(int velMov) {
+        this.velMov = velMov;
+    }
     
     //************//
     //**Funcions**//
@@ -282,11 +273,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return toca;
     }
 
-    /**
-     * When touch the wall... /
-     * Quan toca la paret...
-     */
-    public abstract void onTouchWall();
+   
 
     /**
      * Look if touch the wall /
@@ -353,7 +340,73 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 
                 
                 try {
-                    Thread.sleep(4);
+                    Thread.sleep(this.velMov);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+                if (this.x > Board.WIDTH - this.width) {
+                    this.x = this.x - 2;
+
+                } else if (this.x <= 0) {
+                    this.x = this.x + 2;
+
+                }
+
+                if (this.y > Board.HEIGHT - this.height) {
+                    this.y = this.y - 2;
+
+                } else if (this.y <= 0) {
+                    this.y = this.y + 2;
+                }
+
+                this.onTouchWall();
+                return;
+            }
+            if (this.touchRobotMov(0)) {
+                
+               this.reposRobot();
+               this.onTouchRobot();
+               return;
+            }
+
+            if (this.checkTouchBullet()) {
+                
+                this.onHitByBullet();
+                return;
+            }
+            
+            if (this.checkWin()) {
+                this.win();
+                return;
+            }
+            
+        }
+    }
+    
+    /**
+     * The robot going forward /
+     * El robot va cap endavant
+     * @param d 
+     */
+    private void aheadComp(int d, int vel) {
+
+        double xi = x;
+        double yi = y;
+
+        for (int i = 0; i < d; i++) {
+
+            if ((this.touchWall(this.x, this.y)) || ((this.touchWall((this.x + this.width), this.y)))) {
+
+                double xt = xi + i * Math.sin(Math.toRadians(this.getAngle()));
+                double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
+                this.checkScannedRobot();
+                this.place(xt, yt);
+                
+                
+                try {
+                    Thread.sleep(vel);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -419,7 +472,72 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 
                 
                 try {
-                    Thread.sleep(4);
+                    Thread.sleep(this.velMov);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+                if (this.x > Board.WIDTH - this.width) {
+                    this.x = this.x - 2;
+
+                } else if (this.x <= 0) {
+                    this.x = this.x + 2;
+
+                }
+
+                if (this.y > Board.HEIGHT - this.height) {
+                    this.y = this.y - 2;
+
+                } else if (this.y <= 0) {
+                    this.y = this.y + 2;
+                }
+
+                this.onTouchWall();
+                return;
+            }
+
+            if (this.touchRobotMov(2)) {
+                this.reposRobot();
+                this.onTouchRobot();
+                return;
+               
+            }
+
+            if (this.checkTouchBullet()) {
+                this.onHitByBullet();
+                return;
+            }
+            
+            if (this.checkWin()) {
+                this.win();
+                return;
+            }
+     
+        }
+    }
+    
+    /**
+     * The robot backwards /
+     * El robot va cap enrere
+     * @param d 
+     */
+    private void backComp(int d, int vel) {
+
+        double xi = x;
+        double yi = y;
+
+        for (int i = 0; i < d; i--) {
+
+            if ((this.touchWall(this.x, this.y)) || ((this.touchWall((this.x + this.width), this.y)))) {
+
+                double xt = xi + i * Math.sin(Math.toRadians(this.getAngle()));
+                double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
+                this.checkScannedRobot();
+                this.place(xt, yt);
+                
+                try {
+                    Thread.sleep(vel);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -494,7 +612,36 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 }
                  
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(this.velMov);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                this.onTouchRobot();
+
+            }   
+        }
+    }
+    
+    /**
+     * Turn right the robot /
+     * Gira a la dreta tot el robot  
+     * @param a 
+     */     
+    private void rightComp(float a, int vel) {
+
+        for (float i = 0; i < a; i++) {
+
+            if (!this.touchRobotRotate()) {
+                
+                this.rotateRobot(1);
+                if (this.checkTouchBullet()) {
+                    this.onHitByBullet();
+                    return;
+                }
+                 
+                try {
+                    Thread.sleep(vel);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -522,7 +669,34 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 }
 
                 try {
-                    Thread.sleep(5);
+                    Thread.sleep(this.velMov);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                this.onTouchRobot();
+            }
+        }
+    }
+    
+    /**
+     * Turn left the robot /
+     * Gira a l'esquerra tot el robot
+     * @param a 
+     */
+    private void leftComp(float a, int vel) {
+
+        for (float i = 0; i < a; i++) {
+            if (!this.touchRobotRotate()) {
+                
+                this.rotateRobot(-1);
+                if (this.checkTouchBullet()) {
+                    this.onHitByBullet();
+                    return;
+                }
+
+                try {
+                    Thread.sleep(vel);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -545,13 +719,33 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             this.turnRadarRight(1);
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(this.velMov);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
+    /**
+     * Turn right the turret /
+     * Gira a la dreta el cano
+     * @param a 
+     */
+    private void turnTurretRightComp(float a, int vel) {
+
+        for (int i = 0; i < a; i++) {
+            this.turret.setAngle(this.turret.getAngle() + 1);
+           
+            this.turnRadarRight(1);
+
+            try {
+                Thread.sleep(vel);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     /**
      * Turn left the robot /
      * Gira a la esquerra el cano
@@ -563,7 +757,25 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             this.turret.setAngle(this.turret.getAngle() - 1);
             this.turnRadarLeft(1);
             try {
-                Thread.sleep(10);
+                Thread.sleep(this.velMov);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    /**
+     * Turn left the robot /
+     * Gira a la esquerra el cano
+     * @param a 
+     */
+    private void turnTurretLeftComp(float a, int vel) {
+
+        for (int i = 0; i < a; i++) {
+            this.turret.setAngle(this.turret.getAngle() - 1);
+            this.turnRadarLeft(1);
+            try {
+                Thread.sleep(vel);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -583,13 +795,33 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             
             this.radar.setAngle(this.radar.getAngle()+1);
             try {
-                Thread.sleep(5);
+                Thread.sleep(this.velMov);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
+     /**
+     * Turn right the radar /
+     * Gira a la dreta el radar
+     * @param a 
+     */
+    private void turnRadarRightComp(float a, int vel) {
+
+        for (int i = 0; i < a; i++) {
+            
+            this.checkScannedRobot();
+            
+            this.radar.setAngle(this.radar.getAngle()+1);
+            try {
+                Thread.sleep(vel);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     /**
      * Turn left the radar /
      * Gira a la esquerra el radar
@@ -604,7 +836,28 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             this.radar.setAngle(this.radar.getAngle()-1);
             
             try {
-                Thread.sleep(5);
+                Thread.sleep(this.velMov);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    /**
+     * Turn left the radar /
+     * Gira a la esquerra el radar
+     * @param a 
+     */
+    private void turnRadarLeftComp(float a, int vel) {
+
+        for (int i = 0; i < a; i++) {
+            
+            this.checkScannedRobot();
+            
+            this.radar.setAngle(this.radar.getAngle()-1);
+            
+            try {
+                Thread.sleep(vel);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -902,6 +1155,66 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return scanned;
     }
     
+//     public static void jeje() {
+//        for (String s:strs) {
+//            System.out.println(s);
+//        }
+//    }
+    public void movComp(String[] strs, int d){
+        
+        int velMovTemp = this.velMov;
+        this.setVelMov(1);
+        for (int i = 0; i < d; i++) {
+            for (String s:strs) {
+                switch(s){
+                    
+                    case "this.ahead":
+                    case "ahead": 
+                        this.aheadComp(2,this.velComp);
+                    break;
+                        
+                    case "this.back":
+                    case "back":
+                        this.backComp(2, this.velComp);
+                    break;
+                    
+                    case "this.left":
+                    case "left": 
+                        this.leftComp(1, this.velComp);
+                    break;
+                        
+                    case "this.right": 
+                    case "right": 
+                        this.rightComp(1, this.velComp);
+                    break;
+                    
+                    case "this.turnTurretRight":
+                    case "turnTurretRight":
+                        this.turnTurretRightComp(1, this.velComp);
+                    break;
+                        
+                    case "this.turnTurretLeft":
+                    case "turnTurretLeft":
+                        this.turnTurretLeftComp(1, this.velComp);
+                    break;
+                        
+                    case "this.turnRadarRight":
+                    case "turnRadarRight":
+                        this.turnRadarRightComp(1, this.velComp);
+                    break;
+                        
+                    case "this.turnRadarLeft":
+                    case "turnRadarLeft":
+                        this.turnRadarLeftComp(1, this.velComp);
+                    break;
+                    
+                }
+            }
+        }
+        this.setVelMov(velMovTemp);      
+    }
+    
+    
     /**
      * When you win... /
      * Quan guanyes...
@@ -926,10 +1239,18 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     public abstract void onTouchRobot();
     
+     /**
+     * When touch the wall... /
+     * Quan toca la paret...
+     */
+    public abstract void onTouchWall();
+    
     /**
      * Running robot /
      * ExecuciÃ³ del robot
      */
     public abstract void run();
+
+    
 
 }
