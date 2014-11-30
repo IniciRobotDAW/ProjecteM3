@@ -40,7 +40,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     private int bulletsLoad =  this.startBulletsLoad;
    
     private int velMov = 5;
-    private int velComp = 1;
+    private int velComp = 0;
    
     /** Constructor */
     public Robot(double x, double y, float angle, int speed, int lives, RobotPiece body, RobotPiece turret, RobotPiece radar, int width, int height, double lastReload) {
@@ -461,7 +461,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         double xi = x;
         double yi = y;
 
-        for (int i = 0; i < d; i--) {
+         for (int i = d; i > 0; i--) {
 
             if ((this.touchWall(this.x, this.y)) || ((this.touchWall((this.x + this.width), this.y)))) {
 
@@ -527,12 +527,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         double xi = x;
         double yi = y;
 
-        for (int i = 0; i < d; i--) {
+        for (int i = d; i > 0; i--) {
 
             if ((this.touchWall(this.x, this.y)) || ((this.touchWall((this.x + this.width), this.y)))) {
 
-                double xt = xi + i * Math.sin(Math.toRadians(this.getAngle()));
-                double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
+                double xt = xi - i * Math.sin(Math.toRadians(this.getAngle()));
+                double yt = yi + i * Math.cos(Math.toRadians(this.getAngle()));
                 this.checkScannedRobot();
                 this.place(xt, yt);
                 
@@ -1162,8 +1162,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 //    }
     public void movComp(String[] strs, int d){
         
-        int velMovTemp = this.velMov;
-        this.setVelMov(1);
         for (int i = 0; i < d; i++) {
             for (String s:strs) {
                 switch(s){
@@ -1175,7 +1173,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                         
                     case "this.back":
                     case "back":
-                        this.backComp(2, this.velComp);
+                        this.backComp(1, this.velComp);
                     break;
                     
                     case "this.left":
@@ -1211,7 +1209,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 }
             }
         }
-        this.setVelMov(velMovTemp);      
+           
     }
     
     
