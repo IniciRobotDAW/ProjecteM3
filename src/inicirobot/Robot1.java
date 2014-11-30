@@ -36,7 +36,7 @@ public class Robot1 extends Robot {
     
     @Override
     public void win(){
-        this.left(360);
+        this.left(2);
     }
     
     @Override
