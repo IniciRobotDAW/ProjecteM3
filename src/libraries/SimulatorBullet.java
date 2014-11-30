@@ -14,5 +14,6 @@ public interface SimulatorBullet extends SimulatorObject {
     public abstract void move();
     public abstract void setVisible(boolean visible);
     public abstract SimulatorRobot getOwner();
+    public abstract boolean touchRobot();
     
 }

@@ -5,6 +5,8 @@
  */
 package inicirobot;
 import java.awt.*;
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 import java.util.Random;
 //import robotlibrary3.*;
@@ -74,6 +76,23 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
         
     }
 
+    @Override
+    public boolean touchRobot() {
+        boolean touch = false;
+
+        for (int i = 0; i < Board.robots.size(); i++) {
+            if (Board.robots.get(i) != this.owner) {
+                ArrayList<Line2D.Double> linies = Board.robots.get(i).getBoundLines();
+                for (int j = 0; j < linies.size(); j++) {
+                    if (linies.get(j).getBounds().contains(this.getX(), this.getY())) {
+                        touch = true;
+                    }
+                }
+            }
+        }
+        return touch;
+    }
+    
     //touchwall
     @Override
     public boolean inBoard() {
@@ -89,7 +108,7 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
     public void move() {
         x = (x + (speed * (Math.sin(Math.toRadians(this.getAngle())))));
         y = (y - (speed * (Math.cos(Math.toRadians(this.getAngle())))));
-       
+        this.touchRobot();
     } 
     
     @Override
