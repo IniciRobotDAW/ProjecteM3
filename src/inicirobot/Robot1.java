@@ -44,10 +44,10 @@ public class Robot1 extends Robot {
     public void run() {
       
         while(true){
-            this.back(50);
+//            this.back(50);
 //           this.movComp(new String[]{"ahead","turnTurretRight"}, 100);
-//           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
-//           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
+           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
+           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
         
         }
     }
