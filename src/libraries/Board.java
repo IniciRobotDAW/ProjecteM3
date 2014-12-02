@@ -84,7 +84,7 @@ public class Board extends JPanel {
 
         for (int j = 0; j < bullets.size(); j++) {
             b = bullets.get(j);
-            if (b.isVisible() && b.inBoard()) {
+            if (b.isVisible() && b.inBoard() && !b.touchRobot()) {
                 b.move();
             } else {
                 Board.bullets.remove(b);
