@@ -18,38 +18,35 @@ public class Robot3 extends Robot{
     
     @Override
     public void onTouchRobot() {       
-//        this.back(10);
-        this.fire();
-        this.left(90);
-//        this.ahead(100);
-        
-    }
-    
-    @Override
-    public void onTouchWall() {
         this.left(100);
     }
     
     @Override
+    public void onTouchWall() {
+        this.movComp(new String[]{"right","turnTurretRight"}, 90);
+    }
+    
+    @Override
     public void onScannedRobot() {
-//        this.fire();
+        this.fire();
     }
     
     @Override
     public void onHitByBullet() {
-
+        this.back(100);
+                
     }
     
     @Override
     public void win(){
-        System.out.println("He guanyat"); 
+        this.left(360);
     }
     
     @Override
     public void run() {
-        this.left(180);
         while(true){
-            this.ahead(100);
+            this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
+           this.movComp(new String[]{"left","ahead","turnTurretLeft"}, 200);
         }
     }
 }

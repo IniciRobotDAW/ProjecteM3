@@ -79,7 +79,7 @@ public class IniciRobot {
         r.add(r2);
         r.add(r3);
         r.add(r4);
-        r.add(r5);
+//        r.add(r5);
 //        r.add(r6);
 
         
