@@ -16,12 +16,12 @@ public class Robot1 extends Robot {
     @Override
     public void onTouchRobot() {       
        this.left(100);
+       this.fire();
     }
     
     @Override
     public void onTouchWall() {
-        this.left(100);
-        
+        this.movComp(new String[]{"left","turnTurretLeft"}, 90);
     }
     
     @Override
@@ -31,21 +31,19 @@ public class Robot1 extends Robot {
     
     @Override
     public void onHitByBullet() {
-//        this.fire();
+       this.movComp(new String[]{"left","back","turnTurretRight"}, 30);
     }
     
     @Override
     public void win(){
-        this.left(2);
-        fire();
+       
+        this.movComp(new String[]{"right","back","turnTurretRight","fire"}, 100);
     }
     
     @Override
     public void run() {
       
-        while(true){
-//            this.back(50);
-//           this.movComp(new String[]{"ahead","turnTurretRight"}, 100);
+        while(true){         
            this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
            this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
         
