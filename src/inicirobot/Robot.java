@@ -465,11 +465,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
             if ((this.touchWall(this.x, this.y)) || ((this.touchWall((this.x + this.width), this.y)))) {
 
-                double xt = xi + i * Math.sin(Math.toRadians(this.getAngle()));
-                double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
-                this.checkScannedRobot();
+                double xt = xi + (i-d) * Math.sin(Math.toRadians(this.getAngle()));
+                double yt = yi - (i-d) * Math.cos(Math.toRadians(this.getAngle()));
+               
                 this.place(xt, yt);
                 
+                this.checkScannedRobot();
                 
                 try {
                     Thread.sleep(this.velMov);
