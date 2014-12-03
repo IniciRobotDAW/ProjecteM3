@@ -19,18 +19,19 @@ public class Robot2 extends Robot{
     @Override
     public void onTouchRobot() {  
         
-       this.right(360);
+       
        this.fire();
     }
     
     @Override
     public void onTouchWall() {
-        this.left(90);
+        this.back(30);
+       
     }
     
     @Override
     public void onScannedRobot() {
-//        this.fire();
+        this.fire();
     }
     
     @Override
@@ -47,7 +48,7 @@ public class Robot2 extends Robot{
     public void run() {
         
         while(true){
-            this.ahead(100);
+             this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
         }
     }
 }
