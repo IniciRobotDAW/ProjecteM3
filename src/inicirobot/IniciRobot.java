@@ -41,7 +41,7 @@ public class IniciRobot {
         RobotPiece cos1 = new RobotPiece("/resources/images/pinkBody.png",xIniciR1, yIniciR1, 0, 0);
         RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png",xIniciR2, yIniciR2, 0, 0);
         RobotPiece cos3 = new RobotPiece("/resources/images/body.png",xIniciR3, yIniciR3, 0, 0);
-        RobotPiece cos4 = new RobotPiece("/resources/images/greenbody.png",xIniciR4, yIniciR4, 0, 0);
+        RobotPiece cos4 = new RobotPiece("/resources/images/greenBody.png",xIniciR4, yIniciR4, 0, 0);
         RobotPiece cos5 = new RobotPiece("/resources/images/pinkBody.png",xIniciR5, yIniciR5, 0, 0);
         RobotPiece cos6 = new RobotPiece("/resources/images/pinkBody.png",xIniciR6, yIniciR6, 0, 0);
         
