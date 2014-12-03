@@ -5,9 +5,7 @@
  */
 package inicirobot;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import libraries.*;
-//import robotlibrary3.*;
 
 /**
  *
@@ -82,7 +80,7 @@ public class IniciRobot {
 //        r.add(r5);
 //        r.add(r6);
 
-        
+
         new BattleWindow(r);
     }
 }

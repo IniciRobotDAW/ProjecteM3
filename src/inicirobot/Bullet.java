@@ -8,8 +8,6 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import javax.swing.JComponent;
-import java.util.Random;
-//import robotlibrary3.*;
 import libraries.*;
 
 /**

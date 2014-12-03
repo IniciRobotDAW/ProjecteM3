@@ -46,7 +46,7 @@ public class Robot3 extends Robot{
     public void run() {
         while(true){
             this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
-           this.movComp(new String[]{"left","ahead","turnTurretLeft"}, 200);
+            this.movComp(new String[]{"left","ahead","turnTurretLeft"}, 200);
         }
     }
 }
