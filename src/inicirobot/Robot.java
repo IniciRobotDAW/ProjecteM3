@@ -382,6 +382,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             
+            this.checkTouchPill();
+            
         }
     }
     
@@ -447,6 +449,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.win();
                 return;
             }
+            
+            this.checkTouchPill();
             
         }
     }
@@ -514,6 +518,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.win();
                 return;
             }
+            
+            this.checkTouchPill();
      
         }
     }
@@ -579,6 +585,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.win();
                 return;
             }
+            
+            this.checkTouchPill();
      
         }
     }
@@ -1122,6 +1130,20 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             }
         }
         return tocat;  
+    }
+    
+    public void checkTouchPill(){
+        
+        ArrayList<Line2D.Double> linies = this.getBoundLines();
+        
+        for (int i = 0; i < linies.size(); i++) {
+            for (int j = 0; j < Board.getPills().size(); j++) {
+                if(linies.get(i).getBounds().contains(Board.getPills().get(j).getX(), Board.getPills().get(j).getY())){    
+                    this.setLives(this.getLives()+1);
+                    Board.getPills().get(j).setVisible(false);
+                }
+            }
+        }
     }
     
     /**

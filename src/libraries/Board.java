@@ -5,6 +5,8 @@
  */
 package libraries;
 
+
+import inicirobot.HealthPill;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -23,38 +25,25 @@ public class Board extends JPanel {
     public static Vector<SimulatorBullet> bullets;
     public static ArrayList<SimulatorRobot> robots;
     public static ArrayList<SimulatorRobot> deadRobots;
-
+    public static ArrayList<HealthPill> pills;
+    
     public Board(ArrayList<SimulatorRobot> r) {
 
         setDoubleBuffered(true);
         this.bullets = new Vector<SimulatorBullet>();
         this.deadRobots = new ArrayList<SimulatorRobot>();
+        this.pills = new ArrayList<HealthPill>();
         this.robots = r;
-
+        
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 new Thread(robots.get(i)).start();
+                pills.add(new HealthPill());
             }
         }
-
+        
     }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-
-        for (int i = 0; i < robots.size(); i++) {
-            if (robots.get(i) != null) {
-                robots.get(i).paintObj(g, this);
-            }
-        }
-        for (int j = 0; j < bullets.size(); j++) {
-            bullets.get(j).paintObj(g, this);
-        }
-        Toolkit.getDefaultToolkit().sync();
-        g.dispose();
-    }
-
+    
     public static int getWIDTH() {
         return WIDTH;
     }
@@ -78,10 +67,48 @@ public class Board extends JPanel {
     public static void setBullets(Vector<SimulatorBullet> bullets) {
         Board.bullets = bullets;
     }
+    
+    public static ArrayList<HealthPill> getPills() {
+        return pills;
+    }
 
+    public static void setPills(ArrayList<HealthPill> pills) {
+        Board.pills = pills;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        
+        for (int i = 0; i < robots.size(); i++) {
+            if (robots.get(i) != null) {
+                robots.get(i).paintObj(g, this);
+            }
+        }
+        
+        for (int j = 0; j < bullets.size(); j++) {
+            bullets.get(j).paintObj(g, this);
+        }
+        
+        for (int i = 0; i < pills.size(); i++) {
+            pills.get(i).paintObj(g, this);
+        }
+        
+        Toolkit.getDefaultToolkit().sync();
+        g.dispose();
+    }
+    
     public void act() {
         SimulatorBullet b = null;
-
+        HealthPill h = null;
+        
+        for (int i = 0; i < pills.size(); i++) {
+            h = pills.get(i);
+            if(!h.isVisible()){
+                pills.remove(h);
+            }
+        }
+        
         for (int j = 0; j < bullets.size(); j++) {
             b = bullets.get(j);
             if (b.isVisible() && b.inBoard() && !b.touchRobot()) {
