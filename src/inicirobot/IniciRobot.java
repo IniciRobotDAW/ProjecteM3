@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package inicirobot;
-import java.util.ArrayList;
+import java.util.*;
 import libraries.*;
 
 /**
@@ -18,24 +18,31 @@ public class IniciRobot {
      */
     public static void main(String[] args) {
         
-        int xIniciR1 = 100;
-        int yIniciR1 = 300;
+        Menu m1 = new Menu();
+        int numRobots = m1.mostraMenu();
         
-        int xIniciR2 = 200;
-        int yIniciR2 = 300;
         
-        int xIniciR3 = 300;
-        int yIniciR3 = 300;
+        //Marca l'inici de cada robot
+        int W = Board.WIDTH;
+        int H = Board.HEIGHT;
         
-        int xIniciR4 = 400;
-        int yIniciR4 = 300;
+        int xIniciR1 = (int)(Math.random()*W + 1);
+        int yIniciR1 = (int)(Math.random()*H + 1);
         
-        int xIniciR5 = 500;
-        int yIniciR5 = 300;
+        int xIniciR2 = (int)(Math.random()*W + 1);
+        int yIniciR2 = (int)(Math.random()*H + 1);
         
-        int xIniciR6 = 600;
-        int yIniciR6 = 300;
+        int xIniciR3 = (int)(Math.random()*W + 1);
+        int yIniciR3 = (int)(Math.random()*H + 1);
         
+        int xIniciR4 = (int)(Math.random()*W + 1);
+        int yIniciR4 = (int)(Math.random()*H + 1);
+        
+        int xIniciR5 = (int)(Math.random()*W + 1);
+        int yIniciR5 = (int)(Math.random()*H + 1);
+        
+        int xIniciR6 = (int)(Math.random()*W + 1);
+        int yIniciR6 = (int)(Math.random()*H + 1);
         
         //Cos
         RobotPiece cos1 = new RobotPiece("/resources/images/pinkBody.png",xIniciR1, yIniciR1, 0, 0);
@@ -45,7 +52,6 @@ public class IniciRobot {
         RobotPiece cos5 = new RobotPiece("/resources/images/pinkBody.png",xIniciR5, yIniciR5, 0, 0);
         RobotPiece cos6 = new RobotPiece("/resources/images/pinkBody.png",xIniciR6, yIniciR6, 0, 0);
         
-        
         //Turret
         RobotPiece turret1 = new RobotPiece("/resources/images/pinkTurret.png",xIniciR1, yIniciR1, 8, -10);
         RobotPiece turret2 = new RobotPiece("/resources/images/arnauTurret.png",xIniciR2, yIniciR2, 8, -10);
@@ -54,13 +60,12 @@ public class IniciRobot {
         RobotPiece turret5 = new RobotPiece("/resources/images/pinkTurret.png",xIniciR5, yIniciR5, 8, -10);
         RobotPiece turret6 = new RobotPiece("/resources/images/pinkTurret.png",xIniciR6, yIniciR6, 8, -10);
 
-        
         //Radar
         RobotPiece radar1 = new RobotPiece("/resources/images/pinkRadar.png",xIniciR1, yIniciR1, 7, 9);
         RobotPiece radar2 = new RobotPiece("/resources/images/arnauRadar.png",xIniciR2, yIniciR2, 7, 9);
         RobotPiece radar3 = new RobotPiece("/resources/images/radar.png",xIniciR3, yIniciR3, 7, 9);
         RobotPiece radar4 = new RobotPiece("/resources/images/yellowRadar.png",xIniciR4, yIniciR4, 7, 9);
-        RobotPiece radar5 = new RobotPiece("/resources/images/pinkRadar.png",xIniciR5, yIniciR5, 7, 9);
+        RobotPiece radar5 = new RobotPiece("/resources/images/arnauRadar.png",xIniciR5, yIniciR5, 7, 9);
         RobotPiece radar6 = new RobotPiece("/resources/images/pinkRadar.png",xIniciR6, yIniciR6, 7, 9);
         
         // Robot sencer
@@ -71,16 +76,21 @@ public class IniciRobot {
         Robot1 r5 = new Robot1(xIniciR5, yIniciR5, cos5, turret5, radar5);
         Robot1 r6 = new Robot1(xIniciR6, yIniciR6, cos6, turret6, radar6);
 
-
         ArrayList<SimulatorRobot> r = new ArrayList<SimulatorRobot>();
         r.add(r1);
         r.add(r2);
         r.add(r3);
         r.add(r4);
-//        r.add(r5);
-//        r.add(r6);
-
-
-        new BattleWindow(r);
+        r.add(r5);
+        r.add(r6);
+        
+        ArrayList<SimulatorRobot> rb = new ArrayList<SimulatorRobot>();
+        
+        for (int i = 0; i < numRobots; i++) {
+            rb.add(r.get(i));
+        }
+        
+        new BattleWindow(rb);
+        
     }
 }
