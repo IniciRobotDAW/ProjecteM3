@@ -23,8 +23,8 @@ public class IniciRobot {
         
         
         //Marca l'inici de cada robot
-        int W = Board.WIDTH;
-        int H = Board.HEIGHT;
+        int W = Board.WIDTH-50;
+        int H = Board.HEIGHT-50;
         
         int xIniciR1 = (int)(Math.random()*W + 1);
         int yIniciR1 = (int)(Math.random()*H + 1);
