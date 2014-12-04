@@ -36,8 +36,8 @@ public class Robot1 extends Robot {
     
     @Override
     public void win(){
-       
-        this.movComp(new String[]{"right","back","turnTurretRight","fire"}, 100);
+        this.right(360);
+//        this.movComp(new String[]{"right","back","turnTurretRight","fire"}, 100);
     }
     
     @Override

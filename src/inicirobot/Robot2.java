@@ -41,7 +41,7 @@ public class Robot2 extends Robot{
     
     @Override
     public void win(){
-        System.out.println("He guanyat"); 
+        this.right(360); 
     }
     
     @Override
