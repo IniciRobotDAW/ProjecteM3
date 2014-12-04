@@ -929,7 +929,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * @param d
      * @return Point2D.double
      */
-    public Point2D.Double movePoint(double x, double y, double angle, double d) {
+    private Point2D.Double movePoint(double x, double y, double angle, double d) {
 
         double fx = (x + (d * (Math.sin(Math.toRadians(angle)))));
         double fy = (y - (d * (Math.cos(Math.toRadians(angle)))));
@@ -1057,7 +1057,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * check if you win /
      * Verificar si has guanyat
      */
-    public boolean checkWin(){
+    private boolean checkWin(){
         
         boolean win = false;
         int deads = 0;
@@ -1078,7 +1078,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     /**
      * Dicta el que pasa al morir
      */
-    public void die(){
+    private void die(){
 
         this.setVisible(false);
         
@@ -1104,7 +1104,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Mirar si toca una bala
      * @return boolean
      */
-    public boolean checkTouchBullet() {
+    private boolean checkTouchBullet() {
 
         boolean tocat = false;
         this.setVisible(true);
@@ -1132,15 +1132,16 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return tocat;  
     }
     
-    public void checkTouchPill(){
+    private void checkTouchPill(){
         
         ArrayList<Line2D.Double> linies = this.getBoundLines();
-        
-        for (int i = 0; i < linies.size(); i++) {
-            for (int j = 0; j < Board.getPills().size(); j++) {
-                if(linies.get(i).getBounds().contains(Board.getPills().get(j).getX(), Board.getPills().get(j).getY())){    
-                    this.setLives(this.getLives()+1);
-                    Board.getPills().get(j).setVisible(false);
+        if(this.getLives() < this.getStartLives()){
+            for (int i = 0; i < linies.size(); i++) {
+                for (int j = 0; j < Board.getPills().size(); j++) {
+                    if(linies.get(i).getBounds().contains(Board.getPills().get(j).getX(), Board.getPills().get(j).getY())){    
+                        this.setLives(this.getLives()+1);
+                        Board.getPills().get(j).setVisible(false);
+                    }
                 }
             }
         }
@@ -1151,7 +1152,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Comprova si el robot ha escanejat un altre robot
      * @return boolean
      */
-    public boolean checkScannedRobot(){
+    private boolean checkScannedRobot(){
         
         boolean scanned = false;
 
