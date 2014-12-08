@@ -35,7 +35,7 @@ public class BattleWindow extends JFrame implements ActionListener {
     public BattleWindow(ArrayList<SimulatorRobot> r) {
 
         setSize(1000, 700);    
-        
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
         ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/bg.jpg"));

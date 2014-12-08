@@ -68,12 +68,15 @@ public class HealthPill extends GraphicObject{
     @Override
     public void paintObj(Graphics g, JComponent c) {
         Graphics2D g2d = (Graphics2D) g;
-
+        
         AffineTransform at = new AffineTransform();
         
-        at.translate(x, y);
-        at.rotate(Math.toRadians(this.angle), (this.width /2 ), (this.height /2));
+        at.translate(x-15, y-15);
         
+//        Point2D p =  new Point2D.Double(x,y);
+//        g2d.setStroke(new BasicStroke(5f));
+//        g2d.setColor(Color.green);
+//        g2d.drawLine((int)p.getX(), (int)p.getY(), (int)p.getX(), (int)p.getY());
         
         g2d.drawImage(this.getImage(), at, c);
   
