@@ -1139,7 +1139,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             for (int i = 0; i < linies.size(); i++) {
                 for (int j = 0; j < Board.getPills().size(); j++) {
                     if(linies.get(i).getBounds().contains(Board.getPills().get(j).getX(), Board.getPills().get(j).getY())){    
-                        this.setLives(this.getLives()+1);
+                        this.setLives(this.getStartLives());
                         Board.getPills().get(j).setVisible(false);
                     }
                 }

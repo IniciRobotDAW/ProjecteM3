@@ -80,18 +80,18 @@ public class Board extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         
-        for (int i = 0; i < robots.size(); i++) {
-            if (robots.get(i) != null) {
-                robots.get(i).paintObj(g, this);
-            }
+        for (int i = 0; i < pills.size(); i++) {
+            pills.get(i).paintObj(g, this);
         }
         
         for (int j = 0; j < bullets.size(); j++) {
             bullets.get(j).paintObj(g, this);
         }
         
-        for (int i = 0; i < pills.size(); i++) {
-            pills.get(i).paintObj(g, this);
+        for (int i = 0; i < robots.size(); i++) {
+            if (robots.get(i) != null) {
+                robots.get(i).paintObj(g, this);
+            }
         }
         
         Toolkit.getDefaultToolkit().sync();
