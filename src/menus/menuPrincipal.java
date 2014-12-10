@@ -23,7 +23,7 @@ public class menuPrincipal extends javax.swing.JFrame {
      */
     public menuPrincipal() {
        
-        String sDirectorio = "/resources/robots";
+        String sDirectorio = "robots";
         File f = new File(sDirectorio);
         
         if (f.exists()){
