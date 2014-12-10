@@ -6,9 +6,10 @@
 package menus;
 
 import inicirobot.*;
-import java.awt.BorderLayout;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import libraries.BattleWindow;
 import libraries.SimulatorRobot;
 
@@ -22,29 +23,24 @@ public class menuPrincipal extends javax.swing.JFrame {
      * Creates new form menuPrincipal
      */
     public menuPrincipal() {
-       
-        String sDirectorio = "src\\resources\\robots";
-        File f = new File(sDirectorio);
-        
-        if (f.exists()){
-            File[] ficheros = f.listFiles();
-                for (int x=0;x<ficheros.length;x++){
-                System.out.println(ficheros[x].getName());
-            }
-           
-        }
-        else { 
-            System.out.println("nota");
-        }
-         
-       
-        
+
         setLocationRelativeTo(null);
         initComponents();
+        String sDirectorio = "src\\resources\\robots";
+        File f = new File(sDirectorio);
+        DefaultListModel listModel = new DefaultListModel();
         
-       
-        
-        
+        if (f.exists()) {
+            File[] ficheros = f.listFiles();
+            for (int x = 0; x < ficheros.length; x++) {
+                listModel.addElement(ficheros[x].getName());
+                this.totalRobots.setModel(listModel);
+            }
+
+        } else {
+            System.out.println("nota");
+        }
+
     }
 
     /**
@@ -163,22 +159,22 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
 
-        int numRobots = this.selectedRobots.getSelectedIndex()+1;
+        int numRobots = this.selectedRobots.getSelectedIndex() + 1;
 
         Factory f = new Factory(numRobots);
 
         ArrayList<SimulatorRobot> rb = f.deploy();
 
         this.setVisible(false);
-        
+
         new BattleWindow(rb);
-        
+
     }//GEN-LAST:event_sendActionPerformed
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed
-        
+
     }//GEN-LAST:event_addRobotActionPerformed
-        
+
     /**
      * @param args the command line arguments
      */
@@ -209,7 +205,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
                 new menuPrincipal().setVisible(true);
             }
         });
