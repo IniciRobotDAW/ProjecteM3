@@ -3,27 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inicirobot;
+package resources.robots;
+
+import inicirobot.*;
 
 /**
  *
- * @author rbarberan
+ * @author atorrillas
  */
 
-public class Robot3 extends Robot{
+public class Robot2 extends Robot{
 
-    public Robot3(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
+    public Robot2(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, cos, turret, radar);
     }
     
     @Override
-    public void onTouchRobot() {       
-        this.left(100);
+    public void onTouchRobot() {  
+        
+       
+       this.fire();
     }
     
     @Override
     public void onTouchWall() {
-        this.movComp(new String[]{"right","turnTurretRight"}, 90);
+        this.back(30);
+       
     }
     
     @Override
@@ -33,20 +38,19 @@ public class Robot3 extends Robot{
     
     @Override
     public void onHitByBullet() {
-        this.back(100);
-                
+//        this.fire();
     }
     
     @Override
     public void win(){
-        this.left(360);
+        this.right(360); 
     }
     
     @Override
     public void run() {
+        
         while(true){
-            this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
-            this.movComp(new String[]{"left","ahead","turnTurretLeft"}, 200);
+             this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
         }
     }
 }
