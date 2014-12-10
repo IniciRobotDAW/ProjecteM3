@@ -17,16 +17,18 @@ public class Factory {
 
     private int numRobots;
     private ArrayList<SimulatorRobot> robots;
+     private ArrayList<SimulatorRobot> robotsTotal;
 
     public Factory(int numRobots) {
         this.numRobots = numRobots;
         this.robots = new ArrayList<SimulatorRobot>();
+        this.robotsTotal = new ArrayList<SimulatorRobot>();
     }
 
     public ArrayList<SimulatorRobot> deploy() {
 
-        int W = Board.WIDTH;
-        int H = Board.HEIGHT;
+        int W = Board.WIDTH-30;
+        int H = Board.HEIGHT-30;
         //Marca l'inici de cada robot
         int xIniciR1 = (int) (Math.random() * W + 1);
         int yIniciR1 = (int) (Math.random() * H + 1);
@@ -77,13 +79,18 @@ public class Factory {
         Robot1 r5 = new Robot1(xIniciR5, yIniciR5, cos5, turret5, radar5);
         Robot1 r6 = new Robot1(xIniciR6, yIniciR6, cos6, turret6, radar6);
 
-        this.robots.add(r1);
-        this.robots.add(r2);
-        this.robots.add(r3);
-        this.robots.add(r4);
-        this.robots.add(r5);
-        this.robots.add(r6);
+        this.robotsTotal.add(r1);
+        this.robotsTotal.add(r2);
+        this.robotsTotal.add(r3);
+        this.robotsTotal.add(r4);
+        this.robotsTotal.add(r5);
+        this.robotsTotal.add(r6);
 
+        for (int i = 0; i < numRobots; i++) {
+              this.robots.add(this.robotsTotal.get(i));
+        }
+        
+        
         return this.robots;
 
     }
