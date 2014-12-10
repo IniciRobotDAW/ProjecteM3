@@ -22,7 +22,7 @@ public class menuPrincipal extends javax.swing.JFrame {
      */
     public menuPrincipal() {
        
-        setLocationRelativeTo(rootPane);
+        setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -55,6 +55,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
 
         selectedRobots.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6" }));
+        selectedRobots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectedRobotsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,26 +71,26 @@ public class menuPrincipal extends javax.swing.JFrame {
                         .addGap(142, 142, 142)
                         .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(answer))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
+                        .addGap(105, 105, 105)
                         .addComponent(selectedRobots, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(send)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(send))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(answer)))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(answer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(answer)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectedRobots, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(send))
-                .addGap(52, 52, 52))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,16 +119,17 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         Factory f = new Factory(numRobots);
 
-        ArrayList<SimulatorRobot> rb = new ArrayList<SimulatorRobot>();
-
-        for (int i = 0; i < numRobots; i++) {
-            rb.add(f.deploy().get(i));
-        }
+        ArrayList<SimulatorRobot> rb = f.deploy();
 
         this.setVisible(false);
+        
         new BattleWindow(rb);
         
     }//GEN-LAST:event_sendActionPerformed
+
+    private void selectedRobotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedRobotsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectedRobotsActionPerformed
         
     /**
      * @param args the command line arguments
