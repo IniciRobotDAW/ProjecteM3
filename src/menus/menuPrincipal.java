@@ -7,6 +7,7 @@ package menus;
 
 import inicirobot.*;
 import java.awt.BorderLayout;
+import java.io.File;
 import java.util.ArrayList;
 import libraries.BattleWindow;
 import libraries.SimulatorRobot;
@@ -22,8 +23,28 @@ public class menuPrincipal extends javax.swing.JFrame {
      */
     public menuPrincipal() {
        
+        String sDirectorio = "robots";
+        File f = new File(sDirectorio);
+        
+        if (f.exists()){
+            File[] ficheros = f.listFiles();
+                for (int x=0;x<ficheros.length;x++){
+                System.out.println(ficheros[x].getName());
+            }
+           
+        }
+        else { 
+            System.out.println("nota");
+        }
+         
+       
+        
         setLocationRelativeTo(null);
         initComponents();
+        
+       
+        
+        
     }
 
     /**

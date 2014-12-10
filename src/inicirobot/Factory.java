@@ -5,6 +5,10 @@
  */
 package inicirobot;
 
+import resources.robots.Robot1;
+import resources.robots.Robot3;
+import resources.robots.Robot2;
+import resources.robots.Robot4;
 import java.util.ArrayList;
 import libraries.Board;
 import libraries.SimulatorRobot;
