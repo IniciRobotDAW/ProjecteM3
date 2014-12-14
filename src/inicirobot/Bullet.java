@@ -19,7 +19,6 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
     private double power;
     private Robot owner;
 
-
     public Bullet(double x, double y, double angle, Robot owner) {
         
         super(x, y, angle);
