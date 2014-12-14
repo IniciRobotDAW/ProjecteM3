@@ -6,7 +6,7 @@
 package inicirobot;
 
 /**
- * @author atorrillas
+ * @author rbarberan
  */
 
 public class Robot1 extends Robot{
