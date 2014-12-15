@@ -44,8 +44,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = height;
         this.lastReload = System.nanoTime();
         
-        this.lives = 100;
-        this.bulletsLoad = 2;
+        this.lives = 20;
+        this.bulletsLoad = 40;
 
     }
 
@@ -59,8 +59,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
         
-        this.lives = 100;
-        this.bulletsLoad = 2;
+        this.lives = 20;
+        this.bulletsLoad = 40;
 
     }
 
@@ -150,7 +150,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     //************//
     //**Funcions**//
     //************//
-    
+       
     /**
      * Paint the robot / Pinta el robot
      * @param g
