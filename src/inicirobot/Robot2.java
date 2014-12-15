@@ -33,10 +33,9 @@ public class Robot2 extends Robot{
     
     @Override
     public void onHitByBullet() {
-        System.out.println("TOOOOOOOOOC");
-       
-//        this.right(360);
-//        this.fire();
+
+        this.right(360);
+        this.fire();
         
     }
     

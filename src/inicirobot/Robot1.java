@@ -22,7 +22,6 @@ public class Robot1 extends Robot{
     
     @Override
     public void onTouchWall() {
-        System.out.println("-----------------------------------" + this.angle);
         this.right(90);   
     }
     
@@ -33,7 +32,6 @@ public class Robot1 extends Robot{
     
     @Override
     public void onHitByBullet(){
-        System.out.println("TOOOOOOOOOC");
 //        this.left(360);
 //        this.fire();
     }
@@ -42,7 +40,7 @@ public class Robot1 extends Robot{
     public void run() {
        
         while(true){
-            
+               
             this.ahead(100);
             
         }
