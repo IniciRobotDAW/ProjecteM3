@@ -420,7 +420,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 double yt = yi - i * Math.cos(Math.toRadians(this.getAngle()));
                 this.checkScannedRobot();
                 this.place(xt, yt);
-
+                
+                
                 try {
                     Thread.sleep(4);
                 } catch (InterruptedException ex) {
@@ -446,16 +447,16 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onTouchWall();
                 return;
             }
-            if (this.touchRobotMov(3)) {
+            if (this.touchRobotMov(0)) {
                 this.onTouchRobot();
                 return;
             }
-            
+
             if (this.checkTouchBullet()) {
                 this.onHitByBullet();
                 return;
             }
-            
+     
         }
     }
 
