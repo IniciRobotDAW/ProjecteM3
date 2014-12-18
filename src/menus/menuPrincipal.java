@@ -9,7 +9,6 @@ import inicirobot.*;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import libraries.BattleWindow;
 import libraries.SimulatorRobot;
 
@@ -24,21 +23,22 @@ public class menuPrincipal extends javax.swing.JFrame {
      */
     public menuPrincipal() {
 
-        setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(null);
+        
         String sDirectorio = "src\\resources\\robots";
         File f = new File(sDirectorio);
-        DefaultListModel listModel = new DefaultListModel();
+        DefaultListModel listModelTotalRobots = new DefaultListModel();
         
         if (f.exists()) {
             File[] ficheros = f.listFiles();
             for (int x = 0; x < ficheros.length; x++) {
-                listModel.addElement(ficheros[x].getName());
-                this.totalRobots.setModel(listModel);
+                listModelTotalRobots.addElement(ficheros[x].getName());
+                this.totalRobots.setModel(listModelTotalRobots);
             }
 
         } else {
-            System.out.println("nota");
+            System.out.println("error en menu principal source");
         }
 
     }
@@ -172,7 +172,15 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sendActionPerformed
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed
+        
+        DefaultListModel listModelSelectedRobots = new DefaultListModel();
+        
+        listModelSelectedRobots.addElement(this.totalRobots.getSelectedValue());
+        
+        this.selectedRobots.setModel(listModelSelectedRobots);
+            
 
+       
     }//GEN-LAST:event_addRobotActionPerformed
 
     /**
