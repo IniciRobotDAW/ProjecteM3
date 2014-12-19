@@ -9,6 +9,7 @@ import inicirobot.*;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 import libraries.BattleWindow;
 import libraries.SimulatorRobot;
 
@@ -40,6 +41,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         } else {
             System.out.println("error en menu principal source");
         }
+        
+        DefaultListModel listModelSelectedRobots = new DefaultListModel();
+        this.selectedRobots.setModel(listModelSelectedRobots);
 
     }
 
@@ -65,6 +69,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        title.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         title.setText("Batalla de robots!");
 
         answer.setText("Quants robots vols?");
@@ -95,10 +100,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,9 +113,12 @@ public class menuPrincipal extends javax.swing.JFrame {
                                     .addComponent(send)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(addRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(removeRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(removeRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(title)))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -173,14 +180,9 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed
         
-        DefaultListModel listModelSelectedRobots = new DefaultListModel();
+        DefaultListModel listModelAux = new DefaultListModel();
         
-        listModelSelectedRobots.addElement(this.totalRobots.getSelectedValue());
         
-        this.selectedRobots.setModel(listModelSelectedRobots);
-            
-
-       
     }//GEN-LAST:event_addRobotActionPerformed
 
     /**
@@ -215,6 +217,7 @@ public class menuPrincipal extends javax.swing.JFrame {
             public void run() {
 
                 new menuPrincipal().setVisible(true);
+                
             }
         });
     }
