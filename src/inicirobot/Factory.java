@@ -36,9 +36,15 @@ public class Factory {
         //Marca l'inici de cada robot
         int xIniciR1 = (int) (Math.random() * W + 1);
         int yIniciR1 = (int) (Math.random() * H + 1);
-
+//        int xIniciR1 = 200;
+//        int yIniciR1 = 200;
+                
         int xIniciR2 = (int) (Math.random() * W + 1);
         int yIniciR2 = (int) (Math.random() * H + 1);
+//        int xIniciR2 = 500;
+//        int yIniciR2 = 200;
+        
+        
 
         int xIniciR3 = (int) (Math.random() * W + 1);
         int yIniciR3 = (int) (Math.random() * H + 1);

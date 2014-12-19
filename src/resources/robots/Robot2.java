@@ -48,9 +48,10 @@ public class Robot2 extends Robot{
     
     @Override
     public void run() {
-        
+        this.left(90);
         while(true){
              this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
+
         }
     }
 }
