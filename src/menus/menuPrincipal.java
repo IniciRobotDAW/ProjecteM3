@@ -9,7 +9,6 @@ import inicirobot.*;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 import libraries.BattleWindow;
 import libraries.SimulatorRobot;
 
@@ -44,7 +43,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         DefaultListModel listModelSelectedRobots = new DefaultListModel();
         this.selectedRobots.setModel(listModelSelectedRobots);
-
     }
 
     /**
@@ -66,13 +64,14 @@ public class menuPrincipal extends javax.swing.JFrame {
         totalRobots = new javax.swing.JList();
         addRobot = new javax.swing.JButton();
         removeRobot = new javax.swing.JButton();
+        removeAllRobots = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         title.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         title.setText("Batalla de robots!");
 
-        answer.setText("Quants robots vols?");
+        answer.setText("Quins robots vols?");
 
         send.setText("Som-hi!");
         send.addActionListener(new java.awt.event.ActionListener() {
@@ -86,14 +85,26 @@ public class menuPrincipal extends javax.swing.JFrame {
         totalRobots.setToolTipText("");
         jScrollPane2.setViewportView(totalRobots);
 
-        addRobot.setText("add");
+        addRobot.setText(">");
         addRobot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addRobotActionPerformed(evt);
             }
         });
 
-        removeRobot.setText("remove");
+        removeRobot.setText("Eliminar");
+        removeRobot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeRobotActionPerformed(evt);
+            }
+        });
+
+        removeAllRobots.setText("Buidar");
+        removeAllRobots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeAllRobotsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,44 +115,55 @@ public class menuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(answer)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(send)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(addRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(removeRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(answer)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(send))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(addRobot)))
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(removeRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(removeAllRobots, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(199, 199, 199)
                         .addComponent(title)))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 39, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(answer)
+                                .addGap(39, 39, 39)
+                                .addComponent(addRobot)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(send)))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(answer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addComponent(addRobot)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(39, 39, 39)
                         .addComponent(removeRobot)
-                        .addGap(50, 50, 50)
-                        .addComponent(send)))
-                .addContainerGap())
+                        .addGap(31, 31, 31)
+                        .addComponent(removeAllRobots)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,10 +202,35 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed
         
-        DefaultListModel listModelAux = new DefaultListModel();
+        
+        DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
+        
+        listAux.addElement(this.totalRobots.getSelectedValue());
+        
+        this.selectedRobots.setModel(listAux);
         
         
     }//GEN-LAST:event_addRobotActionPerformed
+
+    private void removeRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRobotActionPerformed
+        
+        DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
+        
+        listAux.removeElement(this.selectedRobots.getSelectedValue());
+        
+        this.selectedRobots.setModel(listAux);
+        
+    }//GEN-LAST:event_removeRobotActionPerformed
+
+    private void removeAllRobotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllRobotsActionPerformed
+        
+        DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
+        
+        listAux.removeAllElements();
+        
+        this.selectedRobots.setModel(listAux);
+        
+    }//GEN-LAST:event_removeAllRobotsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +275,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton removeAllRobots;
     private javax.swing.JButton removeRobot;
     private javax.swing.JList selectedRobots;
     private javax.swing.JButton send;
