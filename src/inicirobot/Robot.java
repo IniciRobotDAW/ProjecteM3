@@ -19,8 +19,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import libraries.*;
 
-
-
 /**
  *
  * @author atorrillas, rbarberan
@@ -46,7 +44,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     private int velMov = 5;
     private int velComp = 0;
     
-    private ArrayList<Explote> explosionsList;
     private BufferedImage explosionAnimImg;
    
 
@@ -65,15 +62,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.startLives = 5;
         this.lives = this.startLives;
         
-        explosionsList = new ArrayList<Explote>();
-        explosionsList = new ArrayList<Explote>();
-        URL explosionAnimImgUrl = this.getClass().getResource("/resources/images/explosio.png");
-        try {
-            explosionAnimImg = ImageIO.read(explosionAnimImgUrl);
-        } catch (IOException ex) {
-            Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
+        
     }
 
     public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
@@ -85,15 +74,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
-        
-        explosionsList = new ArrayList<Explote>();
-        URL explosionAnimImgUrl = this.getClass().getResource("/resources/images/explosio.png");
-        try {
-            explosionAnimImg = ImageIO.read(explosionAnimImgUrl);
-        } catch (IOException ex) {
-            Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
     }
 
     //getters i setters
@@ -223,14 +204,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
      
-        for(int i = 0; i < explosionsList.size(); i++){
-            
-            if(!explosionsList.get(i).active){
-                explosionsList.remove(i);
-            } else {
-                explosionsList.get(i).Draw(g2d);
-            }
-        }
+//        for(int i = 0; i < Board.getExpAnim().size(); i++){
+//            
+//            if(!Board.getExpAnim().get(i).active){
+//                Board.getExpAnim().remove(i);
+//            } else {
+//                Board.getExpAnim().get(i).Draw(g2d);
+//            }
+//        }
         
     }
 
@@ -1155,10 +1136,16 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                                
                                 this.setLives(this.getLives()-1);
                                     
-                                Explote expAnim = new Explote(explosionAnimImg, 130, 130, 64, 20, false, (int)this.x-50, (int)this.y - explosionAnimImg.getHeight()/3, 0);
-                                explosionsList.add(expAnim);
-
                                 if(this.lives <= 0){
+                                    URL explosionAnimImgUrl = this.getClass().getResource("/resources/images/exploteDeath.png");
+                                    try {
+                                        explosionAnimImg = ImageIO.read(explosionAnimImgUrl);
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    Explote expAnim = new Explote(explosionAnimImg, 130, 130, 64, 20, false, (int)this.x-50, (int)this.y - explosionAnimImg.getHeight()/3, 0);
+                                    Board.getExpAnim().add(expAnim);
+                                    
                                     this.die();
                                 }
                                

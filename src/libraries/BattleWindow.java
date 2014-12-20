@@ -38,7 +38,7 @@ public class BattleWindow extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/bg.jpg"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desert.png"));
         
         JLabel background=new JLabel(new ImageIcon(ii.getImage()));
 	add(background);

@@ -59,7 +59,7 @@ public class Factory {
         int yIniciR6 = (int) (Math.random() * H + 1);
 
         //Fabricació dels xassís
-        RobotPiece cos1 = new RobotPiece("/resources/images/pinkBody.png", xIniciR1, yIniciR1, 0, 0);
+        RobotPiece cos1 = new RobotPiece("/resources/images/realBody.png", xIniciR1, yIniciR1, 0, 0);
         RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png", xIniciR2, yIniciR2, 0, 0);
         RobotPiece cos3 = new RobotPiece("/resources/images/body.png", xIniciR3, yIniciR3, 0, 0);
         RobotPiece cos4 = new RobotPiece("/resources/images/greenBody.png", xIniciR4, yIniciR4, 0, 0);
@@ -67,7 +67,7 @@ public class Factory {
         RobotPiece cos6 = new RobotPiece("/resources/images/pinkBody.png", xIniciR6, yIniciR6, 0, 0);
 
         //Fabricació dels canons
-        RobotPiece turret1 = new RobotPiece("/resources/images/pinkTurret.png", xIniciR1, yIniciR1, 8, -10);
+        RobotPiece turret1 = new RobotPiece("/resources/images/realTurret.png", xIniciR1, yIniciR1, 8, -10);
         RobotPiece turret2 = new RobotPiece("/resources/images/arnauTurret.png", xIniciR2, yIniciR2, 8, -10);
         RobotPiece turret3 = new RobotPiece("/resources/images/turret.png", xIniciR3, yIniciR3, 8, -10);
         RobotPiece turret4 = new RobotPiece("/resources/images/greenTurret.png", xIniciR4, yIniciR4, 8, -10);
@@ -75,7 +75,7 @@ public class Factory {
         RobotPiece turret6 = new RobotPiece("/resources/images/pinkTurret.png", xIniciR6, yIniciR6, 8, -10);
 
         //Fabricació dels radars
-        RobotPiece radar1 = new RobotPiece("/resources/images/pinkRadar.png", xIniciR1, yIniciR1, 7, 9);
+        RobotPiece radar1 = new RobotPiece("/resources/images/realRadar.png", xIniciR1, yIniciR1, 7, 9);
         RobotPiece radar2 = new RobotPiece("/resources/images/arnauRadar.png", xIniciR2, yIniciR2, 7, 9);
         RobotPiece radar3 = new RobotPiece("/resources/images/radar.png", xIniciR3, yIniciR3, 7, 9);
         RobotPiece radar4 = new RobotPiece("/resources/images/yellowRadar.png", xIniciR4, yIniciR4, 7, 9);
