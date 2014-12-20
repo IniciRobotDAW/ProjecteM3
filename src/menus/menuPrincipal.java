@@ -188,9 +188,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
 
-        int numRobots = this.selectedRobots.getSelectedIndex() + 1;
-
-        Factory f = new Factory(numRobots);
+        Factory f = new Factory((DefaultListModel)this.selectedRobots.getModel());
 
         ArrayList<SimulatorRobot> rb = f.deploy();
 
