@@ -15,13 +15,13 @@ import resources.robots.*;
  *
  * @author rbarberan
  */
-public class Factory {
+public class Game {
 
     private DefaultListModel selectedRobots;
     private ArrayList<SimulatorRobot> robots;
     private ArrayList<SimulatorRobot> robotsTotal;
 
-    public Factory(DefaultListModel selectedRobots) {
+    public Game(DefaultListModel selectedRobots) {
         this.selectedRobots = selectedRobots;
         this.robots = new ArrayList<SimulatorRobot>();
         this.robotsTotal = new ArrayList<SimulatorRobot>();
@@ -108,7 +108,7 @@ public class Factory {
             }
             
         }
-
+        
         return this.robots;
 
     }

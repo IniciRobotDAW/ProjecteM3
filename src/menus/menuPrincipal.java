@@ -14,7 +14,7 @@ import libraries.SimulatorRobot;
 
 /**
  *
- * @author W7Perform
+ * @author rbarberan
  */
 public class menuPrincipal extends javax.swing.JFrame {
 
@@ -25,11 +25,11 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         initComponents();
         setLocationRelativeTo(null);
-        
+
         String sDirectorio = "src\\resources\\robots";
         File f = new File(sDirectorio);
         DefaultListModel listModelTotalRobots = new DefaultListModel();
-        
+
         if (f.exists()) {
             File[] ficheros = f.listFiles();
             for (int x = 0; x < ficheros.length; x++) {
@@ -40,9 +40,10 @@ public class menuPrincipal extends javax.swing.JFrame {
         } else {
             System.out.println("error en menu principal source");
         }
-        
+
         DefaultListModel listModelSelectedRobots = new DefaultListModel();
         this.selectedRobots.setModel(listModelSelectedRobots);
+
     }
 
     /**
@@ -54,9 +55,10 @@ public class menuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        scene = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
-        answer = new javax.swing.JLabel();
+        answer1 = new javax.swing.JLabel();
         send = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         selectedRobots = new javax.swing.JList();
@@ -66,13 +68,18 @@ public class menuPrincipal extends javax.swing.JFrame {
         removeRobot = new javax.swing.JButton();
         removeAllRobots = new javax.swing.JButton();
         addAllRobot = new javax.swing.JButton();
+        desertRadio = new javax.swing.JRadioButton();
+        forestRadio = new javax.swing.JRadioButton();
+        spacialRadio = new javax.swing.JRadioButton();
+        answer2 = new javax.swing.JLabel();
+        sceneImagePanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         title.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         title.setText("Batalla de robots!");
 
-        answer.setText("Quins robots vols?");
+        answer1.setText("Quins robots vols?");
 
         send.setText("Som-hi!");
         send.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +121,33 @@ public class menuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        scene.add(desertRadio);
+        desertRadio.setText("Desert");
+        desertRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desertRadioActionPerformed(evt);
+            }
+        });
+
+        scene.add(forestRadio);
+        forestRadio.setText("Forest");
+
+        scene.add(spacialRadio);
+        spacialRadio.setText("Spacial");
+
+        answer2.setText("Quin escenari vols?");
+
+        javax.swing.GroupLayout sceneImagePanelLayout = new javax.swing.GroupLayout(sceneImagePanel);
+        sceneImagePanel.setLayout(sceneImagePanelLayout);
+        sceneImagePanelLayout.setHorizontalGroup(
+            sceneImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 158, Short.MAX_VALUE)
+        );
+        sceneImagePanelLayout.setVerticalGroup(
+            sceneImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 128, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -121,62 +155,84 @@ public class menuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(title))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(answer)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(answer1)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(send)))
+                                        .addGap(9, 9, 9))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(12, 12, 12)
-                                        .addComponent(send)))
-                                .addGap(9, 9, 9))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(addAllRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(addRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(removeRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(removeAllRobots, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addAllRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(addRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(removeRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(removeAllRobots, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(title)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                                    .addComponent(answer2)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(forestRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(desertRadio)
+                                            .addComponent(spacialRadio))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sceneImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(answer1)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 39, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(answer)
-                                .addGap(18, 18, 18)
-                                .addComponent(addRobot)
-                                .addGap(23, 23, 23)
-                                .addComponent(addAllRobot)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(send)))
+                        .addComponent(addRobot)
+                        .addGap(23, 23, 23)
+                        .addComponent(addAllRobot)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                        .addComponent(send)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(removeRobot)
-                        .addGap(31, 31, 31)
-                        .addComponent(removeAllRobots)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(removeRobot)
+                                .addGap(31, 31, 31)
+                                .addComponent(removeAllRobots)))
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(answer2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(desertRadio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(forestRadio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(spacialRadio))
+                            .addComponent(sceneImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,10 +257,10 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
 
-        Factory f = new Factory((DefaultListModel)this.selectedRobots.getModel());
+        Game g = new Game((DefaultListModel) this.selectedRobots.getModel());
 
-        ArrayList<SimulatorRobot> rb = f.deploy();
-        
+        ArrayList<SimulatorRobot> rb = g.deploy();
+
         this.setVisible(false);
 
         new BattleWindow(rb);
@@ -212,37 +268,40 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sendActionPerformed
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed
-        
-        
-        DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
+
+        DefaultListModel listAux = (DefaultListModel) this.selectedRobots.getModel();
         listAux.addElement(this.totalRobots.getSelectedValue());
         this.selectedRobots.setModel(listAux);
-        
-        
+
+
     }//GEN-LAST:event_addRobotActionPerformed
 
     private void removeRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRobotActionPerformed
-        
-        DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
+
+        DefaultListModel listAux = (DefaultListModel) this.selectedRobots.getModel();
         listAux.removeElement(this.selectedRobots.getSelectedValue());
         this.selectedRobots.setModel(listAux);
-        
+
     }//GEN-LAST:event_removeRobotActionPerformed
 
     private void removeAllRobotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllRobotsActionPerformed
-        
-        DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
+
+        DefaultListModel listAux = (DefaultListModel) this.selectedRobots.getModel();
         listAux.removeAllElements();
         this.selectedRobots.setModel(listAux);
-        
+
     }//GEN-LAST:event_removeAllRobotsActionPerformed
 
     private void addAllRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAllRobotActionPerformed
-        
-        DefaultListModel listAux = (DefaultListModel)this.totalRobots.getModel();
-        this.selectedRobots.setModel(listAux);   
-        
+
+        DefaultListModel listAux = (DefaultListModel) this.totalRobots.getModel();
+        this.selectedRobots.setModel(listAux);
+
     }//GEN-LAST:event_addAllRobotActionPerformed
+
+    private void desertRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desertRadioActionPerformed
+        
+    }//GEN-LAST:event_desertRadioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,7 +335,7 @@ public class menuPrincipal extends javax.swing.JFrame {
             public void run() {
 
                 new menuPrincipal().setVisible(true);
-                
+
             }
         });
     }
@@ -284,14 +343,20 @@ public class menuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAllRobot;
     private javax.swing.JButton addRobot;
-    private javax.swing.JLabel answer;
+    private javax.swing.JLabel answer1;
+    private javax.swing.JLabel answer2;
+    private javax.swing.JRadioButton desertRadio;
+    private javax.swing.JRadioButton forestRadio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton removeAllRobots;
     private javax.swing.JButton removeRobot;
+    private javax.swing.ButtonGroup scene;
+    private javax.swing.JPanel sceneImagePanel;
     private javax.swing.JList selectedRobots;
     private javax.swing.JButton send;
+    private javax.swing.JRadioButton spacialRadio;
     private javax.swing.JLabel title;
     private javax.swing.JList totalRobots;
     // End of variables declaration//GEN-END:variables
