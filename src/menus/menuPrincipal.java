@@ -25,8 +25,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         initComponents();
         setLocationRelativeTo(null);
-        
-        String theme;
+
         String sDirectorio = "src\\resources\\robots";
         File f = new File(sDirectorio);
         DefaultListModel listModelTotalRobots = new DefaultListModel();
@@ -71,16 +70,16 @@ public class menuPrincipal extends javax.swing.JFrame {
         addAllRobot = new javax.swing.JButton();
         answer2 = new javax.swing.JLabel();
         answer3 = new javax.swing.JLabel();
-        numOfRounds = new javax.swing.JTextField();
         answer4 = new javax.swing.JLabel();
-        numOfBullets = new javax.swing.JTextField();
         answer5 = new javax.swing.JLabel();
-        numOfLifes = new javax.swing.JTextField();
         desertRadio = new javax.swing.JRadioButton();
         forestRadio = new javax.swing.JRadioButton();
         spacialRadio = new javax.swing.JRadioButton();
         theme = new javax.swing.JLabel();
         answer6 = new javax.swing.JLabel();
+        numOfBullets = new javax.swing.JComboBox();
+        numOfRounds = new javax.swing.JComboBox();
+        numOfLifes = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,17 +130,11 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         answer2.setText("Quin tema vols?");
 
-        answer3.setText("Num de bales per robot?");
+        answer3.setText("Num de bales per robot");
 
-        numOfRounds.setText("0");
+        answer4.setText("Rondes");
 
-        answer4.setText("Rondes?");
-
-        numOfBullets.setText("0");
-
-        answer5.setText("Vides per robot?");
-
-        numOfLifes.setText("0");
+        answer5.setText("Vides per robot");
 
         scene.add(desertRadio);
         desertRadio.setText("Desert");
@@ -171,6 +164,12 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         answer6.setText("Tema seleccionat:");
 
+        numOfBullets.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10", "20", "30", "40", "50" }));
+
+        numOfRounds.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+
+        numOfLifes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -188,11 +187,11 @@ public class menuPrincipal extends javax.swing.JFrame {
                             .addComponent(addRobot, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(removeRobot)
-                    .addComponent(removeAllRobots, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(removeAllRobots, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeRobot, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -202,25 +201,25 @@ public class menuPrincipal extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(send)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(answer5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(numOfLifes, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(answer4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(numOfRounds, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(answer3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(numOfBullets, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(answer3)
+                                            .addComponent(answer5))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(numOfBullets, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(numOfRounds, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(numOfLifes, 0, 85, Short.MAX_VALUE))))
+                                .addGap(33, 33, 33)))
                         .addGap(78, 78, 78)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(answer2)
-                            .addComponent(forestRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spacialRadio)
-                            .addComponent(desertRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(desertRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                            .addComponent(forestRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spacialRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,10 +250,10 @@ public class menuPrincipal extends javax.swing.JFrame {
                         .addGap(36, 36, 36)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(answer3)
-                            .addComponent(numOfBullets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(numOfBullets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(answer3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(answer4)
@@ -302,12 +301,12 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
 
-        String theme = this.theme.getText();
-        Integer rounds = Integer.parseInt(this.numOfRounds.getText());
-        Integer lifes = Integer.parseInt(this.numOfLifes.getText());
-        Integer bullets = Integer.parseInt(this.numOfBullets.getText());
+        String themeWindow = this.theme.getText();
+        Integer rounds = Integer.parseInt(this.numOfRounds.getSelectedItem().toString());
+        Integer lifes = Integer.parseInt(this.numOfLifes.getSelectedItem().toString());
+        Integer bullets = Integer.parseInt(this.numOfBullets.getSelectedItem().toString());
         
-        Game g = new Game(theme, rounds, lifes, bullets, (DefaultListModel)this.selectedRobots.getModel());
+        Game g = new Game(themeWindow, rounds, lifes, bullets, (DefaultListModel)this.selectedRobots.getModel());
 
         ArrayList<SimulatorRobot> rb = g.deploy();
 
@@ -412,9 +411,9 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField numOfBullets;
-    private javax.swing.JTextField numOfLifes;
-    private javax.swing.JTextField numOfRounds;
+    private javax.swing.JComboBox numOfBullets;
+    private javax.swing.JComboBox numOfLifes;
+    private javax.swing.JComboBox numOfRounds;
     private javax.swing.JButton removeAllRobots;
     private javax.swing.JButton removeRobot;
     private javax.swing.ButtonGroup scene;
