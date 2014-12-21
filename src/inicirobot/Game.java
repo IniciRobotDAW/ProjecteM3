@@ -17,18 +17,85 @@ import resources.robots.*;
  */
 public class Game {
 
-    private DefaultListModel selectedRobots;
+    private String theme;
+    private int rounds;
+    private int lifes;
+    private int bullets;
+    private int numRobots;
     private ArrayList<SimulatorRobot> robots;
-    private ArrayList<SimulatorRobot> robotsTotal;
+    private DefaultListModel selectedRobots;
 
-    public Game(DefaultListModel selectedRobots) {
-        this.selectedRobots = selectedRobots;
+    public Game(String theme, int rounds, int lifes, int bullets, DefaultListModel selectedRobots) {
+        this.theme = theme;
+        this.rounds = rounds;
+        this.lifes = lifes;
+        this.bullets = bullets;
+        this.numRobots = selectedRobots.getSize();
         this.robots = new ArrayList<SimulatorRobot>();
-        this.robotsTotal = new ArrayList<SimulatorRobot>();
+        this.selectedRobots = selectedRobots;
     }
 
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
+    }
+
+    public int getLifes() {
+        return lifes;
+    }
+
+    public void setLifes(int lifes) {
+        this.lifes = lifes;
+    }
+
+    public int getBullets() {
+        return bullets;
+    }
+
+    public void setBullets(int bullets) {
+        this.bullets = bullets;
+    }
+
+    public int getNumRobots() {
+        return numRobots;
+    }
+
+    public void setNumRobots(int numRobots) {
+        this.numRobots = numRobots;
+    }
+
+    public ArrayList<SimulatorRobot> getRobots() {
+        return robots;
+    }
+
+    public void setRobots(ArrayList<SimulatorRobot> robots) {
+        this.robots = robots;
+    }
+
+    public DefaultListModel getSelectedRobots() {
+        return selectedRobots;
+    }
+
+    public void setSelectedRobots(DefaultListModel selectedRobots) {
+        this.selectedRobots = selectedRobots;
+    }
+    
+    
+    
     public ArrayList<SimulatorRobot> deploy() {
 
+        ArrayList<SimulatorRobot> robotsTotal = new ArrayList<SimulatorRobot>();
         int W = Board.WIDTH - 30;
         int H = Board.HEIGHT - 30;
 
@@ -58,7 +125,7 @@ public class Game {
         int yIniciR6 = (int) (Math.random() * H + 1);
 
         //Fabricació dels xassís
-        RobotPiece cos1 = new RobotPiece("/resources/images/realBody.png", xIniciR1, yIniciR1, 0, 0);
+        RobotPiece cos1 = new RobotPiece("/resources/images/realBody.png", (int) (Math.random() * W + 1), (int) (Math.random() * W + 1), 0, 0);
         RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png", xIniciR2, yIniciR2, 0, 0);
         RobotPiece cos3 = new RobotPiece("/resources/images/body.png", xIniciR3, yIniciR3, 0, 0);
         RobotPiece cos4 = new RobotPiece("/resources/images/greenBody.png", xIniciR4, yIniciR4, 0, 0);
@@ -88,21 +155,23 @@ public class Game {
         Robot5 r5 = new Robot5(xIniciR5, yIniciR5, cos5, turret5, radar5);
 //        Robot6 r6 = new Robot6(xIniciR6, yIniciR6, cos6, turret6, radar6);
 
-        this.robotsTotal.add(r1);
-        this.robotsTotal.add(r2);
-        this.robotsTotal.add(r3);
-        this.robotsTotal.add(r4);
-        this.robotsTotal.add(r5);
+        robotsTotal.add(r1);
+        robotsTotal.add(r2);
+        robotsTotal.add(r3);
+        robotsTotal.add(r4);
+        robotsTotal.add(r5);
 //        this.robotsTotal.add(r6);
 
-        for (int i = 0; i < this.robotsTotal.size(); i++) {
+        for (int i = 0; i < robotsTotal.size(); i++) {
             for (int j = 0; j < this.selectedRobots.getSize(); j++) {
                 
                 String[] nameRobotSplit = selectedRobots.get(j).toString().split("\\.");
                 String nameRobot = nameRobotSplit[0];
                 
-                if (this.robotsTotal.get(i).getClass().getSimpleName().equals(nameRobot)) {
-                    this.robots.add(this.robotsTotal.get(i));
+                if (robotsTotal.get(i).getClass().getSimpleName().equals(nameRobot)) {
+                    
+                    this.robots.add(robotsTotal.get(i));
+                    
                 }
                 
             }
