@@ -6,19 +6,11 @@
 package libraries;
 
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import inicirobot.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.Timer;
 
 /**
@@ -30,7 +22,9 @@ public class BattleWindow extends JFrame implements ActionListener {
     
     public Board board;
     public StatesDisplay display;
-    public JPanel info;  
+    public JPanel info; 
+    
+    public ImageIcon ii;
     Timer timer;
 
     public BattleWindow(ArrayList<SimulatorRobot> r) {
@@ -41,7 +35,12 @@ public class BattleWindow extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desert.png"));
+//        System.out.println(game.getTheme());
+//        if(game.getTheme().equals("desert")){
+            ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desert.png"));
+//        } else {
+//            ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forest.png"));
+//        }
         
         JLabel background=new JLabel(new ImageIcon(ii.getImage()));
 	add(background);
@@ -49,7 +48,7 @@ public class BattleWindow extends JFrame implements ActionListener {
             
         board = new Board(r);
         board.setLayout(new BorderLayout());
-
+        
         board.setBounds(0, 0, 800, 600);
 
         board.add(background);

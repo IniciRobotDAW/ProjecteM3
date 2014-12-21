@@ -203,18 +203,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.body.paintObj(g, c);
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
-     
-//        for(int i = 0; i < Board.getExpAnim().size(); i++){
-//            
-//            if(!Board.getExpAnim().get(i).active){
-//                Board.getExpAnim().remove(i);
-//            } else {
-//                Board.getExpAnim().get(i).Draw(g2d);
-//            }
-//        }
-        
     }
-
+    
     /**
      * Take the following line of where go the robot /
      * Agafa la seguent linia d'on va el robot
@@ -241,7 +231,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */ 
     private boolean touchRobotRotate() {
         boolean toca = false;
-
+        
         for (int i = 0; i < Board.robots.size(); i++) {
         
             if (Board.robots.get(i) != this) {
@@ -288,9 +278,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         }
         return toca;
     }
-
-   
-
+    
     /**
      * Look if touch the wall /
      * Mira si toca la paret
@@ -354,7 +342,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.checkScannedRobot();
                 this.place(xt, yt);
                 
-                
                 try {
                     Thread.sleep(this.velMov);
                 } catch (InterruptedException ex) {
@@ -380,6 +367,13 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onTouchWall();
                 return;
             }
+            
+            if(this.checkTouchObject(0)){
+                this.reposRobot();
+                this.onTouchWall();
+                return;
+            }
+            
             if (this.touchRobotMov(0)) {
                 
                this.reposRobot();
@@ -399,6 +393,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             }
             
             this.checkTouchPill();
+            
             
         }
     }
@@ -448,6 +443,13 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 this.onTouchWall();
                 return;
             }
+            
+            if(this.checkTouchObject(0)){
+                this.reposRobot();
+                this.onTouchWall();
+                return;
+            }
+            
             if (this.touchRobotMov(0)) {
                 
                this.reposRobot();
@@ -467,6 +469,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             }
             
             this.checkTouchPill();
+            
             
         }
     }
@@ -536,6 +539,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             }
             
             this.checkTouchPill();
+            
+            if(this.checkTouchObject(2)){
+                this.reposRobot();
+                this.onTouchWall();
+                return;
+            }
      
         }
     }
@@ -597,12 +606,19 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 return;
             }
             
+            if(this.checkTouchObject(2)){
+                this.reposRobot();
+                this.onTouchWall();
+                return;
+            }
+            
             if (this.checkWin()) {
                 this.win();
                 return;
             }
             
             this.checkTouchPill();
+            
      
         }
     }
@@ -1172,6 +1188,25 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 }
             }
         }
+    }
+    
+    private boolean checkTouchObject(int pos){
+        
+       ArrayList<Line2D.Double> linies = this.getBoundLines();
+       boolean toca = false;
+        for (int i = 0; i < linies.size(); i++) {
+            for (int j = 0; j < Board.getObstacles().size(); j++) {
+                Rectangle r = new Rectangle((int)Board.getObstacles().get(j).getX(),(int)Board.getObstacles().get(j).getY(),Board.getObstacles().get(j).getWidth(),Board.getObstacles().get(j).getHeight());
+//                if(linies.get(i).getBounds().contains(Board.getObstacles().get(j).getX(), Board.getObstacles().get(j).getY())){    
+                if(linies.get(pos).getBounds().intersects(r)){
+                  
+                    toca = true;
+                }
+            }
+        }
+        return toca;
+        
+        
     }
     
     /**

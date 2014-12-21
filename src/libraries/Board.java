@@ -8,6 +8,7 @@ package libraries;
 
 import inicirobot.Explote;
 import inicirobot.HealthPill;
+import inicirobot.Obstacle;
 import inicirobot.Robot;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -36,6 +37,7 @@ public class Board extends JPanel {
     public static ArrayList<SimulatorRobot> deadRobots;
     public static ArrayList<HealthPill> pills;
     public static ArrayList<Explote> expAnim;
+    public static ArrayList<Obstacle> obstacles;
     
    private BufferedImage explosionAnimImg;
     
@@ -46,6 +48,7 @@ public class Board extends JPanel {
         this.deadRobots = new ArrayList<SimulatorRobot>();
         this.pills = new ArrayList<HealthPill>();
         this.expAnim = new ArrayList<Explote>();
+        this.obstacles = new ArrayList<Obstacle>();
         this.robots = r;
         
         for (int i = 0; i < robots.size(); i++) {
@@ -54,6 +57,10 @@ public class Board extends JPanel {
                 pills.add(new HealthPill());
             }
         }
+        
+        Obstacle obs = new Obstacle();
+        obstacles.add(obs);
+        
     }
     
     public static int getWIDTH() {
@@ -75,6 +82,16 @@ public class Board extends JPanel {
     public static Vector<SimulatorBullet> getBullets() {
         return bullets;
     }
+
+    public static ArrayList<Obstacle> getObstacles() {
+        return obstacles;
+    }
+
+    public static void setObstacles(ArrayList<Obstacle> obstacles) {
+        Board.obstacles = obstacles;
+    }
+    
+    
 
     public static void setBullets(Vector<SimulatorBullet> bullets) {
         Board.bullets = bullets;
@@ -116,7 +133,11 @@ public class Board extends JPanel {
                 robots.get(i).paintObj(g, this);
             }
         }
-         
+       
+        for (int i = 0; i < obstacles.size(); i++) {
+            obstacles.get(i).paintObj(g, this);
+        }
+        
         for (int i = 0; i < expAnim.size(); i++) {
             if (expAnim.get(i) != null) {
                 expAnim.get(i).Draw(g2d);

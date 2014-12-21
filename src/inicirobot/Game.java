@@ -15,7 +15,7 @@ import resources.robots.*;
  *
  * @author rbarberan
  */
-public class Game {
+public class Game{
 
     private String theme;
     private int rounds;
@@ -100,10 +100,10 @@ public class Game {
         int H = Board.HEIGHT - 30;
 
         //Marquem la posició del robot
-        int xIniciR1 = (int) (Math.random() * W + 1);
-        int yIniciR1 = (int) (Math.random() * H + 1);
-//        int xIniciR1 = 200;
-//        int yIniciR1 = 200;
+//        int xIniciR1 = (int) (Math.random() * W + 1);
+//        int yIniciR1 = (int) (Math.random() * H + 1);
+        int xIniciR1 = 200;
+        int yIniciR1 = 400;
                 
         int xIniciR2 = (int) (Math.random() * W + 1);
         int yIniciR2 = (int) (Math.random() * H + 1);
@@ -125,7 +125,7 @@ public class Game {
         int yIniciR6 = (int) (Math.random() * H + 1);
 
         //Fabricació dels xassís
-        RobotPiece cos1 = new RobotPiece("/resources/images/realBody.png", (int) (Math.random() * W + 1), (int) (Math.random() * W + 1), 0, 0);
+        RobotPiece cos1 = new RobotPiece("/resources/images/realBody.png", xIniciR1, yIniciR1,0,0);
         RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png", xIniciR2, yIniciR2, 0, 0);
         RobotPiece cos3 = new RobotPiece("/resources/images/body.png", xIniciR3, yIniciR3, 0, 0);
         RobotPiece cos4 = new RobotPiece("/resources/images/greenBody.png", xIniciR4, yIniciR4, 0, 0);
