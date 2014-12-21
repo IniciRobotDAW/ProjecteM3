@@ -9,21 +9,23 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import static java.lang.Math.random;
+import java.net.URL;
 import java.util.*;
 import java.util.logging.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import libraries.*;
 
-
-
 /**
  *
- * @author atorrillas, rbarberan abstract
+ * @author atorrillas, rbarberan
  */
 public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     private int speed;
-    
     
     private RobotPiece body;
     private RobotPiece turret;
@@ -41,7 +43,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
    
     private int velMov = 5;
     private int velComp = 0;
+    
+    private BufferedImage explosionAnimImg;
    
+
     /** Constructor */
     public Robot(double x, double y, float angle, int speed, int lives, RobotPiece body, RobotPiece turret, RobotPiece radar, int width, int height, double lastReload) {
         super(x, y, angle);
@@ -56,6 +61,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         this.startLives = 5;
         this.lives = this.startLives;
+        
+        
     }
 
     public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
@@ -67,7 +74,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
-        
+
     }
 
     //getters i setters
@@ -196,6 +203,15 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.body.paintObj(g, c);
         this.turret.paintObj(g, c);
         this.radar.paintObj(g, c);
+     
+//        for(int i = 0; i < Board.getExpAnim().size(); i++){
+//            
+//            if(!Board.getExpAnim().get(i).active){
+//                Board.getExpAnim().remove(i);
+//            } else {
+//                Board.getExpAnim().get(i).Draw(g2d);
+//            }
+//        }
         
     }
 
@@ -1117,11 +1133,22 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                     if (Board.getBullets().get(t).getOwner() != this) {
                         if (linies.get(i).getBounds().contains(Board.getBullets().get(t).getX(), Board.getBullets().get(t).getY())) {
                             if(Board.getBullets().get(t).isVisible() != false){
-                                tocat = true;
+                               
                                 this.setLives(this.getLives()-1);
+                                    
                                 if(this.lives <= 0){
+                                    URL explosionAnimImgUrl = this.getClass().getResource("/resources/images/exploteDeath.png");
+                                    try {
+                                        explosionAnimImg = ImageIO.read(explosionAnimImgUrl);
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    Explote expAnim = new Explote(explosionAnimImg, 130, 130, 64, 20, false, (int)this.x-50, (int)this.y - explosionAnimImg.getHeight()/3, 0);
+                                    Board.getExpAnim().add(expAnim);
+                                    
                                     this.die();
                                 }
+                               
                             }
                             Board.getBullets().get(t).setVisible(false);
                         }

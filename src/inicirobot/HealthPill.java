@@ -23,14 +23,17 @@ public class HealthPill extends GraphicObject{
     private int width;
     private int height;
     private int value;
+    private double degrees;
     
     public HealthPill() {
         super((Math.random()*Board.getWIDTH()+1), (Math.random()*Board.getHEIGHT()+1), 0.0f);
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/HealthPill.png"));
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/pillsmall.png"));
+       
         this.image = ii.getImage();
         this.width = ii.getIconWidth();
         this.height = ii.getIconHeight();
         this.value = 2;
+        this.degrees = Math.random()*360 + 1;  
     }
 
     public Image getImage() {
@@ -72,6 +75,9 @@ public class HealthPill extends GraphicObject{
         AffineTransform at = new AffineTransform();
         
         at.translate(x-15, y-15);
+        
+       
+        at.rotate(Math.toRadians(this.degrees),26,26);
         
 //        Point2D p =  new Point2D.Double(x,y);
 //        g2d.setStroke(new BasicStroke(5f));
