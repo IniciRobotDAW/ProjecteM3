@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,7 +35,9 @@ public class BattleWindow extends JFrame implements ActionListener {
 
     public BattleWindow(ArrayList<SimulatorRobot> r) {
 
-        setSize(1000, 700);    
+        setSize(1000, 700);   
+//        setSize(Toolkit.getDefaultToolkit().getScreenSize());
+       
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
