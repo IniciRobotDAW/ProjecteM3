@@ -191,7 +191,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         Factory f = new Factory((DefaultListModel)this.selectedRobots.getModel());
 
         ArrayList<SimulatorRobot> rb = f.deploy();
-
+        
         this.setVisible(false);
 
         new BattleWindow(rb);

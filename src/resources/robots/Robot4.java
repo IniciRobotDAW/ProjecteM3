@@ -44,6 +44,7 @@ public class Robot4 extends Robot{
     
     @Override
     public void run() {
+        System.out.println("Soc robot 4");
         this.right(90);
         while(true){
             this.ahead(100);
