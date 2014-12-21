@@ -65,6 +65,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         addRobot = new javax.swing.JButton();
         removeRobot = new javax.swing.JButton();
         removeAllRobots = new javax.swing.JButton();
+        addAllRobot = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +107,13 @@ public class menuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        addAllRobot.setText("All >");
+        addAllRobot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAllRobotActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,18 +123,21 @@ public class menuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(answer)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(12, 12, 12)
-                                        .addComponent(send))))
+                                        .addComponent(send)))
+                                .addGap(9, 9, 9))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(addRobot)))
-                        .addGap(9, 9, 9)
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addAllRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -153,8 +164,10 @@ public class menuPrincipal extends javax.swing.JFrame {
                                 .addGap(0, 39, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(answer)
-                                .addGap(39, 39, 39)
+                                .addGap(18, 18, 18)
                                 .addComponent(addRobot)
+                                .addGap(23, 23, 23)
+                                .addComponent(addAllRobot)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(send)))
                         .addContainerGap())
@@ -202,9 +215,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         
         DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
-        
         listAux.addElement(this.totalRobots.getSelectedValue());
-        
         this.selectedRobots.setModel(listAux);
         
         
@@ -213,9 +224,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void removeRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeRobotActionPerformed
         
         DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
-        
         listAux.removeElement(this.selectedRobots.getSelectedValue());
-        
         this.selectedRobots.setModel(listAux);
         
     }//GEN-LAST:event_removeRobotActionPerformed
@@ -223,12 +232,17 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void removeAllRobotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllRobotsActionPerformed
         
         DefaultListModel listAux = (DefaultListModel)this.selectedRobots.getModel();
-        
         listAux.removeAllElements();
-        
         this.selectedRobots.setModel(listAux);
         
     }//GEN-LAST:event_removeAllRobotsActionPerformed
+
+    private void addAllRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAllRobotActionPerformed
+        
+        DefaultListModel listAux = (DefaultListModel)this.totalRobots.getModel();
+        this.selectedRobots.setModel(listAux);   
+        
+    }//GEN-LAST:event_addAllRobotActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +282,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addAllRobot;
     private javax.swing.JButton addRobot;
     private javax.swing.JLabel answer;
     private javax.swing.JPanel jPanel1;
