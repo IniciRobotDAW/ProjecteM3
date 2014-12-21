@@ -44,6 +44,7 @@ public class Robot3 extends Robot{
     
     @Override
     public void run() {
+        System.out.println("Soc robot 3");
         while(true){
             this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
             this.movComp(new String[]{"left","ahead","turnTurretLeft"}, 200);

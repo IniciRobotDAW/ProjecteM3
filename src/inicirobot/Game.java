@@ -5,35 +5,34 @@
  */
 package inicirobot;
 
-import resources.robots.Robot1;
-import resources.robots.Robot3;
-import resources.robots.Robot2;
-import resources.robots.Robot4;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import libraries.Board;
 import libraries.SimulatorRobot;
+import resources.robots.*;
 
 /**
  *
  * @author rbarberan
  */
-public class Factory {
+public class Game {
 
-    private int numRobots;
+    private DefaultListModel selectedRobots;
     private ArrayList<SimulatorRobot> robots;
-     private ArrayList<SimulatorRobot> robotsTotal;
+    private ArrayList<SimulatorRobot> robotsTotal;
 
-    public Factory(int numRobots) {
-        this.numRobots = numRobots;
+    public Game(DefaultListModel selectedRobots) {
+        this.selectedRobots = selectedRobots;
         this.robots = new ArrayList<SimulatorRobot>();
         this.robotsTotal = new ArrayList<SimulatorRobot>();
     }
 
     public ArrayList<SimulatorRobot> deploy() {
 
-        int W = Board.WIDTH-30;
-        int H = Board.HEIGHT-30;
-        //Marca l'inici de cada robot
+        int W = Board.WIDTH - 30;
+        int H = Board.HEIGHT - 30;
+
+        //Marquem la posició del robot
         int xIniciR1 = (int) (Math.random() * W + 1);
         int yIniciR1 = (int) (Math.random() * H + 1);
 //        int xIniciR1 = 200;
@@ -86,20 +85,29 @@ public class Factory {
         Robot2 r2 = new Robot2(xIniciR2, yIniciR2, cos2, turret2, radar2);
         Robot3 r3 = new Robot3(xIniciR3, yIniciR3, cos3, turret3, radar3);
         Robot4 r4 = new Robot4(xIniciR4, yIniciR4, cos4, turret4, radar4);
-        Robot1 r5 = new Robot1(xIniciR5, yIniciR5, cos5, turret5, radar5);
-        Robot1 r6 = new Robot1(xIniciR6, yIniciR6, cos6, turret6, radar6);
+        Robot5 r5 = new Robot5(xIniciR5, yIniciR5, cos5, turret5, radar5);
+//        Robot6 r6 = new Robot6(xIniciR6, yIniciR6, cos6, turret6, radar6);
 
         this.robotsTotal.add(r1);
         this.robotsTotal.add(r2);
         this.robotsTotal.add(r3);
         this.robotsTotal.add(r4);
         this.robotsTotal.add(r5);
-        this.robotsTotal.add(r6);
+//        this.robotsTotal.add(r6);
 
-        for (int i = 0; i < numRobots; i++) {
-              this.robots.add(this.robotsTotal.get(i));
+        for (int i = 0; i < this.robotsTotal.size(); i++) {
+            for (int j = 0; j < this.selectedRobots.getSize(); j++) {
+                
+                String[] nameRobotSplit = selectedRobots.get(j).toString().split("\\.");
+                String nameRobot = nameRobotSplit[0];
+                
+                if (this.robotsTotal.get(i).getClass().getSimpleName().equals(nameRobot)) {
+                    this.robots.add(this.robotsTotal.get(i));
+                }
+                
+            }
+            
         }
-        
         
         return this.robots;
 

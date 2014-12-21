@@ -10,15 +10,16 @@ import inicirobot.*;
  * @author rbarberan
  */
 
-public class Robot4 extends Robot{
+public class Robot5 extends Robot{
 
-    public Robot4(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
+    public Robot5(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, cos, turret, radar);
     }
     
     @Override
     public void onTouchRobot() {       
-        this.left(180);    
+        this.left(180);
+        
     }
     
     @Override
@@ -43,7 +44,7 @@ public class Robot4 extends Robot{
     
     @Override
     public void run() {
-        System.out.println("Soc robot 4");
+        System.out.println("Soc robot 5");
         this.right(90);
         while(true){
             this.ahead(100);
