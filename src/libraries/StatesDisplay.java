@@ -48,7 +48,7 @@ public class StatesDisplay extends JPanel {
         ImageIcon fle;
         
         for (int i = 0; i < Board.robots.size(); i++) {
-             
+            
             plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/plate.png"));
             g.drawImage(plate.getImage(), 5, dRec, null);
                         
@@ -72,7 +72,7 @@ public class StatesDisplay extends JPanel {
 //            g.fillArc(60, dBpro, 25, 25, 0, angle);
             g2d.drawImage(fle.getImage(),at,null);
             
-            
+           
             //Bullets
             String br1 = String.valueOf(Board.robots.get(i).getBulletsLoad());
             g.setColor(Color.white);

@@ -8,7 +8,7 @@ package inicirobot;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import libraries.Board;
-import libraries.SimulatorRobot;
+import libraries.*;
 import resources.robots.*;
 
 /**
@@ -34,7 +34,7 @@ public class Game{
         this.robots = new ArrayList<SimulatorRobot>();
         this.selectedRobots = selectedRobots;
     }
-
+   
     public String getTheme() {
         return theme;
     }
@@ -102,8 +102,8 @@ public class Game{
         //Marquem la posició del robot
 //        int xIniciR1 = (int) (Math.random() * W + 1);
 //        int yIniciR1 = (int) (Math.random() * H + 1);
-        int xIniciR1 = 200;
-        int yIniciR1 = 400;
+        int xIniciR1 = 450;
+        int yIniciR1 = 200;
                 
         int xIniciR2 = (int) (Math.random() * W + 1);
         int yIniciR2 = (int) (Math.random() * H + 1);

@@ -66,7 +66,7 @@ public class Board extends JPanel {
     public static int getWIDTH() {
         return WIDTH;
     }
-
+    
     public static int getHEIGHT() {
         return HEIGHT;
     }
@@ -170,7 +170,7 @@ public class Board extends JPanel {
         
         for (int j = 0; j < bullets.size(); j++) {
             b = bullets.get(j);
-            if (b.isVisible() && b.inBoard() && !b.touchRobot()) {
+            if (b.isVisible() && b.inBoard() && !b.touchRobot()&& !b.touchObject()) {
                 b.move();
             } else {
                 if(!b.inBoard()){
@@ -184,6 +184,7 @@ public class Board extends JPanel {
                     Board.getExpAnim().add(expAnim2);
                 }
                 Board.bullets.remove(b);
+                
             }
         }
     }

@@ -22,8 +22,4 @@ public interface SimulatorObject {
     public abstract boolean isVisible();
 
     
-
-
-  
-    
 }

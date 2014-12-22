@@ -1197,7 +1197,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         for (int i = 0; i < linies.size(); i++) {
             for (int j = 0; j < Board.getObstacles().size(); j++) {
                 Rectangle r = new Rectangle((int)Board.getObstacles().get(j).getX(),(int)Board.getObstacles().get(j).getY(),Board.getObstacles().get(j).getWidth(),Board.getObstacles().get(j).getHeight());
-//                if(linies.get(i).getBounds().contains(Board.getObstacles().get(j).getX(), Board.getObstacles().get(j).getY())){    
+   
                 if(linies.get(pos).getBounds().intersects(r)){
                   
                     toca = true;
