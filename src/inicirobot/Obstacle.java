@@ -26,8 +26,8 @@ public class Obstacle extends GraphicObject{
     private double degrees;
     
     public Obstacle(){
-//        super((Math.random()*Board.getWIDTH()+1), (Math.random()*Board.getHEIGHT()+1), 0.0f);
-        super((Board.getWIDTH()/2), (Board.getHEIGHT()/2),0.0f);
+        super((Math.random()*Board.getWIDTH()), (Math.random()*Board.getHEIGHT()), 0.0f);
+//        super((Board.getWIDTH()/2), (Board.getHEIGHT()/2),0.0f);
         
         ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertObject.png"));
        
@@ -38,7 +38,7 @@ public class Obstacle extends GraphicObject{
 //        this.degrees = Math.random()*360 + 1;  
         this.degrees = 0;
     }
-
+    
     public Image getImage() {
         return image;
     }

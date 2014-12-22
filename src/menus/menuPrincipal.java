@@ -5,6 +5,7 @@
  */
 package menus;
 
+import inicirobot.Game;
 import inicirobot.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -307,9 +308,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         Integer lifes = Integer.parseInt(this.numOfLifes.getText());
         Integer bullets = Integer.parseInt(this.numOfBullets.getText());
         
-        Game g = new Game(theme, rounds, lifes, bullets, (DefaultListModel)this.selectedRobots.getModel());
+        Game game = new Game(theme, rounds, lifes, bullets, (DefaultListModel)this.selectedRobots.getModel());
 
-        ArrayList<SimulatorRobot> rb = g.deploy();
+        ArrayList<SimulatorRobot> rb = game.deploy();
 
         this.setVisible(false);
 

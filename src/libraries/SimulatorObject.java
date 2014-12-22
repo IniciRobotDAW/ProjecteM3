@@ -19,6 +19,9 @@ public interface SimulatorObject {
 
     public abstract double getY();   
     
+    public abstract int getHeight();
+    public abstract int getWidth();
+    
     public abstract boolean isVisible();
 
     

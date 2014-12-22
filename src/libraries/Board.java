@@ -30,15 +30,14 @@ import javax.swing.JPanel;
 public class Board extends JPanel {
 
     public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
-
+    public static final int HEIGHT = 600;   
     public static Vector<SimulatorBullet> bullets;
     public static ArrayList<SimulatorRobot> robots;
     public static ArrayList<SimulatorRobot> deadRobots;
     public static ArrayList<HealthPill> pills;
     public static ArrayList<Explote> expAnim;
     public static ArrayList<Obstacle> obstacles;
-    
+    public int numObstacles;
    private BufferedImage explosionAnimImg;
     
     public Board(ArrayList<SimulatorRobot> r) {
@@ -58,8 +57,12 @@ public class Board extends JPanel {
             }
         }
         
-        Obstacle obs = new Obstacle();
-        obstacles.add(obs);
+        numObstacles = 1;
+        
+        for(int i=0; i<numObstacles; i++){
+            Obstacle obs = new Obstacle();
+            obstacles.add(obs);
+        }
         
     }
     
@@ -127,6 +130,8 @@ public class Board extends JPanel {
         for (int j = 0; j < bullets.size(); j++) {
             bullets.get(j).paintObj(g, this);
         }
+        
+        
         
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {

@@ -157,4 +157,14 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
     public SimulatorRobot getOwner() {
         return this.owner;
     }
+
+    @Override
+    public int getHeight() {
+       return (int)this.power;
+    }
+
+    @Override
+    public int getWidth() {
+        return (int)this.power;
+    }
 }
