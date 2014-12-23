@@ -308,11 +308,17 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         Game g = new Game(themeWindow, rounds, lifes, bullets, (DefaultListModel)this.selectedRobots.getModel());
 
-        ArrayList<SimulatorRobot> rb = g.deploy();
+        try{
+            
+            ArrayList<SimulatorRobot> rb = g.deploy();
+            this.setVisible(false);
+            new BattleWindow(rb);
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
-        this.setVisible(false);
-
-        new BattleWindow(rb);
+        
 
     }//GEN-LAST:event_sendActionPerformed
 
