@@ -30,10 +30,14 @@ public class Obstacle extends GraphicObject{
         super((Math.random()*Board.getWIDTH()-Board.robots.get(0).getWidth()), (Math.random()*Board.getHEIGHT()-Board.robots.get(0).getHeight()), 0.0f);
         
         
-        if(Board.getTheme()=="Sea"){
-            ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/seaObject.png"));
-        } else {
-            ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertObject.png"));
+        switch(Board.getTheme()){
+            
+            case "Sea": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/seaObject.png"));
+            break;
+            
+            default: ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertObject.png"));
+            break;
+                
         }
        
         this.image = ii.getImage();
