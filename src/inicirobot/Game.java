@@ -156,7 +156,8 @@ public class Game{
         posXs.add(Math.random() * W + 1);
         posYs.add(Math.random() * H + 1);
 
-        for(int i=0; i<(this.getNumRobots()); i++){
+//        for(int i=0; i<(this.getNumRobots()); i++){
+        for(int i=0; i<5; i++){
                         
             tposXs = Math.random() * W + 1;
             tposYs = Math.random() * H + 1;
@@ -176,44 +177,84 @@ public class Game{
             System.out.println(this.posXs.size());
         }
         
+        if(this.theme=="Sea"){
+            RobotPiece cos1 = new RobotPiece("/resources/images/boats/Boat.png", posXs.get(0), posYs.get(0),0,0);
+            RobotPiece cos2 = new RobotPiece("/resources/images/boats/Boat.png", posXs.get(1), posYs.get(1), 0, 0);
+            RobotPiece cos3 = new RobotPiece("/resources/images/boats/Boat.png", posXs.get(2), posYs.get(2), 0, 0);
+            RobotPiece cos4 = new RobotPiece("/resources/images/boats/Boat.png", posXs.get(3), posYs.get(3), 0, 0);
+            RobotPiece cos5 = new RobotPiece("/resources/images/boats/Boat.png", posXs.get(4), posYs.get(4), 0, 0);
+            RobotPiece cos6 = new RobotPiece("/resources/images/boats/Boat.png", posXs.get(5), posYs.get(5), 0, 0);
 
-        //Fabricació dels xassís
-        RobotPiece cos1 = new RobotPiece("/resources/images/realBody.png", posXs.get(0), posYs.get(0),0,0);
-        RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png", posXs.get(1), posYs.get(1), 0, 0);
-        RobotPiece cos3 = new RobotPiece("/resources/images/body.png", posXs.get(2), posYs.get(2), 0, 0);
-        RobotPiece cos4 = new RobotPiece("/resources/images/greenBody.png", posXs.get(3), posYs.get(3), 0, 0);
-        RobotPiece cos5 = new RobotPiece("/resources/images/pinkBody.png", posXs.get(4), posYs.get(4), 0, 0);
-        RobotPiece cos6 = new RobotPiece("/resources/images/pinkBody.png", posXs.get(5), posYs.get(5), 0, 0);
+            //Fabricació dels canons
+            RobotPiece turret1 = new RobotPiece("/resources/images/boats/boatTurret.png", posXs.get(0), posYs.get(0), 0, 0);
+            RobotPiece turret2 = new RobotPiece("/resources/images/boats/boatTurret.png", posXs.get(1), posYs.get(1), 8, -10);
+            RobotPiece turret3 = new RobotPiece("/resources/images/boats/boatTurret.png", posXs.get(2), posYs.get(2), 8, -10);
+            RobotPiece turret4 = new RobotPiece("/resources/images/boats/boatTurret.png", posXs.get(3), posYs.get(3), 8, -10);
+            RobotPiece turret5 = new RobotPiece("/resources/images/boats/boatTurret.png", posXs.get(4), posYs.get(4), 8, -10);
+            RobotPiece turret6 = new RobotPiece("/resources/images/boats/boatTurret.png", posXs.get(5), posYs.get(5), 8, -10);
 
-        //Fabricació dels canons
-        RobotPiece turret1 = new RobotPiece("/resources/images/realTurret.png", posXs.get(0), posYs.get(0), 8, -10);
-        RobotPiece turret2 = new RobotPiece("/resources/images/arnauTurret.png", posXs.get(1), posYs.get(1), 8, -10);
-        RobotPiece turret3 = new RobotPiece("/resources/images/turret.png", posXs.get(2), posYs.get(2), 8, -10);
-        RobotPiece turret4 = new RobotPiece("/resources/images/greenTurret.png", posXs.get(3), posYs.get(3), 8, -10);
-        RobotPiece turret5 = new RobotPiece("/resources/images/pinkTurret.png", posXs.get(4), posYs.get(4), 8, -10);
-        RobotPiece turret6 = new RobotPiece("/resources/images/pinkTurret.png", posXs.get(5), posYs.get(5), 8, -10);
+            //Fabricació dels radars
+            RobotPiece radar1 = new RobotPiece("/resources/images/boats/boatRadar.png", posXs.get(0), posYs.get(0), 0, 0);
+            RobotPiece radar2 = new RobotPiece("/resources/images/boats/boatRadar.png", posXs.get(1), posYs.get(1), 7, 9);
+            RobotPiece radar3 = new RobotPiece("/resources/images/boats/boatRadar.png", posXs.get(2), posYs.get(2), 7, 9);
+            RobotPiece radar4 = new RobotPiece("/resources/images/boats/boatRadar.png", posXs.get(3), posYs.get(3), 7, 9);
+            RobotPiece radar5 = new RobotPiece("/resources/images/boats/boatRadar.png", posXs.get(4), posYs.get(4), 7, 9);
+            RobotPiece radar6 = new RobotPiece("/resources/images/boats/boatRadar.png", posXs.get(5), posYs.get(5), 7, 9);
 
-        //Fabricació dels radars
-        RobotPiece radar1 = new RobotPiece("/resources/images/realRadar.png", posXs.get(0), posYs.get(0), 7, 9);
-        RobotPiece radar2 = new RobotPiece("/resources/images/arnauRadar.png", posXs.get(1), posYs.get(1), 7, 9);
-        RobotPiece radar3 = new RobotPiece("/resources/images/radar.png", posXs.get(2), posYs.get(2), 7, 9);
-        RobotPiece radar4 = new RobotPiece("/resources/images/yellowRadar.png", posXs.get(3), posYs.get(3), 7, 9);
-        RobotPiece radar5 = new RobotPiece("/resources/images/arnauRadar.png", posXs.get(4), posYs.get(4), 7, 9);
-        RobotPiece radar6 = new RobotPiece("/resources/images/pinkRadar.png", posXs.get(5), posYs.get(5), 7, 9);
+            Robot1 r1 = new Robot1(posXs.get(0), posYs.get(0), cos1, turret1, radar1);
+            Robot2 r2 = new Robot2(posXs.get(1), posYs.get(1), cos2, turret2, radar2);
+            Robot3 r3 = new Robot3(posXs.get(2), posYs.get(2), cos3, turret3, radar3);
+            Robot4 r4 = new Robot4(posXs.get(3), posYs.get(3), cos4, turret4, radar4);
+            Robot5 r5 = new Robot5(posXs.get(4), posYs.get(4), cos5, turret5, radar5);
+    //        Robot6 r6 = new Robot6(xIniciR6, yIniciR6, cos6, turret6, radar6);
 
-        Robot1 r1 = new Robot1(posXs.get(0), posYs.get(0), cos1, turret1, radar1);
-        Robot2 r2 = new Robot2(posXs.get(1), posYs.get(1), cos2, turret2, radar2);
-        Robot3 r3 = new Robot3(posXs.get(2), posYs.get(2), cos3, turret3, radar3);
-        Robot4 r4 = new Robot4(posXs.get(3), posYs.get(3), cos4, turret4, radar4);
-        Robot5 r5 = new Robot5(posXs.get(4), posYs.get(4), cos5, turret5, radar5);
-//        Robot6 r6 = new Robot6(xIniciR6, yIniciR6, cos6, turret6, radar6);
+            robotsTotal.add(r1);
+            robotsTotal.add(r2);
+            robotsTotal.add(r3);
+            robotsTotal.add(r4);
+            robotsTotal.add(r5);
+    //        this.robotsTotal.add(r6);
+        
+        } else {
+            
+            //Fabricació dels xassís
+            RobotPiece cos1 = new RobotPiece("/resources/images/realBody.png", posXs.get(0), posYs.get(0),0,0);
+            RobotPiece cos2 = new RobotPiece("/resources/images/arnauBody.png", posXs.get(1), posYs.get(1), 0, 0);
+            RobotPiece cos3 = new RobotPiece("/resources/images/body.png", posXs.get(2), posYs.get(2), 0, 0);
+            RobotPiece cos4 = new RobotPiece("/resources/images/greenBody.png", posXs.get(3), posYs.get(3), 0, 0);
+            RobotPiece cos5 = new RobotPiece("/resources/images/pinkBody.png", posXs.get(4), posYs.get(4), 0, 0);
+            RobotPiece cos6 = new RobotPiece("/resources/images/pinkBody.png", posXs.get(5), posYs.get(5), 0, 0);
 
-        robotsTotal.add(r1);
-        robotsTotal.add(r2);
-        robotsTotal.add(r3);
-        robotsTotal.add(r4);
-        robotsTotal.add(r5);
-//        this.robotsTotal.add(r6);
+            //Fabricació dels canons
+            RobotPiece turret1 = new RobotPiece("/resources/images/realTurret.png", posXs.get(0), posYs.get(0), 8, -10);
+            RobotPiece turret2 = new RobotPiece("/resources/images/arnauTurret.png", posXs.get(1), posYs.get(1), 8, -10);
+            RobotPiece turret3 = new RobotPiece("/resources/images/turret.png", posXs.get(2), posYs.get(2), 8, -10);
+            RobotPiece turret4 = new RobotPiece("/resources/images/greenTurret.png", posXs.get(3), posYs.get(3), 8, -10);
+            RobotPiece turret5 = new RobotPiece("/resources/images/pinkTurret.png", posXs.get(4), posYs.get(4), 8, -10);
+            RobotPiece turret6 = new RobotPiece("/resources/images/pinkTurret.png", posXs.get(5), posYs.get(5), 8, -10);
+
+            //Fabricació dels radars
+            RobotPiece radar1 = new RobotPiece("/resources/images/realRadar.png", posXs.get(0), posYs.get(0), 7, 9);
+            RobotPiece radar2 = new RobotPiece("/resources/images/arnauRadar.png", posXs.get(1), posYs.get(1), 7, 9);
+            RobotPiece radar3 = new RobotPiece("/resources/images/radar.png", posXs.get(2), posYs.get(2), 7, 9);
+            RobotPiece radar4 = new RobotPiece("/resources/images/yellowRadar.png", posXs.get(3), posYs.get(3), 7, 9);
+            RobotPiece radar5 = new RobotPiece("/resources/images/arnauRadar.png", posXs.get(4), posYs.get(4), 7, 9);
+            RobotPiece radar6 = new RobotPiece("/resources/images/pinkRadar.png", posXs.get(5), posYs.get(5), 7, 9);
+
+            Robot1 r1 = new Robot1(posXs.get(0), posYs.get(0), cos1, turret1, radar1);
+            Robot2 r2 = new Robot2(posXs.get(1), posYs.get(1), cos2, turret2, radar2);
+            Robot3 r3 = new Robot3(posXs.get(2), posYs.get(2), cos3, turret3, radar3);
+            Robot4 r4 = new Robot4(posXs.get(3), posYs.get(3), cos4, turret4, radar4);
+            Robot5 r5 = new Robot5(posXs.get(4), posYs.get(4), cos5, turret5, radar5);
+    //        Robot6 r6 = new Robot6(xIniciR6, yIniciR6, cos6, turret6, radar6);
+
+            robotsTotal.add(r1);
+            robotsTotal.add(r2);
+            robotsTotal.add(r3);
+            robotsTotal.add(r4);
+            robotsTotal.add(r5);
+    //        this.robotsTotal.add(r6);
+        }
         
         
         for (int e = 0;  e< robotsTotal.size(); e++) {

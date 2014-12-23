@@ -39,9 +39,9 @@ public class Board extends JPanel {
     public static ArrayList<HealthPill> pills;
     public static ArrayList<Explote> expAnim;
     public static ArrayList<Obstacle> obstacles;
-    public String theme;
+    public static String theme;
     public int numObstacles;
-   private BufferedImage explosionAnimImg;
+    private BufferedImage explosionAnimImg;
     
     public Board(ArrayList<SimulatorRobot> r, String theme) {
 
@@ -107,7 +107,7 @@ public class Board extends JPanel {
         return obstacles;
     }
 
-    public String getTheme() {
+    public static String getTheme() {
         return theme;
     }
 

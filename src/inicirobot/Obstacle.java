@@ -24,11 +24,17 @@ public class Obstacle extends GraphicObject{
     private int height;
     private int value;
     private double degrees;
+    private ImageIcon ii;
     
     public Obstacle(){
         super((Math.random()*Board.getWIDTH()-Board.robots.get(0).getWidth()), (Math.random()*Board.getHEIGHT()-Board.robots.get(0).getHeight()), 0.0f);
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertObject.png"));
+        
+        if(Board.getTheme()=="Sea"){
+            ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/seaObject.png"));
+        } else {
+            ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertObject.png"));
+        }
        
         this.image = ii.getImage();
         this.width = ii.getIconWidth();

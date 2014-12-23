@@ -43,6 +43,9 @@ public class BattleWindow extends JFrame implements ActionListener {
             
             case "Spacial": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/spacial.jpg"));
                 break;
+            
+            case "Sea": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/sea.png"));
+                break;
                         
             default: ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forest.png"));
                 break;                  
