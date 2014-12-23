@@ -48,9 +48,9 @@ public class Robot1 extends Robot {
         
         this.right(180);
         while(true){         
-//           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
-//           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
-            this.fire();
+           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
+           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
+//            this.fire();
         }
     }
 }

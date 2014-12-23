@@ -314,7 +314,7 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         this.setVisible(false);
 
-        new BattleWindow(rb);
+        new BattleWindow(rb, theme);
 
     }//GEN-LAST:event_sendActionPerformed
 

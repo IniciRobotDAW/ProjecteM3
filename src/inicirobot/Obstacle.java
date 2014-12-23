@@ -26,8 +26,7 @@ public class Obstacle extends GraphicObject{
     private double degrees;
     
     public Obstacle(){
-        super((Math.random()*Board.getWIDTH()), (Math.random()*Board.getHEIGHT()), 0.0f);
-//        super((Board.getWIDTH()/2), (Board.getHEIGHT()/2),0.0f);
+        super((Math.random()*Board.getWIDTH()-Board.robots.get(0).getWidth()), (Math.random()*Board.getHEIGHT()-Board.robots.get(0).getHeight()), 0.0f);
         
         ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertObject.png"));
        
@@ -84,11 +83,7 @@ public class Obstacle extends GraphicObject{
     @Override
     public void paintObj(Graphics g, JComponent j) {
         Graphics2D g2d = (Graphics2D) g;
-        
-//        AffineTransform at = new AffineTransform();
-//        
-//        at.rotate(Math.toRadians(this.degrees),26,26);
-        
+ 
         g2d.drawImage(this.getImage(),(int)this.x, (int)this.y, null);
     }
     

@@ -24,29 +24,36 @@ public class BattleWindow extends JFrame implements ActionListener {
     public StatesDisplay display;
     public JPanel info; 
     
-    public ImageIcon ii;
+    private ImageIcon ii;
     Timer timer;
 
-    public BattleWindow(ArrayList<SimulatorRobot> r) {
+    public BattleWindow(ArrayList<SimulatorRobot> r, String theme) {
 
-        setSize(1000, 700);   
-//        setSize(Toolkit.getDefaultToolkit().getScreenSize());
-       
+        setSize(1000, 700);          
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
-//        System.out.println(game.getTheme());
-//        if(game.getTheme().equals("desert")){
-            ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desert.png"));
-//        } else {
-//            ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forest.png"));
-//        }
+        switch(theme){
+            
+            case "Desert": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desert.png"));
+                break;
+                
+            case "Forest": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forest.png"));
+                break;
+            
+            case "Spacial": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/spacial.jpg"));
+                break;
+                        
+            default: ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forest.png"));
+                break;                  
+            
+        }
         
         JLabel background=new JLabel(new ImageIcon(ii.getImage()));
 	add(background);
 	background.setLayout(new FlowLayout());
             
-        board = new Board(r);
+        board = new Board(r, theme);
         board.setLayout(new BorderLayout());
         
         board.setBounds(0, 0, 800, 600);

@@ -12,7 +12,9 @@ import inicirobot.Obstacle;
 import inicirobot.Robot;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -37,10 +39,11 @@ public class Board extends JPanel {
     public static ArrayList<HealthPill> pills;
     public static ArrayList<Explote> expAnim;
     public static ArrayList<Obstacle> obstacles;
+    public String theme;
     public int numObstacles;
    private BufferedImage explosionAnimImg;
     
-    public Board(ArrayList<SimulatorRobot> r) {
+    public Board(ArrayList<SimulatorRobot> r, String theme) {
 
         setDoubleBuffered(true);
         this.bullets = new Vector<SimulatorBullet>();
@@ -49,6 +52,7 @@ public class Board extends JPanel {
         this.expAnim = new ArrayList<Explote>();
         this.obstacles = new ArrayList<Obstacle>();
         this.robots = r;
+        this.theme = theme;
         
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
@@ -60,10 +64,23 @@ public class Board extends JPanel {
         numObstacles = 1;
         
         for(int i=0; i<numObstacles; i++){
-            Obstacle obs = new Obstacle();
-            obstacles.add(obs);
-        }
-        
+           
+            boolean in = false;
+            while(!in){
+                Obstacle obs = new Obstacle();
+                Rectangle2D robstacle = new Rectangle((int)obs.getX(), (int)obs.getY(), obs.getWidth(), obs.getHeight());
+
+                for(int c=0; c<Board.robots.size(); c++){
+
+                    Rectangle2D rrobot = new Rectangle((int)Board.robots.get(c).getX(), (int)Board.robots.get(c).getY(), Board.robots.get(c).getWidth(), Board.robots.get(c).getHeight());
+
+                    if(!robstacle.contains(rrobot)){
+                        obstacles.add(obs);
+                        in = true;
+                    } 
+                }
+            }
+        }       
     }
     
     public static int getWIDTH() {
@@ -90,12 +107,26 @@ public class Board extends JPanel {
         return obstacles;
     }
 
+    public String getTheme() {
+        return theme;
+    }
+
+    public int getNumObstacles() {
+        return numObstacles;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public void setNumObstacles(int numObstacles) {
+        this.numObstacles = numObstacles;
+    }
+    
     public static void setObstacles(ArrayList<Obstacle> obstacles) {
         Board.obstacles = obstacles;
     }
     
-    
-
     public static void setBullets(Vector<SimulatorBullet> bullets) {
         Board.bullets = bullets;
     }
@@ -112,8 +143,6 @@ public class Board extends JPanel {
         Board.expAnim = expAnim;
     }
     
-    
-
     public static void setPills(ArrayList<HealthPill> pills) {
         Board.pills = pills;
     }

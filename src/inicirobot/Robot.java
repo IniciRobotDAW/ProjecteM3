@@ -1241,11 +1241,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         return scanned;
     }
     
-//     public static void jeje() {
-//        for (String s:strs) {
-//            System.out.println(s);
-//        }
-//    }
+    
     public void movComp(String[] strs, int d){
         
         for (int i = 0; i < d; i++) {
