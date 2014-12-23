@@ -10,6 +10,7 @@ import inicirobot.Explote;
 import inicirobot.HealthPill;
 import inicirobot.Obstacle;
 import inicirobot.Robot;
+import inicirobot.Ovni;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -39,6 +40,8 @@ public class Board extends JPanel {
     public static ArrayList<HealthPill> pills;
     public static ArrayList<Explote> expAnim;
     public static ArrayList<Obstacle> obstacles;
+    public static ArrayList<Ovni> ovnis;
+    
     public static String theme;
     public int numObstacles;
     private BufferedImage explosionAnimImg;
@@ -51,6 +54,7 @@ public class Board extends JPanel {
         this.pills = new ArrayList<HealthPill>();
         this.expAnim = new ArrayList<Explote>();
         this.obstacles = new ArrayList<Obstacle>();
+        this.ovnis = new ArrayList<Ovni>();
         this.robots = r;
         this.theme = theme;
         
@@ -80,7 +84,11 @@ public class Board extends JPanel {
                     } 
                 }
             }
-        }       
+        }
+        
+        Ovni ov = new Ovni();
+        ovnis.add(ov);
+        
     }
     
     public static int getWIDTH() {
@@ -178,6 +186,9 @@ public class Board extends JPanel {
             }
         }
         
+        for (int j = 0; j < ovnis.size(); j++) {
+            ovnis.get(j).paintObj(g, this);
+        }
         
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -187,11 +198,21 @@ public class Board extends JPanel {
         SimulatorBullet b = null;
         HealthPill h = null;
         Explote e = null;
+        Ovni o = null;
         
         for (int i = 0; i < pills.size(); i++) {
             h = pills.get(i);
             if(!h.isVisible()){
                 pills.remove(h);
+            }
+        }
+        
+         for (int i = 0; i < ovnis.size(); i++) {
+            o = ovnis.get(i);
+            if(!o.isVisible()){
+                ovnis.remove(o);
+            } else {
+                o.move();
             }
         }
         

@@ -32,6 +32,15 @@ public class Obstacle extends GraphicObject{
         
         switch(Board.getTheme()){
             
+            case "Desert": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertObject.png"));
+                break;
+                
+            case "Forest": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forestObject.png"));
+                break;
+            
+            case "Spacial": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/specialObject.png"));
+                break;
+            
             case "Sea": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/seaObject.png"));
             break;
             
