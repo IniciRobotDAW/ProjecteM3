@@ -24,30 +24,11 @@ public class HealthPill extends GraphicObject{
     private int height;
     private int value;
     private double degrees;
-    private ImageIcon ii;
     
     public HealthPill() {
         super((Math.random()*Board.getWIDTH()+1), (Math.random()*Board.getHEIGHT()+1), 0.0f);
-               
-         switch(Board.getTheme()){
-            
-            case "Desert": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertPill.png"));
-                break;
-                
-            case "Forest": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertPill.png"));
-                break;
-            
-            case "Spacial": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertPill.png"));
-                break;
-            
-            case "Sea": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertPill.png"));
-                break;
-                        
-            default: ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desertPill.png"));
-                break;                  
-            
-        }
-        
+        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/pillsmall.png"));
+       
         this.image = ii.getImage();
         this.width = ii.getIconWidth();
         this.height = ii.getIconHeight();
