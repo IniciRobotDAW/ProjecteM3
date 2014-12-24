@@ -131,6 +131,7 @@ public class Ovni extends GraphicObject{
                 this.frameWidth=32;
                 this.frameHeight=32;
                 
+                
                 try {
                     animImageR = ImageIO.read(explosionAnimImgUrl1);
                     animImageO = ImageIO.read(explosionAnimImgUrl2);
