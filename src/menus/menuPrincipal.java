@@ -29,7 +29,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         String sDirectorio = "src\\resources\\robots";
         File f = new File(sDirectorio);
         DefaultListModel listModelTotalRobots = new DefaultListModel();
-
+        DefaultListModel listModelSelectedRobots = new DefaultListModel();
+        
         if (f.exists()) {
             File[] ficheros = f.listFiles();
             for (int x = 0; x < ficheros.length; x++) {
@@ -41,7 +42,6 @@ public class menuPrincipal extends javax.swing.JFrame {
             System.out.println("error en menu principal source");
         }
 
-        DefaultListModel listModelSelectedRobots = new DefaultListModel();
         this.selectedRobots.setModel(listModelSelectedRobots);
 
     }
@@ -325,18 +325,12 @@ public class menuPrincipal extends javax.swing.JFrame {
             
             ArrayList<SimulatorRobot> rb = g.deploy();
             this.setVisible(false);
-            new BattleWindow(rb);
+            new BattleWindow(rb, themeWindow);
             
         }catch(Exception e){
             e.printStackTrace();
         }
-
-<<<<<<< HEAD
         
-=======
-        new BattleWindow(rb, themeWindow);
->>>>>>> origin/ArnauArrayDeveloping
-
     }//GEN-LAST:event_sendActionPerformed
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed
