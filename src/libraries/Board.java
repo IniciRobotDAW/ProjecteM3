@@ -8,10 +8,14 @@ package libraries;
 
 import inicirobot.Explote;
 import inicirobot.HealthPill;
+import inicirobot.Obstacle;
 import inicirobot.Robot;
+import inicirobot.Ovni;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -29,24 +33,39 @@ import javax.swing.JPanel;
 public class Board extends JPanel {
 
     public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;
-
+    public static final int HEIGHT = 600;   
     public static Vector<SimulatorBullet> bullets;
     public static ArrayList<SimulatorRobot> robots;
     public static ArrayList<SimulatorRobot> deadRobots;
     public static ArrayList<HealthPill> pills;
     public static ArrayList<Explote> expAnim;
+    public static ArrayList<Obstacle> obstacles;
+    public static ArrayList<Ovni> ovnis;
+    private long lastOvni = System.currentTimeMillis();
+
+    private int nextOvni = (int)((Math.random()*(10000-5000)+5000));
     
-   private BufferedImage explosionAnimImg;
+    public static String theme;
+    public int numObstacles;
+    private BufferedImage explosionAnimImg;
     
-    public Board(ArrayList<SimulatorRobot> r) {
+    public Board(ArrayList<SimulatorRobot> r, String theme) {
 
         setDoubleBuffered(true);
         this.bullets = new Vector<SimulatorBullet>();
         this.deadRobots = new ArrayList<SimulatorRobot>();
         this.pills = new ArrayList<HealthPill>();
         this.expAnim = new ArrayList<Explote>();
+        this.obstacles = new ArrayList<Obstacle>();
+        this.ovnis = new ArrayList<Ovni>();
         this.robots = r;
+        this.theme = theme;
+        
+//        
+//        Ovni ov = new Ovni();
+//       
+//        ovnis.add(ov);
+       
         
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
@@ -54,12 +73,38 @@ public class Board extends JPanel {
                 pills.add(new HealthPill());
             }
         }
+        
+        
+        
+        numObstacles = 1;
+        
+        for(int i=0; i<numObstacles; i++){
+           
+            boolean in = false;
+            while(!in){
+                Obstacle obs = new Obstacle();
+                Rectangle2D robstacle = new Rectangle((int)obs.getX(), (int)obs.getY(), obs.getWidth(), obs.getHeight());
+
+                for(int c=0; c<Board.robots.size(); c++){
+
+                    Rectangle2D rrobot = new Rectangle((int)Board.robots.get(c).getX(), (int)Board.robots.get(c).getY(), Board.robots.get(c).getWidth(), Board.robots.get(c).getHeight());
+
+                    if(!robstacle.contains(rrobot)){
+                        obstacles.add(obs);
+                        in = true;
+                    } 
+                }
+            }
+        }
+        
+        
+        
     }
     
     public static int getWIDTH() {
         return WIDTH;
     }
-
+    
     public static int getHEIGHT() {
         return HEIGHT;
     }
@@ -76,6 +121,30 @@ public class Board extends JPanel {
         return bullets;
     }
 
+    public static ArrayList<Obstacle> getObstacles() {
+        return obstacles;
+    }
+
+    public static String getTheme() {
+        return theme;
+    }
+
+    public int getNumObstacles() {
+        return numObstacles;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public void setNumObstacles(int numObstacles) {
+        this.numObstacles = numObstacles;
+    }
+    
+    public static void setObstacles(ArrayList<Obstacle> obstacles) {
+        Board.obstacles = obstacles;
+    }
+    
     public static void setBullets(Vector<SimulatorBullet> bullets) {
         Board.bullets = bullets;
     }
@@ -92,8 +161,6 @@ public class Board extends JPanel {
         Board.expAnim = expAnim;
     }
     
-    
-
     public static void setPills(ArrayList<HealthPill> pills) {
         Board.pills = pills;
     }
@@ -111,18 +178,27 @@ public class Board extends JPanel {
             bullets.get(j).paintObj(g, this);
         }
         
+        
+        
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 robots.get(i).paintObj(g, this);
             }
         }
-         
+       
+        for (int i = 0; i < obstacles.size(); i++) {
+            obstacles.get(i).paintObj(g, this);
+        }
+        
         for (int i = 0; i < expAnim.size(); i++) {
             if (expAnim.get(i) != null) {
                 expAnim.get(i).Draw(g2d);
             }
         }
         
+        for (int j = 0; j < ovnis.size(); j++) {
+            ovnis.get(j).paintObj(g, this);
+        }
         
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
@@ -132,11 +208,30 @@ public class Board extends JPanel {
         SimulatorBullet b = null;
         HealthPill h = null;
         Explote e = null;
+        Ovni o = null;
+        
+        long now = System.currentTimeMillis();
+        
+        if((ovnis.size()==0)&&(now>this.lastOvni+this.nextOvni)){
+            Ovni ov = new Ovni();
+            ovnis.add(ov);
+            this.lastOvni=now;
+            this.nextOvni = (int)((Math.random()*(30000-10000)+10000));
+        }
         
         for (int i = 0; i < pills.size(); i++) {
             h = pills.get(i);
             if(!h.isVisible()){
                 pills.remove(h);
+            }
+        }
+        
+         for (int i = 0; i < ovnis.size(); i++) {
+            o = ovnis.get(i);
+            if(!o.isVisible()){
+                ovnis.remove(o);
+            } else {
+                o.move();
             }
         }
         
@@ -149,7 +244,7 @@ public class Board extends JPanel {
         
         for (int j = 0; j < bullets.size(); j++) {
             b = bullets.get(j);
-            if (b.isVisible() && b.inBoard() && !b.touchRobot()) {
+            if (b.isVisible() && b.inBoard() && !b.touchRobot()&& !b.touchObject()) {
                 b.move();
             } else {
                 if(!b.inBoard()){
@@ -163,6 +258,7 @@ public class Board extends JPanel {
                     Board.getExpAnim().add(expAnim2);
                 }
                 Board.bullets.remove(b);
+                
             }
         }
     }

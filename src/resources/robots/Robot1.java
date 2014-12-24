@@ -24,6 +24,8 @@ public class Robot1 extends Robot {
     @Override
     public void onTouchWall() {
         this.movComp(new String[]{"left","turnTurretLeft"}, 90);
+//        this.left(90);
+        
     }
     
     @Override
@@ -39,17 +41,18 @@ public class Robot1 extends Robot {
     @Override
     public void win(){
         this.right(360);
-//        this.movComp(new String[]{"right","back","turnTurretRight","fire"}, 100);
+
     }
     
     @Override
     public void run() {
-        System.out.println("Soc robot 1");
-
+        
+//        this.right(180);
         while(true){         
-           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
-           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
-//            fire();
+//           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
+//           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
+           this.fire();
+           this.ahead(100);
         }
     }
 }

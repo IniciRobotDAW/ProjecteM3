@@ -109,6 +109,32 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
         return touch;
     }
     
+    @Override
+    public boolean touchObject() {
+        
+        boolean touch = false;
+       
+            for (int j = 0; j < Board.getObstacles().size(); j++) {
+                Rectangle r = new Rectangle((int)Board.getObstacles().get(j).getX(),(int)Board.getObstacles().get(j).getY(),Board.getObstacles().get(j).getWidth(),Board.getObstacles().get(j).getHeight());
+                
+                if(r.getBounds().contains(this.x, this.y) ){
+                    
+                    touch = true;
+                    URL explosionAnimImgUrl = this.getClass().getResource("/resources/images/exploteBullet.png");
+                    try {
+                        explosionAnimImg = ImageIO.read(explosionAnimImgUrl);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Robot.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Explote expAnim = new Explote(explosionAnimImg, 60, 60, 46, 7, false, (int)this.x-32, (int)this.y-23, 0);
+                    Board.getExpAnim().add(expAnim);    
+                    
+                }
+            }
+            
+        return touch;
+    }
+    
     //touchwall
     @Override
     public boolean inBoard() {
@@ -130,5 +156,15 @@ public class Bullet extends GraphicObject implements SimulatorBullet{
     @Override
     public SimulatorRobot getOwner() {
         return this.owner;
+    }
+
+    @Override
+    public int getHeight() {
+       return (int)this.power;
+    }
+
+    @Override
+    public int getWidth() {
+        return (int)this.power;
     }
 }

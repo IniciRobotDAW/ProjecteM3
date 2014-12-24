@@ -6,18 +6,11 @@
 package libraries;
 
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import inicirobot.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.Timer;
 
 /**
@@ -29,24 +22,43 @@ public class BattleWindow extends JFrame implements ActionListener {
     
     public Board board;
     public StatesDisplay display;
-    public JPanel info;  
+    public JPanel info; 
+    
+    private ImageIcon ii;
     Timer timer;
 
-    public BattleWindow(ArrayList<SimulatorRobot> r) {
+    public BattleWindow(ArrayList<SimulatorRobot> r, String theme) {
 
-        setSize(1000, 700);    
+        setSize(1000, 700);          
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
-        ImageIcon ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desert.png"));
+        switch(theme){
+            
+            case "Desert": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/desert.png"));
+                break;
+                
+            case "Forest": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forest.png"));
+                break;
+            
+            case "Spacial": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/spacial.jpg"));
+                break;
+            
+            case "Sea": ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/sea.png"));
+                break;
+                        
+            default: ii = new ImageIcon(this.getClass().getResource("/resources/images/scenarios/forest.png"));
+                break;                  
+            
+        }
         
         JLabel background=new JLabel(new ImageIcon(ii.getImage()));
 	add(background);
 	background.setLayout(new FlowLayout());
             
-        board = new Board(r);
+        board = new Board(r, theme);
         board.setLayout(new BorderLayout());
-
+        
         board.setBounds(0, 0, 800, 600);
 
         board.add(background);

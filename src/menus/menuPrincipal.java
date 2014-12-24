@@ -80,6 +80,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         numOfBullets = new javax.swing.JComboBox();
         numOfRounds = new javax.swing.JComboBox();
         numOfLifes = new javax.swing.JComboBox();
+        jRadioButton1 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,6 +171,14 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         numOfLifes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20" }));
 
+        scene.add(jRadioButton1);
+        jRadioButton1.setText("Sea");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -215,18 +224,20 @@ public class menuPrincipal extends javax.swing.JFrame {
                                             .addComponent(numOfLifes, 0, 85, Short.MAX_VALUE))))
                                 .addGap(33, 33, 33)))
                         .addGap(78, 78, 78)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(answer2)
-                            .addComponent(desertRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(forestRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(spacialRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton1)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(answer2)
+                                .addComponent(desertRadio, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(forestRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(spacialRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(70, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(answer6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(theme, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(36, 36, 36))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,11 +282,13 @@ public class menuPrincipal extends javax.swing.JFrame {
                         .addComponent(forestRadio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spacialRadio)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(theme)
                     .addComponent(answer6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addComponent(send)
                 .addContainerGap())
         );
@@ -318,7 +331,11 @@ public class menuPrincipal extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
+<<<<<<< HEAD
         
+=======
+        new BattleWindow(rb, themeWindow);
+>>>>>>> origin/ArnauArrayDeveloping
 
     }//GEN-LAST:event_sendActionPerformed
 
@@ -365,6 +382,10 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void spacialRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spacialRadioActionPerformed
         this.theme.setText("Spacial");
     }//GEN-LAST:event_spacialRadioActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        this.theme.setText("Sea");
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,6 +436,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton desertRadio;
     private javax.swing.JRadioButton forestRadio;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox numOfBullets;

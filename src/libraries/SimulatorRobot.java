@@ -24,6 +24,8 @@ public interface SimulatorRobot extends SimulatorObject,Runnable{
     public abstract int getStartBulletsLoad();
     public abstract double getX();
     public abstract double getY();
+    public abstract int getWidth();
+    public abstract int getHeight();
     public abstract RobotPiece getBody();
     public abstract RobotPiece getTurret();
     public abstract RobotPiece getRadar();
