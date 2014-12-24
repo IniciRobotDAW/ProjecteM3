@@ -104,6 +104,7 @@ public class Obstacle extends GraphicObject{
         Graphics2D g2d = (Graphics2D) g;
  
         g2d.drawImage(this.getImage(),(int)this.x, (int)this.y, null);
+    
     }
     
 }

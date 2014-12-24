@@ -12,6 +12,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -52,17 +53,28 @@ public class Ovni extends GraphicObject{
     private long frameTime;
     private URL explosionAnimImgUrl1;
     private URL explosionAnimImgUrl2;
+    
+    //0= pos x | 1 = pos y | 2 = angle | 3 = canto
+    private ArrayList<Integer> inici = caclPosIni();
 
     public Ovni() {
 //        super((Math.random()*Board.getWIDTH()+1), (Math.random()*Board.getHEIGHT()+1), 0.0f);
-          super(-20,200,0.0f);
-         switch(Board.getTheme()){
+            
+            super(0, 0,0.0f);
+            this.x = (double) inici.get(0);
+            this.y = (double) inici.get(1);
+            this.angle = inici.get(2);
+            System.out.println(this + " " +this.angle);
+            switch(Board.getTheme()){
             
             case "Desert": 
                 
-                explosionAnimImgUrl1 = this.getClass().getResource("/resources/images/ovnis/ovni.png");
-                explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/ovniombra.png");
-                this.numberOfFrames = 6;
+                explosionAnimImgUrl1 = this.getClass().getResource("/resources/images/ovnis/plane.png");
+                explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/planeo.png");
+                this.numberOfFrames = 1;
+               
+                this.frameWidth = 84;
+                this.frameHeight = 84;
                 
                 try {
                     animImageR = ImageIO.read(explosionAnimImgUrl1);
@@ -75,9 +87,12 @@ public class Ovni extends GraphicObject{
                 
             case "Forest": 
                 
-                explosionAnimImgUrl1 = this.getClass().getResource("/resources/images/ovnis/ovni.png");
-                explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/ovniombra.png");
-                this.numberOfFrames = 6;
+                explosionAnimImgUrl1 = this.getClass().getResource("/resources/images/ovnis/plane.png");
+                explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/planeo.png");
+                this.numberOfFrames = 1;
+                
+                this.frameWidth = 84;
+                this.frameHeight = 84;
                 
                 try {
                     animImageR = ImageIO.read(explosionAnimImgUrl1);
@@ -94,6 +109,10 @@ public class Ovni extends GraphicObject{
                 explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/ovniombra.png");
                 this.numberOfFrames = 6;
                 
+                this.frameWidth = 84;
+                this.frameHeight = 84;
+                
+                
                 try {
                     animImageR = ImageIO.read(explosionAnimImgUrl1);
                     animImageO = ImageIO.read(explosionAnimImgUrl2);
@@ -105,9 +124,12 @@ public class Ovni extends GraphicObject{
             
             case "Sea": 
                 
-                explosionAnimImgUrl1 = this.getClass().getResource("/resources/images/ovnis/ovni.png");
-                explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/ovniombra.png");
-                this.numberOfFrames = 6;
+                explosionAnimImgUrl1 = this.getClass().getResource("/resources/images/ovnis/gavina.png");
+                explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/gavinaombra.png");
+                this.numberOfFrames = 4;
+                
+                this.frameWidth=32;
+                this.frameHeight=32;
                 
                 try {
                     animImageR = ImageIO.read(explosionAnimImgUrl1);
@@ -123,6 +145,8 @@ public class Ovni extends GraphicObject{
                 explosionAnimImgUrl1 = this.getClass().getResource("/resources/images/ovnis/ovni.png");
                 explosionAnimImgUrl2 = this.getClass().getResource("/resources/images/ovnis/ovniombra.png");
                 this.numberOfFrames = 6;
+                this.frameWidth = 84;
+                this.frameHeight = 84;
           
                 try {
                     animImageR = ImageIO.read(explosionAnimImgUrl1);
@@ -146,8 +170,7 @@ public class Ovni extends GraphicObject{
         timeForNextFrame = startingFrameTime + this.frameTime;
         currentFrameNumber = 0;
         active = true;
-        this.frameWidth = 84;
-        this.frameHeight = 84;
+       
         
         this.showDelay = 0;
     }
@@ -352,6 +375,56 @@ public class Ovni extends GraphicObject{
         this.explosionAnimImgUrl2 = explosionAnimImgUrl2;
     }
     
+    private ArrayList caclPosIni(){
+        
+        ArrayList<Integer> pos = new ArrayList();
+//        int canto = 3;
+        int t;
+        
+        int canto = (int) (Math.random()*4);
+              
+        switch (canto){
+            
+            case 0:
+                t = (int) (Math.random()*Board.getWIDTH());   
+                pos.add(t);
+                pos.add(-20);
+                pos.add(90+90);
+                pos.add(canto);
+                
+                break;
+                
+            case 1:
+                t = (int) (Math.random()*Board.getHEIGHT());   
+                pos.add(Board.getWIDTH()+20);
+                pos.add(t);
+                pos.add(180+90);
+                pos.add(canto);
+                
+                break;
+                
+            case 2:
+                t = (int) (Math.random()*Board.getWIDTH());   
+                pos.add(t);
+                pos.add(Board.getHEIGHT()+20);
+                pos.add(270+90);
+                pos.add(canto);
+                break;
+                
+            case 3:
+                
+                t = (int) (Math.random()*Board.getHEIGHT());   
+                pos.add(-20);
+                pos.add(t);
+                pos.add(0+90);
+                pos.add(canto);
+                
+                break;
+        }
+        
+       return pos; 
+    }
+    
     private void Update(){
         if(timeForNextFrame <= System.currentTimeMillis()){
             // Next frame.
@@ -381,19 +454,50 @@ public class Ovni extends GraphicObject{
     
         
     public void move(){
-        this.setX(this.x+1);
+        
+        if((this.x<-30)||(this.x>Board.getWIDTH()+30)||(this.y<-30)||(this.y>Board.getHEIGHT()+30)){
+            this.setVisible(false);
+        }
+        
+        
+        
+        switch(inici.get(3)){
+            
+            case 0:
+                this.setX(this.x + 1 * Math.sin(Math.toRadians(this.getAngle())));
+                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.getAngle())));
+                break;
+  
+            case 1:
+                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.getAngle()*-1)));
+                this.setY(this.y + 1 * Math.cos(Math.toRadians(this.getAngle())));
+                break;
+                
+            case 2:
+                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.getAngle())));
+                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.getAngle()*-1)));
+                break;
+                  
+            case 3:
+                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.getAngle()*-1)));
+                this.setY(this.y + 1 * Math.cos(Math.toRadians(this.getAngle())));
+                break;
+                       
+        }         
     }
 
+        
     @Override
     public void paintObj(Graphics g, JComponent j) {
         this.Update();
         
         Graphics2D g2d = (Graphics2D) g;
- 
+       
         if(this.timeOfAnimationCration + this.showDelay <= System.currentTimeMillis()){
-            g2d.drawImage(animImageO, (int)this.x-15, (int)this.y+15, (int)this.x+ frameWidth, (int)this.y+ frameHeight, startingXOfFrameInImage, 0, endingXOfFrameInImage, frameHeight, null); 
+            g2d.rotate(Math.toRadians(this.angle), x, y);
+            g2d.drawImage(animImageO, (int)this.x+20, (int)this.y+20, (int)this.x+ frameWidth, (int)this.y+ frameHeight, startingXOfFrameInImage, 0, endingXOfFrameInImage, frameHeight, null); 
             g2d.drawImage(animImageR, (int)this.x, (int)this.y, (int)this.x+ frameWidth, (int)this.y+ frameHeight, startingXOfFrameInImage, 0, endingXOfFrameInImage, frameHeight, null);           
-                      
+        
         }
     }
 }

@@ -41,6 +41,9 @@ public class Board extends JPanel {
     public static ArrayList<Explote> expAnim;
     public static ArrayList<Obstacle> obstacles;
     public static ArrayList<Ovni> ovnis;
+    private long lastOvni = System.currentTimeMillis();
+
+    private int nextOvni = (int)((Math.random()*(10000-5000)+5000));
     
     public static String theme;
     public int numObstacles;
@@ -58,12 +61,20 @@ public class Board extends JPanel {
         this.robots = r;
         this.theme = theme;
         
+//        
+//        Ovni ov = new Ovni();
+//       
+//        ovnis.add(ov);
+       
+        
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 new Thread(robots.get(i)).start();
                 pills.add(new HealthPill());
             }
         }
+        
+        
         
         numObstacles = 1;
         
@@ -86,8 +97,7 @@ public class Board extends JPanel {
             }
         }
         
-        Ovni ov = new Ovni();
-        ovnis.add(ov);
+        
         
     }
     
@@ -199,6 +209,15 @@ public class Board extends JPanel {
         HealthPill h = null;
         Explote e = null;
         Ovni o = null;
+        
+        long now = System.currentTimeMillis();
+        
+        if((ovnis.size()==0)&&(now>this.lastOvni+this.nextOvni)){
+            Ovni ov = new Ovni();
+            ovnis.add(ov);
+            this.lastOvni=now;
+            this.nextOvni = (int)((Math.random()*(30000-10000)+10000));
+        }
         
         for (int i = 0; i < pills.size(); i++) {
             h = pills.get(i);

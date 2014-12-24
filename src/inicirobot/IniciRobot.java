@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package inicirobot;
-import menus.menuPrincipal;
+import menus.*;
 
 /**
  *
