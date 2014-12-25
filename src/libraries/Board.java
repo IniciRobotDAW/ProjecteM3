@@ -73,9 +73,7 @@ public class Board extends JPanel {
                 pills.add(new HealthPill());
             }
         }
-        
-        
-        
+
         numObstacles = 1;
         
         for(int i=0; i<numObstacles; i++){
@@ -96,9 +94,7 @@ public class Board extends JPanel {
                 }
             }
         }
-        
-        
-        
+
     }
     
     public static int getWIDTH() {

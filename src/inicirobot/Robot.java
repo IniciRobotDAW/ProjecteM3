@@ -11,7 +11,6 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import static java.lang.Math.random;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.*;
@@ -26,24 +25,19 @@ import libraries.*;
 public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     private int speed;
-    
     private RobotPiece body;
     private RobotPiece turret;
     private RobotPiece radar;
     private int width;
     private int height;
-    
     private long lastReload = System.currentTimeMillis();
     private int reloadTime = 500;
-    
     private int startLives = 5;
     private int lives = this.startLives;
     private int startBulletsLoad = 50; 
     private int bulletsLoad =  this.startBulletsLoad;
-   
     private int velMov = 5;
     private int velComp = 0;
-    
     private BufferedImage explosionAnimImg;
    
 
@@ -58,7 +52,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.radar = radar;
         this.width = width;
         this.height = height;
-
         this.startLives = 5;
         this.lives = this.startLives;
         
@@ -67,11 +60,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, 0.0f);
-
+        
         this.body = cos;
         this.turret = turret;
         this.radar = radar;
-
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
 
@@ -1293,8 +1285,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         }
            
     }
-    
-    
+   
     /**
      * When you win... /
      * Quan guanyes...

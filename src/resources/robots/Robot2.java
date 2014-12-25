@@ -19,9 +19,7 @@ public class Robot2 extends Robot{
     }
     
     @Override
-    public void onTouchRobot() {  
-        
-       
+    public void onTouchRobot() {          
        this.fire();
     }
     
@@ -49,10 +47,9 @@ public class Robot2 extends Robot{
     @Override
     public void run() {
         System.out.println("Soc robot 2");
-        this.left(90);
-
+//        this.left(90);
         while(true){
-             this.movComp(new String[]{"right","ahead","turnTurretRight"}, 100);
+             this.movComp(new String[]{"ahead","right","turnTurretRight"}, 100);
 
         }
     }

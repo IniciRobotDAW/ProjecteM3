@@ -9,6 +9,7 @@ import inicirobot.*;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import libraries.BattleWindow;
 import libraries.SimulatorRobot;
 
@@ -30,7 +31,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         File f = new File(sDirectorio);
         DefaultListModel listModelTotalRobots = new DefaultListModel();
         DefaultListModel listModelSelectedRobots = new DefaultListModel();
-        
+
         if (f.exists()) {
             File[] ficheros = f.listFiles();
             for (int x = 0; x < ficheros.length; x++) {
@@ -314,23 +315,27 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
 
-        String themeWindow = this.theme.getText();
-        Integer rounds = Integer.parseInt(this.numOfRounds.getSelectedItem().toString());
-        Integer lifes = Integer.parseInt(this.numOfLifes.getSelectedItem().toString());
-        Integer bullets = Integer.parseInt(this.numOfBullets.getSelectedItem().toString());
-        
-        Game g = new Game(themeWindow, rounds, lifes, bullets, (DefaultListModel)this.selectedRobots.getModel());
+        if (this.selectedRobots.getModel().getSize() != 0) {
 
-        try{
-            
-            ArrayList<SimulatorRobot> rb = g.deploy();
-            this.setVisible(false);
-            new BattleWindow(rb, themeWindow);
-            
-        }catch(Exception e){
-            e.printStackTrace();
+            String themeWindow = this.theme.getText();
+            Integer rounds = Integer.parseInt(this.numOfRounds.getSelectedItem().toString());
+            Integer lifes = Integer.parseInt(this.numOfLifes.getSelectedItem().toString());
+            Integer bullets = Integer.parseInt(this.numOfBullets.getSelectedItem().toString());
+
+            Game game = new Game(themeWindow, rounds, lifes, bullets, (DefaultListModel) this.selectedRobots.getModel());
+
+            try {
+                ArrayList<SimulatorRobot> rb = game.deploy();
+                this.setVisible(false);
+                new BattleWindow(rb, themeWindow);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Tens que seleccionar algun robot");
         }
-        
+
     }//GEN-LAST:event_sendActionPerformed
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed
@@ -352,15 +357,19 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     private void removeAllRobotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllRobotsActionPerformed
 
-        DefaultListModel listAux = (DefaultListModel) this.selectedRobots.getModel();
-        listAux.removeAllElements();
+        DefaultListModel listAux = new DefaultListModel();
         this.selectedRobots.setModel(listAux);
 
     }//GEN-LAST:event_removeAllRobotsActionPerformed
 
     private void addAllRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAllRobotActionPerformed
 
-        DefaultListModel listAux = (DefaultListModel) this.totalRobots.getModel();
+        DefaultListModel listAux = (DefaultListModel) this.selectedRobots.getModel();
+
+        for (int i = 0; i < this.totalRobots.getModel().getSize(); i++) {
+            listAux.addElement(this.totalRobots.getModel().getElementAt(i));
+        }
+
         this.selectedRobots.setModel(listAux);
 
     }//GEN-LAST:event_addAllRobotActionPerformed

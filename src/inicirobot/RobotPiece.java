@@ -41,12 +41,12 @@ public class RobotPiece extends GraphicObject{
         this.image = ii.getImage();
         this.width = ii.getIconWidth();
         this.height = ii.getIconHeight();
-        this.dx =dx;
-        this.dy=dy; 
+        this.dx = dx;
+        this.dy = dy; 
     }
-      public Image getImage() {
-        return image;
-         
+    
+    public Image getImage() {
+        return image;         
     }
 
     public double getDx() {   

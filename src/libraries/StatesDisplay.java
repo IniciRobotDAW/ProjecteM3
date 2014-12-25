@@ -7,10 +7,8 @@ package libraries;
 
 import java.awt.*;
 import java.awt.geom.*;
-import java.awt.image.AffineTransformOp;
 import java.util.*;
 import javax.swing.*;
-import java.lang.*;
 
 /**
  *

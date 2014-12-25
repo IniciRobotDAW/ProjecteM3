@@ -33,8 +33,7 @@ public class Robot3 extends Robot{
     
     @Override
     public void onHitByBullet() {
-        this.back(100);
-                
+        this.back(100);               
     }
     
     @Override
