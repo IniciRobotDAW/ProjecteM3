@@ -7,27 +7,18 @@ package inicirobot;
 
 import java.lang.reflect.Constructor;
 
-import inicirobot.RobotPiece;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javafx.scene.shape.Line;
 import javax.swing.DefaultListModel;
-import libraries.*;
 import libraries.Board;
 import libraries.SimulatorRobot;
-import resources.robots.*;
 
 /**
  *
  * @author rbarberan
  */
 public class Game extends Exception {
-    
+
     private String theme;
     private int rounds;
     private int lifes;
@@ -125,16 +116,31 @@ public class Game extends Exception {
     }
 
     public ArrayList<SimulatorRobot> deploy() throws Exception {
-        
-//        Stock stock = new Stock();
-        
+
         int W = Board.WIDTH - 30;
         int H = Board.HEIGHT - 30;
 
         posXs.add(Math.random() * W + 1);
         posYs.add(Math.random() * H + 1);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < this.selectedRobots.getSize(); i++) {
+
+            RobotPiece body = null;
+            RobotPiece turret = null;
+            RobotPiece radar = null;
+
+            if ("Sea".equals(this.theme)) {
+                body = new RobotPiece("/resources/images/boats/Boat.png", posXs.get(i), posYs.get(i), 0, 0);
+                turret = new RobotPiece("/resources/images/boats/boatTurret.png", posXs.get(i), posYs.get(i), 8, -10);
+                radar = new RobotPiece("/resources/images/boats/boatRadar.png", posXs.get(i), posYs.get(i), 7, 9);
+            } else {
+                body = new RobotPiece("/resources/images/realBody.png", posXs.get(i), posYs.get(i), 0, 0);
+                turret = new RobotPiece("/resources/images/realTurret.png", posXs.get(i), posYs.get(i), 8, -10);
+                radar = new RobotPiece("/resources/images/realRadar.png", posXs.get(i), posYs.get(i), 7, 9);
+            }
+
+            String[] nameRobotSplit = selectedRobots.get(i).toString().split("\\.");
+            String nameRobot = nameRobotSplit[0];
 
             tposXs = Math.random() * W + 1;
             tposYs = Math.random() * H + 1;
@@ -152,13 +158,7 @@ public class Game extends Exception {
             this.posXs.add(tposXs);
             this.posYs.add(tposYs);
             System.out.println(this.posXs.size());
-        }
 
-        for (int i = 0; i < this.selectedRobots.getSize(); i++) {
-
-            String[] nameRobotSplit = selectedRobots.get(i).toString().split("\\.");
-            String nameRobot = nameRobotSplit[0];
-            
             try {
                 Class robotClass = Class.forName("resources.robots." + nameRobot);
                 try {
@@ -174,15 +174,13 @@ public class Game extends Exception {
                     this.robots.add((SimulatorRobot) robotConstructor.newInstance(
                             this.posXs.get(i),
                             this.posYs.get(i),
-                            new RobotPiece("/resources/images/realBody.png", posXs.get(i), posYs.get(i), 0, 0),
-                            new RobotPiece("/resources/images/realTurret.png", posXs.get(i), posYs.get(i), 8, -10),
-                            new RobotPiece("/resources/images/realRadar.png", posXs.get(i), posYs.get(i), 7, 9)
+                            body,
+                            turret,
+                            radar
                     ));
                 } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
                 }
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
 

@@ -14,7 +14,7 @@ import libraries.Board;
  */
 public class Stock {
 
-    private ArrayList<ArrayList> stock;
+    private final ArrayList<ArrayList> stock;
 
     public Stock() {
         this.stock = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Stock {
         ArrayList<RobotPiece> turrets = new ArrayList();
         ArrayList<RobotPiece> radars = new ArrayList();
 
-        if (Board.getTheme() == "Sea") {
+        if ("Sea".equals(Board.getTheme())) {
 
             bodys.add(new RobotPiece("/resources/images/boats/Boat.png", 0, 0, 0, 0));
             bodys.add(new RobotPiece("/resources/images/boats/Boat.png", 0, 0, 0, 0));

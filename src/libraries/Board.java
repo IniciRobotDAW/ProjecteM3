@@ -52,21 +52,15 @@ public class Board extends JPanel {
     public Board(ArrayList<SimulatorRobot> r, String theme) {
 
         setDoubleBuffered(true);
-        this.bullets = new Vector<SimulatorBullet>();
-        this.deadRobots = new ArrayList<SimulatorRobot>();
-        this.pills = new ArrayList<HealthPill>();
-        this.expAnim = new ArrayList<Explote>();
-        this.obstacles = new ArrayList<Obstacle>();
-        this.ovnis = new ArrayList<Ovni>();
+        this.bullets = new Vector();
+        this.deadRobots = new ArrayList();
+        this.pills = new ArrayList();
+        this.expAnim = new ArrayList();
+        this.obstacles = new ArrayList();
+        this.ovnis = new ArrayList();
         this.robots = r;
         this.theme = theme;
-        
-//        
-//        Ovni ov = new Ovni();
-//       
-//        ovnis.add(ov);
-       
-        
+
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 new Thread(robots.get(i)).start();
@@ -130,7 +124,7 @@ public class Board extends JPanel {
     }
 
     public void setTheme(String theme) {
-        this.theme = theme;
+        Board.theme = theme;
     }
 
     public void setNumObstacles(int numObstacles) {
@@ -208,7 +202,7 @@ public class Board extends JPanel {
         
         long now = System.currentTimeMillis();
         
-        if((ovnis.size()==0)&&(now>this.lastOvni+this.nextOvni)){
+        if((ovnis.isEmpty())&&(now>this.lastOvni+this.nextOvni)){
             Ovni ov = new Ovni();
             ovnis.add(ov);
             this.lastOvni=now;

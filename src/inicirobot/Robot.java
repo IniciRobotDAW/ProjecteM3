@@ -41,7 +41,20 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     private BufferedImage explosionAnimImg;
    
 
-    /** Constructor */
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     * @param angle
+     * @param speed
+     * @param lives
+     * @param body
+     * @param turret
+     * @param radar
+     * @param width
+     * @param height
+     * @param lastReload 
+     */
     public Robot(double x, double y, float angle, int speed, int lives, RobotPiece body, RobotPiece turret, RobotPiece radar, int width, int height, double lastReload) {
         super(x, y, angle);
 
@@ -54,7 +67,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.height = height;
         this.startLives = 5;
         this.lives = this.startLives;
-        
         
     }
 
@@ -69,51 +81,61 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
     }
 
-    //getters i setters
     public int getSpeed() {
         return speed;
     }
 
+    @Override
     public int getLives() {
         return lives;
     }
 
+    @Override
     public RobotPiece getBody() {
         return body;
     }
 
+    @Override
     public RobotPiece getTurret() {
         return turret;
     }
 
+    @Override
     public RobotPiece getRadar() {
         return radar;
     }
 
+    @Override
     public int getWidth() {
         return width;
     }
 
+    @Override
     public int getHeight() {
         return height;
     }
 
+    @Override
     public long getLastReload() {
         return lastReload;
     }
 
+    @Override
     public int getBulletsLoad() {
         return bulletsLoad;
     }
 
+    @Override
     public int getStartLives() {
         return startLives;
     }
 
+    @Override
     public int getStartBulletsLoad() {
         return startBulletsLoad;
     }
 
+    @Override
     public int getReloadTime() {
         return reloadTime;
     }
@@ -179,10 +201,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public void setVelMov(int velMov) {
         this.velMov = velMov;
     }
-    
-    //************//
-    //**Funcions**//
-    //************//
 
     /**
      * Paint the robot / Pinta el robot
@@ -224,13 +242,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     private boolean touchRobotRotate() {
         boolean toca = false;
         
-        for (int i = 0; i < Board.robots.size(); i++) {
-        
-            if (Board.robots.get(i) != this) {
-
+        for (SimulatorRobot robot : Board.robots) {
+            if (robot != this) {
                 ArrayList<Line2D.Double> linies = this.getBoundLinesToRotate();
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(i).getBoundLines();
-
+                ArrayList<Line2D.Double> liniest2 = robot.getBoundLines();
                 for (int e = 0; e < 4; e++) {
                     Line2D.Double nxtline = nextLine(linies.get(e));
                     for (int j = 0; j < 4; j++) {
@@ -253,13 +268,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     private boolean touchRobotMov(int pos) {
         boolean toca = false;
         
-        for (int i = 0; i < Board.robots.size(); i++) {
-        
-            if (Board.robots.get(i) != this) {
-
+        for (SimulatorRobot robot : Board.robots) {
+            if (robot != this) {
                 ArrayList<Line2D.Double> linies = this.getBoundLines();
-                ArrayList<Line2D.Double> liniest2 = Board.robots.get(i).getBoundLines();
-
+                ArrayList<Line2D.Double> liniest2 = robot.getBoundLines();
                 Line2D.Double nxtline = nextLine(linies.get(pos));                
                 for (int j = 0; j < 4; j++) {
                     if (nxtline.intersectsLine(liniest2.get(j))) {                        
@@ -280,11 +292,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     private boolean touchWall(double xt, double yt) {
 
-        if (((xt <= (Board.WIDTH - this.width)) && (xt > this.width) && (yt <= Board.HEIGHT - this.height) && (yt > 0))) {
-            return true;
-        } else {
-            return false;
-        }
+        return (xt <= (Board.WIDTH - this.width)) && (xt > this.width) && (yt <= Board.HEIGHT - this.height) && (yt > 0);
     }
     
     /**
@@ -930,7 +938,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
                 Point2D before = new Point2D.Double(x + 15, y + 15);
                 Point2D after = new Point2D.Double();
-                after = transformer.transform(before, after);
+                transformer.transform(before, after);
                 
                 Bullet b = new Bullet(before.getX(), before.getY(), this.turret.getAngle(), this);
 
@@ -966,6 +974,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Obte els punts del robot (real)
      * @return ArrayList<Point2D.Double>
      */
+    @Override
     public ArrayList<Point2D.Double> getBoundPoints() {
 
         ArrayList<Point2D.Double> punts = new ArrayList<Point2D.Double>();
@@ -1001,10 +1010,11 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Obte les lines del robot (real)
      * @return ArrayList<Line2D.Double>
      */
+    @Override
     public ArrayList<Line2D.Double> getBoundLines() {
 
         ArrayList<Point2D.Double> punts = this.getBoundPoints();
-        ArrayList<Line2D.Double> linies = new ArrayList<Line2D.Double>();
+        ArrayList<Line2D.Double> linies = new ArrayList<>();
 
         Line2D.Double l1 = new Line2D.Double(punts.get(0), punts.get(1));
         Line2D.Double l2 = new Line2D.Double(punts.get(1), punts.get(2));
@@ -1026,7 +1036,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     public ArrayList<Point2D.Double> getBoundPointsToRotate() {
 
-        ArrayList<Point2D.Double> punts = new ArrayList<Point2D.Double>();
+        ArrayList<Point2D.Double> punts = new ArrayList<>();
 
         AffineTransform transformer = AffineTransform.getRotateInstance(Math.toRadians(this.angle), x + this.width / 2, y + this.height / 2);
 
@@ -1062,7 +1072,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     public ArrayList<Line2D.Double> getBoundLinesToRotate() {
 
         ArrayList<Point2D.Double> punts = this.getBoundPointsToRotate();
-        ArrayList<Line2D.Double> linies = new ArrayList<Line2D.Double>();
+        ArrayList<Line2D.Double> linies = new ArrayList<>();
 
         Line2D.Double l1 = new Line2D.Double(punts.get(0), punts.get(1));
         Line2D.Double l2 = new Line2D.Double(punts.get(1), punts.get(2));
@@ -1086,8 +1096,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         boolean win = false;
         int deads = 0;
         
-        for (int i = 0; i < Board.robots.size(); i++) {
-            if(Board.robots.get(i).getLives() <= 0){
+        for (SimulatorRobot robot : Board.robots) {
+            if (robot.getLives() <= 0) {
                 deads++;
                 if(deads == Board.robots.size() -1 ){
                     win = true;
@@ -1197,8 +1207,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
             }
         }
         return toca;
-        
-        
+   
     }
     
     /**
@@ -1232,8 +1241,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         }
         return scanned;
     }
-    
-    
+
     public void movComp(String[] strs, int d){
         
         for (int i = 0; i < d; i++) {
@@ -1283,7 +1291,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
                 }
             }
         }
-           
+        
     }
    
     /**
@@ -1318,10 +1326,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     
     /**
      * Running robot /
-     * ExecuciÃ³ del robot
+     * Execució del robot
      */
+    @Override
     public abstract void run();
-
-    
 
 }
