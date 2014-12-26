@@ -6,16 +6,13 @@
 package inicirobot;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
+import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import static java.lang.Math.random;
 import java.net.URL;
 import java.util.*;
 import java.util.logging.*;
-import javax.imageio.ImageIO;
+import javax.imageio.*;
 import javax.swing.*;
 import libraries.*;
 

@@ -63,8 +63,6 @@ public class Ovni extends GraphicObject{
             super(0, 0,0.0f);
             this.x = (double) inici.get(0);
             this.y = (double) inici.get(1);
-            this.angle = inici.get(2);
-            System.out.println(this + " " +this.angle);
             switch(Board.getTheme()){
             
             case "Desert": 
@@ -159,6 +157,7 @@ public class Ovni extends GraphicObject{
                 break;                  
             
         }
+            
         this.loop = true;
         this.active = true;
         this.degrees = Math.random()*360 + 1;
@@ -172,7 +171,6 @@ public class Ovni extends GraphicObject{
         currentFrameNumber = 0;
         active = true;
        
-        
         this.showDelay = 0;
     }
 
@@ -379,7 +377,7 @@ public class Ovni extends GraphicObject{
     private ArrayList caclPosIni(){
         
         ArrayList<Integer> pos = new ArrayList();
-//        int canto = 3;
+//        int canto = 2;
         int t;
         
         int canto = (int) (Math.random()*4);
@@ -390,16 +388,19 @@ public class Ovni extends GraphicObject{
                 t = (int) (Math.random()*Board.getWIDTH());   
                 pos.add(t);
                 pos.add(-20);
-                pos.add(90+90);
+                this.angle = (Math.random()*(90-0)-45);
+                pos.add(180-(int)this.angle);
                 pos.add(canto);
                 
                 break;
                 
             case 1:
+                //180
                 t = (int) (Math.random()*Board.getHEIGHT());   
                 pos.add(Board.getWIDTH()+20);
                 pos.add(t);
-                pos.add(180+90);
+                this.angle = (Math.random()*(90-0)-45);
+                pos.add(270-(int)this.angle);
                 pos.add(canto);
                 
                 break;
@@ -408,7 +409,8 @@ public class Ovni extends GraphicObject{
                 t = (int) (Math.random()*Board.getWIDTH());   
                 pos.add(t);
                 pos.add(Board.getHEIGHT()+20);
-                pos.add(270+90);
+                this.angle = (Math.random()*(90-0)-45);
+                pos.add(360-(int)this.angle);
                 pos.add(canto);
                 break;
                 
@@ -417,12 +419,12 @@ public class Ovni extends GraphicObject{
                 t = (int) (Math.random()*Board.getHEIGHT());   
                 pos.add(-20);
                 pos.add(t);
-                pos.add(0+90);
+                this.angle = (Math.random()*(90-0)-45);
+                pos.add(90-(int)this.angle);
                 pos.add(canto);
                 
                 break;
         }
-        
        return pos; 
     }
     
@@ -449,45 +451,39 @@ public class Ovni extends GraphicObject{
             startingFrameTime = System.currentTimeMillis();
             timeForNextFrame = startingFrameTime + frameTime;
         }
-    
     }
     
-    
-        
     public void move(){
         
-        if((this.x<-30)||(this.x>Board.getWIDTH()+30)||(this.y<-30)||(this.y>Board.getHEIGHT()+30)){
+        if((this.x<-40)||(this.x>Board.getWIDTH()+40)||(this.y<-40)||(this.y>Board.getHEIGHT()+40)){
             this.setVisible(false);
         }
-        
-        
         
         switch(inici.get(3)){
             
             case 0:
-                this.setX(this.x + 1 * Math.sin(Math.toRadians(this.getAngle())));
-                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.getAngle())));
+                this.setX(this.x + 1 * Math.sin(Math.toRadians(this.inici.get(2))));
+                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.inici.get(2))));
                 break;
   
             case 1:
-                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.getAngle()*-1)));
-                this.setY(this.y + 1 * Math.cos(Math.toRadians(this.getAngle())));
+                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.inici.get(2)))*-1);
+                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.inici.get(2))));
                 break;
                 
             case 2:
-                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.getAngle())));
-                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.getAngle()*-1)));
+                this.setX(this.x + 1 * Math.sin(Math.toRadians(this.inici.get(2))));
+                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.inici.get(2)*-1)));
                 break;
                   
             case 3:
-                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.getAngle()*-1)));
-                this.setY(this.y + 1 * Math.cos(Math.toRadians(this.getAngle())));
+                this.setX(this.x - 1 * Math.sin(Math.toRadians(this.inici.get(2)))*-1);
+                this.setY(this.y - 1 * Math.cos(Math.toRadians(this.inici.get(2))));
                 break;
                        
         }         
     }
 
-        
     @Override
     public void paintObj(Graphics g, JComponent j) {
         this.Update();
@@ -495,7 +491,7 @@ public class Ovni extends GraphicObject{
         Graphics2D g2d = (Graphics2D) g;
        
         if(this.timeOfAnimationCration + this.showDelay <= System.currentTimeMillis()){
-            g2d.rotate(Math.toRadians(this.angle), x, y);
+            g2d.rotate(Math.toRadians(this.inici.get(2)), x, y);
             g2d.drawImage(animImageO, (int)this.x+20, (int)this.y+20, (int)this.x+ frameWidth, (int)this.y+ frameHeight, startingXOfFrameInImage, 0, endingXOfFrameInImage, frameHeight, null); 
             g2d.drawImage(animImageR, (int)this.x, (int)this.y, (int)this.x+ frameWidth, (int)this.y+ frameHeight, startingXOfFrameInImage, 0, endingXOfFrameInImage, frameHeight, null);           
         
