@@ -61,22 +61,14 @@ public class Board extends JPanel {
         this.ovnis = new ArrayList();
         this.robots = r;
         this.theme = theme;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/ArnauArrayDeveloping2
-        
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 new Thread(robots.get(i)).start();
                 pills.add(new HealthPill());
             }
         }
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> origin/ArnauArrayDeveloping2
         numObstacles = 1;
         
         for(int i=0; i<numObstacles; i++){
@@ -98,10 +90,7 @@ public class Board extends JPanel {
                 }
             }
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/ArnauArrayDeveloping2
     }
     
     public static int getWIDTH() {
@@ -215,12 +204,12 @@ public class Board extends JPanel {
         
         long now = System.currentTimeMillis();
         
-<<<<<<< HEAD
+
         if((ovnis.isEmpty())&&(now>this.lastOvni+this.nextOvni)){
-=======
-        if((ovnis.size()==0)&&(now>this.lastOvni+this.nextOvni)){
+
+
 //        if(ovnis.size()==0){
->>>>>>> origin/ArnauArrayDeveloping2
+
             Ovni ov = new Ovni();
             ovnis.add(ov);
            
