@@ -20,7 +20,6 @@ public class StatesDisplay extends JPanel {
 
     public StatesDisplay(ArrayList<SimulatorRobot> r) {
         this.robots = r;
-
     }
 
     @Override
@@ -44,7 +43,7 @@ public class StatesDisplay extends JPanel {
         ImageIcon plate;
         ImageIcon velo;
         ImageIcon fle;
-        
+       
         for (int i = 0; i < Board.robots.size(); i++) {
             
             plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/plate.png"));

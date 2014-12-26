@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import static libraries.Board.robots;
 
 /**
  *
@@ -61,6 +62,7 @@ public class Board extends JPanel {
         this.robots = r;
         this.theme = theme;
 
+        
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 new Thread(robots.get(i)).start();
@@ -167,9 +169,7 @@ public class Board extends JPanel {
         for (int j = 0; j < bullets.size(); j++) {
             bullets.get(j).paintObj(g, this);
         }
-        
-        
-        
+
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 robots.get(i).paintObj(g, this);
@@ -252,4 +252,5 @@ public class Board extends JPanel {
             }
         }
     }
+
 }

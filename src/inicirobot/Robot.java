@@ -1293,7 +1293,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         }
         
     }
-   
+    
     /**
      * When you win... /
      * Quan guanyes...

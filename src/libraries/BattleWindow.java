@@ -6,7 +6,6 @@
 package libraries;
 
 
-import inicirobot.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -29,7 +28,7 @@ public class BattleWindow extends JFrame implements ActionListener {
 
     public BattleWindow(ArrayList<SimulatorRobot> r, String theme) {
 
-        setSize(1000, 700);          
+        setSize(1000, 628);          
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
