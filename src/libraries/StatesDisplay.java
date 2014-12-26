@@ -5,10 +5,22 @@
  */
 package libraries;
 
+import inicirobot.Ovni;
 import java.awt.*;
 import java.awt.geom.*;
+<<<<<<< HEAD
 import java.util.*;
 import javax.swing.*;
+=======
+import java.awt.image.AffineTransformOp;
+import java.io.IOException;
+import java.util.*;
+import javax.swing.*;
+import java.lang.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+>>>>>>> origin/ArnauArrayDeveloping2
 
 /**
  *
@@ -43,10 +55,39 @@ public class StatesDisplay extends JPanel {
         ImageIcon plate;
         ImageIcon velo;
         ImageIcon fle;
+<<<<<<< HEAD
        
+=======
+        
+        switch(Board.getTheme()){
+             case "Desert": 
+                plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/plate.png"));
+                break;
+                
+            case "Forest": 
+                
+                plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/plate.png"));
+                break;
+            
+            case "Spacial": 
+                plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/plate.png"));
+                
+                break;
+            
+            case "Sea": 
+                plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/seaState.png"));
+                break;
+                        
+            default: 
+                plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/plate.png"));
+                
+                break;                  
+            
+        }
+        
+>>>>>>> origin/ArnauArrayDeveloping2
         for (int i = 0; i < Board.robots.size(); i++) {
             
-            plate = new ImageIcon(this.getClass().getResource("/resources/images/panel/plate.png"));
             g.drawImage(plate.getImage(), 5, dRec, null);
                         
             //Marcador bullets restants

@@ -5,7 +5,6 @@
  */
 package libraries;
 
-
 import inicirobot.Explote;
 import inicirobot.HealthPill;
 import inicirobot.Obstacle;
@@ -45,6 +44,7 @@ public class Board extends JPanel {
     private long lastOvni = System.currentTimeMillis();
 
     private int nextOvni = (int)((Math.random()*(10000-5000)+5000));
+//    private int nextOvni = 0;
     
     public static String theme;
     public int numObstacles;
@@ -61,7 +61,10 @@ public class Board extends JPanel {
         this.ovnis = new ArrayList();
         this.robots = r;
         this.theme = theme;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/ArnauArrayDeveloping2
         
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
@@ -69,7 +72,11 @@ public class Board extends JPanel {
                 pills.add(new HealthPill());
             }
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/ArnauArrayDeveloping2
         numObstacles = 1;
         
         for(int i=0; i<numObstacles; i++){
@@ -83,14 +90,18 @@ public class Board extends JPanel {
 
                     Rectangle2D rrobot = new Rectangle((int)Board.robots.get(c).getX(), (int)Board.robots.get(c).getY(), Board.robots.get(c).getWidth(), Board.robots.get(c).getHeight());
 
-                    if(!robstacle.contains(rrobot)){
+                    if(!rrobot.intersects(robstacle)){
                         obstacles.add(obs);
                         in = true;
+                        return;
                     } 
                 }
             }
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/ArnauArrayDeveloping2
     }
     
     public static int getWIDTH() {
@@ -160,7 +171,7 @@ public class Board extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-         Graphics2D g2d = (Graphics2D) g;
+        Graphics2D g2d = (Graphics2D) g;
         
         for (int i = 0; i < pills.size(); i++) {
             pills.get(i).paintObj(g, this);
@@ -192,9 +203,11 @@ public class Board extends JPanel {
         
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
+        
     }
     
     public void act() {
+        
         SimulatorBullet b = null;
         HealthPill h = null;
         Explote e = null;
@@ -202,9 +215,15 @@ public class Board extends JPanel {
         
         long now = System.currentTimeMillis();
         
+<<<<<<< HEAD
         if((ovnis.isEmpty())&&(now>this.lastOvni+this.nextOvni)){
+=======
+        if((ovnis.size()==0)&&(now>this.lastOvni+this.nextOvni)){
+//        if(ovnis.size()==0){
+>>>>>>> origin/ArnauArrayDeveloping2
             Ovni ov = new Ovni();
             ovnis.add(ov);
+           
             this.lastOvni=now;
             this.nextOvni = (int)((Math.random()*(30000-10000)+10000));
         }
