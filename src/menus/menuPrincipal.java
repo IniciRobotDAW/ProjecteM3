@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import libraries.BattleWindow;
+import libraries.Board;
 import libraries.SimulatorRobot;
 
 /**
@@ -47,6 +48,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,6 +170,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         answer6.setText("Tema seleccionat:");
 
         numOfBullets.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10", "20", "30", "40", "50" }));
+        numOfBullets.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numOfBulletsActionPerformed(evt);
+            }
+        });
 
         numOfRounds.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
 
@@ -202,9 +210,8 @@ public class menuPrincipal extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(addAllRobot, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(removeRobot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(addRobot, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))))
+                                    .addComponent(removeRobot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(addRobot, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -334,6 +341,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Tens que seleccionar algun robot");
         }
+        
+        
 
     }//GEN-LAST:event_sendActionPerformed
 
@@ -388,6 +397,10 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         this.theme.setText("Sea");
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void numOfBulletsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numOfBulletsActionPerformed
+      
+    }//GEN-LAST:event_numOfBulletsActionPerformed
 
     /**
      * @param args the command line arguments

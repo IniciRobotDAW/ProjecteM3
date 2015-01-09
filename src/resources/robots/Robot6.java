@@ -12,8 +12,8 @@ import inicirobot.*;
 
 public class Robot6 extends Robot{
 
-    public Robot6(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
-        super(x, y, cos, turret, radar);
+    public Robot6(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
+        super(x, y, cos, turret, radar, lives, bullets);
     }
     
     @Override
@@ -44,8 +44,10 @@ public class Robot6 extends Robot{
     @Override
     public void run() {
         System.out.println("Soc robot 6");
+        
 //        this.right(90);
         while(true){
+            this.fire();
             this.ahead(100);
         }
     }

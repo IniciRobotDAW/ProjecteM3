@@ -21,7 +21,7 @@ public class Game extends Exception {
 
     private String theme;
     private int rounds;
-    private int lifes;
+    private int lives;
     private int bullets;
     private int numRobots;
     private ArrayList<SimulatorRobot> robots;
@@ -31,10 +31,10 @@ public class Game extends Exception {
     private double tposXs;
     private double tposYs;
 
-    public Game(String theme, int rounds, int lifes, int bullets, DefaultListModel selectedRobots) {
+    public Game(String theme, int rounds, int lives, int bullets, DefaultListModel selectedRobots) {
         this.theme = theme;
         this.rounds = rounds;
-        this.lifes = lifes;
+        this.lives = lives;
         this.bullets = bullets;
         this.numRobots = selectedRobots.getSize();
         this.robots = new ArrayList<SimulatorRobot>();
@@ -60,11 +60,11 @@ public class Game extends Exception {
     }
 
     public int getLifes() {
-        return lifes;
+        return lives;
     }
 
     public void setLifes(int lifes) {
-        this.lifes = lifes;
+        this.lives = lifes;
     }
 
     public int getBullets() {
@@ -168,7 +168,9 @@ public class Game extends Exception {
                                 double.class,
                                 RobotPiece.class,
                                 RobotPiece.class,
-                                RobotPiece.class
+                                RobotPiece.class,
+                                int.class,
+                                int.class
                             }
                     );
                     this.robots.add((SimulatorRobot) robotConstructor.newInstance(
@@ -176,7 +178,9 @@ public class Game extends Exception {
                             this.posYs.get(i),
                             body,
                             turret,
-                            radar
+                            radar,
+                            lives,
+                            bullets 
                     ));
                 } catch (NoSuchMethodException e) {
                 }

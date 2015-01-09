@@ -68,12 +68,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         
     }
 
-    public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
+    public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
         super(x, y, 0.0f);
         
         this.body = cos;
         this.turret = turret;
         this.radar = radar;
+        this.lives = lives;
+        this.bulletsLoad = bullets;
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
 
