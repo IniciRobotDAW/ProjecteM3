@@ -6,52 +6,48 @@
 package resources.robots;
 
 import inicirobot.*;
+import java.awt.event.KeyEvent;
 
 /**
  * 
  * @author rbarberan
  */
-public class Robot1 extends Robot {
+public class Robot1 extends KeyRobot {
     public Robot1(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar) {
         super(x, y, cos, turret, radar);
     }
 
     @Override
     public void onTouchRobot() {       
-       this.left(100);
-       this.fire();
+
     }
     
     @Override
     public void onTouchWall() {
-        this.movComp(new String[]{"left","turnTurretLeft"}, 90);
-//        this.left(90);        
+  
     }
     
     @Override
     public void onScannedRobot() {
-        this.fire();
+        
     }
     
     @Override
     public void onHitByBullet() {
-       this.movComp(new String[]{"left","back","turnTurretRight"}, 30);
+      
     }
     
     @Override
     public void win(){
-        this.right(360);
+       
     }
     
     @Override
     public void run() {
-        System.out.println("Soc Robot 1");
-//        this.right(180);
+        KeyEvent evt = null;
         while(true){         
-           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
-           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
-//           this.fire();
-//           this.ahead(100);
+         
+          this.go(evt);
         }
     }
 }

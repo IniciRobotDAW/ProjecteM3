@@ -28,7 +28,12 @@ public class BattleWindow extends JFrame implements ActionListener {
 
     public BattleWindow(ArrayList<SimulatorRobot> r, String theme) {
 
-        setSize(1000, 628);          
+        Toolkit tk = Toolkit.getDefaultToolkit();  
+        int xSize = ((int) tk.getScreenSize().getWidth());  
+        int ySize = ((int) tk.getScreenSize().getHeight());  
+
+        setSize(1000, 628); 
+//        setSize(xSize, ySize);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
