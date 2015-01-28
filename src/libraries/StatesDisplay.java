@@ -48,7 +48,7 @@ public class StatesDisplay extends JPanel {
         int dBpro = 30;
         int dBpro2 = dBpro-2;
         
-        int dBliv = 49;
+        int dBliv = 37;
         int dBrec = 65;
         int interlinieat = 90;
         ImageIcon reloadButton;
@@ -114,14 +114,22 @@ public class StatesDisplay extends JPanel {
             g.drawString(br1, 68, dBpro+33);
             g.setColor(Color.black);
             
-            //Vides
+//            //Vides
             int lr1 = Board.robots.get(i).getLives();
-            int vides = ((lr1*70)/Board.robots.get(i).getStartLives());
-            g.setColor(Color.red);
-            g.fillRect(100, dBliv, 70, 5);
-            g.setColor(Color.green);
-            g.fillRect(100, dBliv, vides, 5);
-            g.setColor(Color.black);
+            int d = 150/Board.robots.get(i).getLives();
+//            int despVides = ((lr1*(d*Board.robots.get(i).getStartLives()))/Board.robots.get(i).getStartLives());
+            System.out.println(d);
+//            g.setColor(Color.red);
+//            g.fillRect(100, dBliv, 70, 5);
+//            g.setColor(Color.green);
+//            g.fillRect(100, dBliv, vides, 5);
+//            g.setColor(Color.black);
+            velo = new ImageIcon(this.getClass().getResource("/resources/images/panel/panellVides.png"));
+            g.drawImage(velo.getImage(), 110, dBliv, null);
+            
+            velo = new ImageIcon(this.getClass().getResource("/resources/images/panel/videsFletxa.png"));
+            g.drawImage(velo.getImage(), 120+d, dBliv+10, null);
+            
             
             //Reload
             if (Board.robots.get(i).getLastReload()+Board.robots.get(i).getReloadTime()<System.currentTimeMillis()){
