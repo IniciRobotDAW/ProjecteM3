@@ -1295,6 +1295,17 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     }
     
     /**
+     * Set color of robot /
+     * Modifica el color del robot
+     * @param c 
+     */
+    public void setColor(Color c) {
+
+        
+        
+    }
+    
+    /**
      * When you win... /
      * Quan guanyes...
      */

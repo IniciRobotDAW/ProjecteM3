@@ -17,7 +17,7 @@ public class IniciRobot {
      */
     public static void main(String[] args) {
         
-        menuPrincipal menu = new menuPrincipal();
+        MenuPrincipal menu = new MenuPrincipal();
         menu.setVisible(true);
     }
 }
