@@ -86,6 +86,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        configRobot = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
@@ -198,6 +199,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel1.setText("Configuració de la partida");
 
+        configRobot.setText("Config");
+        configRobot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                configRobotActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -262,7 +270,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(removeAllRobots, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(removeAllRobots, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(configRobot))
                         .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(send)
@@ -326,6 +336,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(removeAllRobots)
+                        .addGap(29, 29, 29)
+                        .addComponent(configRobot)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -431,6 +443,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
       
     }//GEN-LAST:event_numOfBulletsActionPerformed
 
+    private void configRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configRobotActionPerformed
+
+        if(this.selectedRobots.getSelectedValue() != null){
+            String[] nameRobotSplit = selectedRobots.getSelectedValue().toString().split("\\.");
+            String nameRobot = nameRobotSplit[0];
+            
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Tens que seleccionar algun robot per configurar");
+        }
+        
+    }//GEN-LAST:event_configRobotActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -452,6 +478,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         
         //</editor-fold>
 
@@ -470,6 +498,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel answer4;
     private javax.swing.JLabel answer5;
     private javax.swing.JLabel answer6;
+    private javax.swing.JButton configRobot;
     private javax.swing.JRadioButton desertRadio;
     private javax.swing.JRadioButton forestRadio;
     private javax.swing.JLabel jLabel1;

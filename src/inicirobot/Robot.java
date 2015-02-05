@@ -22,6 +22,7 @@ import libraries.*;
  */
 public abstract class Robot extends GraphicObject implements SimulatorRobot {
 
+    private String color;
     private int speed;
     private RobotPiece body;
     private RobotPiece turret;
@@ -40,7 +41,7 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
    
 
     /**
-     * Constructor
+     * 
      * @param x
      * @param y
      * @param angle
@@ -68,9 +69,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         
     }
 
-    public Robot(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
+    public Robot(String c, double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
         super(x, y, 0.0f);
         
+        this.color = c;
         this.body = cos;
         this.turret = turret;
         this.radar = radar;
@@ -79,6 +81,14 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.width = this.body.getWidth();
         this.height = this.body.getHeight();
 
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getSpeed() {
@@ -202,6 +212,24 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         this.velMov = velMov;
     }
 
+    public int getVelComp() {
+        return velComp;
+    }
+
+    public void setVelComp(int velComp) {
+        this.velComp = velComp;
+    }
+
+    public BufferedImage getExplosionAnimImg() {
+        return explosionAnimImg;
+    }
+
+    public void setExplosionAnimImg(BufferedImage explosionAnimImg) {
+        this.explosionAnimImg = explosionAnimImg;
+    }
+
+    
+    
     /**
      * Paint the robot / Pinta el robot
      * @param g
@@ -1300,8 +1328,6 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * @param c 
      */
     public void setColor(Color c) {
-
-        
         
     }
     

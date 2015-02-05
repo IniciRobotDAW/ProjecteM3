@@ -12,8 +12,8 @@ import inicirobot.*;
 
 public class Robot5 extends Robot{
 
-    public Robot5(double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
-        super(x, y, cos, turret, radar, lives, bullets);
+    public Robot5(String color, double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
+        super(color, x, y, cos, turret, radar, lives, bullets);
     }
     
     @Override

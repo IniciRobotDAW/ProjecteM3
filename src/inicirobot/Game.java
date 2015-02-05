@@ -164,6 +164,7 @@ public class Game extends Exception {
                 try {
                     Constructor robotConstructor = robotClass.getConstructor(
                             new Class[]{
+                                String.class,
                                 double.class,
                                 double.class,
                                 RobotPiece.class,
