@@ -270,10 +270,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(removeAllRobots, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(configRobot))
-                        .addGap(22, 22, 22))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(removeAllRobots, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(configRobot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(send)
                         .addGap(319, 319, 319))))
@@ -446,10 +446,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void configRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configRobotActionPerformed
 
         if(this.selectedRobots.getSelectedValue() != null){
+            
             String[] nameRobotSplit = selectedRobots.getSelectedValue().toString().split("\\.");
             String nameRobot = nameRobotSplit[0];
             
-            
+            ConfigMenu cm = new ConfigMenu(nameRobot);
+            cm.setVisible(true);
             
         }else{
             JOptionPane.showMessageDialog(null, "Tens que seleccionar algun robot per configurar");

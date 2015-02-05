@@ -69,10 +69,10 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
         
     }
 
-    public Robot(String c, double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
+    public Robot(String color, double x, double y, RobotPiece cos, RobotPiece turret, RobotPiece radar, int lives, int bullets) {
         super(x, y, 0.0f);
         
-        this.color = c;
+        this.color = color;
         this.body = cos;
         this.turret = turret;
         this.radar = radar;
@@ -1328,7 +1328,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * @param c 
      */
     public void setColor(Color c) {
-        
+        switch(this.color){
+            
+        }
     }
     
     /**
