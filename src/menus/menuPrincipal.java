@@ -366,11 +366,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (this.selectedRobots.getModel().getSize() != 0) {
 
             String themeWindow = this.theme.getText();
+            String color = "default";
             Integer rounds = Integer.parseInt(this.numOfRounds.getSelectedItem().toString());
             Integer lifes = Integer.parseInt(this.numOfLifes.getSelectedItem().toString());
             Integer bullets = Integer.parseInt(this.numOfBullets.getSelectedItem().toString());
 
-            Game game = new Game(themeWindow, rounds, lifes, bullets, (DefaultListModel) this.selectedRobots.getModel());
+            Game game = new Game(themeWindow, rounds, lifes, bullets, (DefaultListModel) this.selectedRobots.getModel(), color);
 
             try {
                 ArrayList<SimulatorRobot> rb = game.deploy();

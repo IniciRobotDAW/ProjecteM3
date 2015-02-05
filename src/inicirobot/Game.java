@@ -20,6 +20,7 @@ import libraries.SimulatorRobot;
 public class Game extends Exception {
 
     private String theme;
+    private String color;
     private int rounds;
     private int lives;
     private int bullets;
@@ -31,8 +32,9 @@ public class Game extends Exception {
     private double tposXs;
     private double tposYs;
 
-    public Game(String theme, int rounds, int lives, int bullets, DefaultListModel selectedRobots) {
+    public Game(String theme, String color, int rounds, int lives, int bullets, DefaultListModel selectedRobots) {
         this.theme = theme;
+        this.color = color;
         this.rounds = rounds;
         this.lives = lives;
         this.bullets = bullets;
@@ -49,6 +51,14 @@ public class Game extends Exception {
 
     public void setTheme(String theme) {
         this.theme = theme;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getRounds() {
