@@ -10,8 +10,10 @@ import inicirobot.HealthPill;
 import inicirobot.Obstacle;
 import inicirobot.Robot;
 import inicirobot.Ovni;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
@@ -32,8 +34,11 @@ import static libraries.Board.robots;
  */
 public class Board extends JPanel {
 
-    public static final int WIDTH = 800;
-    public static final int HEIGHT = 600;   
+    public static  Dimension screenSize;
+   
+   
+    public static int WIDTH;
+    public static int HEIGHT;
     public static Vector<SimulatorBullet> bullets;
     public static ArrayList<SimulatorRobot> robots;
     public static ArrayList<SimulatorRobot> deadRobots;
@@ -50,8 +55,11 @@ public class Board extends JPanel {
     public int numObstacles;
     private BufferedImage explosionAnimImg;
     
-    public Board(ArrayList<SimulatorRobot> r, String theme) {
-
+    public Board(ArrayList<SimulatorRobot> r, String theme, int taskBarSize) {
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        WIDTH = (int)screenSize.getWidth();
+        HEIGHT = (int)screenSize.getHeight()-taskBarSize*2;
+        
         setDoubleBuffered(true);
         this.bullets = new Vector();
         this.deadRobots = new ArrayList();

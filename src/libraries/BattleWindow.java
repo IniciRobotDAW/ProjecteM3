@@ -28,7 +28,11 @@ public class BattleWindow extends JFrame implements ActionListener {
 
     public BattleWindow(ArrayList<SimulatorRobot> r, String theme) {
 
-        setSize(1000, 628);          
+        //mida de la finestra
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+        int taskBarSize = scnMax.bottom;
+        setSize((int)screenSize.getWidth(), (int)screenSize.getHeight()- taskBarSize);          
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
@@ -55,21 +59,23 @@ public class BattleWindow extends JFrame implements ActionListener {
 	add(background);
 	background.setLayout(new FlowLayout());
             
-        board = new Board(r, theme);
+        board = new Board(r, theme, taskBarSize);
         board.setLayout(new BorderLayout());
         
-        board.setBounds(0, 0, 800, 600);
+        board.setBounds(0, 0, (int)screenSize.getWidth()-100, (int)screenSize.getHeight()- taskBarSize);
+       
 
         board.add(background);
 
         display = new StatesDisplay(r);
-
+       
         display.setLayout(null);
         display.setBounds(
+                1170,
+                0,
                 Board.getWIDTH(),
-                Board.getHEIGHT()-Board.getHEIGHT(),
-                this.getWidth()-Board.getWIDTH(),
-                Board.getHEIGHT());
+                Board.getHEIGHT()- taskBarSize);
+        
         display.setBackground(Color.LIGHT_GRAY);
 
         getContentPane().setLayout(null);
