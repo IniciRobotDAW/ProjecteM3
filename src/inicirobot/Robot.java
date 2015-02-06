@@ -38,8 +38,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
     private int velMov = 5;
     private int velComp = 0;
     private BufferedImage explosionAnimImg;
-   
 
+    
     /**
      * 
      * @param x
@@ -358,6 +358,8 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     public void ahead(int d) {
 
+        this.aplicarColor();
+        
         double xi = x;
         double yi = y;
 
@@ -1327,10 +1329,12 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      * Modifica el color del robot
      * @param c 
      */
-    public void setColor(Color c) {
-        switch(this.color){
-            
-        }
+    private void aplicarColor() {
+        
+
+        
+        
+        
     }
     
     /**

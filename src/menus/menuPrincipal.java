@@ -17,8 +17,10 @@ import libraries.SimulatorRobot;
  *
  * @author rbarberan
  */
-public class MenuPrincipal extends javax.swing.JFrame {
+public class MenuPrincipal extends javax.swing.JFrame{
 
+    private static String color;
+    
     /**
      * Creates new form menuPrincipal
      */
@@ -47,8 +49,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     }
 
-    
-    
+    public static String getColor() {
+        return color;
+    }
+
+    public static void setColor(String color) {
+        MenuPrincipal.color = color;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -360,19 +368,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
 
         if (this.selectedRobots.getModel().getSize() != 0) {
 
             String themeWindow = this.theme.getText();
-            String color = "default";
             Integer rounds = Integer.parseInt(this.numOfRounds.getSelectedItem().toString());
             Integer lifes = Integer.parseInt(this.numOfLifes.getSelectedItem().toString());
             Integer bullets = Integer.parseInt(this.numOfBullets.getSelectedItem().toString());
-
-            Game game = new Game(themeWindow, rounds, lifes, bullets, (DefaultListModel) this.selectedRobots.getModel(), color);
-
+           
+            Game game = new Game(themeWindow, this.getColor(), rounds, lifes, bullets, (DefaultListModel) this.selectedRobots.getModel());
+          
             try {
                 ArrayList<SimulatorRobot> rb = game.deploy();
                 this.setVisible(false);
@@ -384,8 +391,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Tens que seleccionar algun robot");
         }
         
-        
-
     }//GEN-LAST:event_sendActionPerformed
 
     private void addRobotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRobotActionPerformed

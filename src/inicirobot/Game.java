@@ -185,13 +185,14 @@ public class Game extends Exception {
                             }
                     );
                     this.robots.add((SimulatorRobot) robotConstructor.newInstance(
+                            this.color,
                             this.posXs.get(i),
                             this.posYs.get(i),
                             body,
                             turret,
                             radar,
                             lives,
-                            bullets 
+                            bullets
                     ));
                 } catch (NoSuchMethodException e) {
                 }

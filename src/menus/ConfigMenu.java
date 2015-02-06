@@ -9,8 +9,10 @@ package menus;
  *
  * @author Ricard
  */
-public class ConfigMenu extends javax.swing.JFrame {
+public class ConfigMenu extends javax.swing.JFrame{
 
+    private String selectedColor;
+    
     /**
      * Creates new form ConfigMenu
      * @param nomRobot
@@ -23,6 +25,14 @@ public class ConfigMenu extends javax.swing.JFrame {
         
     }
 
+    public String getSelectedColor() {
+        return selectedColor;
+    }
+
+    public void setSelectedColor(String selectedColor) {
+        this.selectedColor = selectedColor;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +81,11 @@ public class ConfigMenu extends javax.swing.JFrame {
 
         colors.add(blueOption);
         blueOption.setText("Blau");
+        blueOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blueOptionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,14 +143,16 @@ public class ConfigMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-        
-        
-        
+        MenuPrincipal.setColor(this.getSelectedColor());
     }//GEN-LAST:event_buttonSaveActionPerformed
 
     private void redOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redOptionActionPerformed
-        
+        this.setSelectedColor("red");
     }//GEN-LAST:event_redOptionActionPerformed
+
+    private void blueOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueOptionActionPerformed
+        this.setSelectedColor("blue");
+    }//GEN-LAST:event_blueOptionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,4 +197,5 @@ public class ConfigMenu extends javax.swing.JFrame {
     private javax.swing.JLabel nomRobot;
     private javax.swing.JRadioButton redOption;
     // End of variables declaration//GEN-END:variables
+
 }
