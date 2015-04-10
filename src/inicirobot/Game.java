@@ -157,6 +157,7 @@ public class Game extends Exception {
 
             this.posXs.add(tposXs);
             this.posYs.add(tposYs);
+            System.out.println(this.posXs.size());
 
             try {
                 Class robotClass = Class.forName("resources.robots." + nameRobot);

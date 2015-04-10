@@ -74,14 +74,10 @@ public class Board extends JPanel {
         for (int i = 0; i < robots.size(); i++) {
             if (robots.get(i) != null) {
                 new Thread(robots.get(i)).start();
-                
+                pills.add(new HealthPill());
             }
         }
-        
-        for(int i=0; i<robots.size()/2; i++){
-            pills.add(new HealthPill());
-        }
-        
+
         numObstacles = 1;
         
         for(int i=0; i<numObstacles; i++){
@@ -238,13 +234,7 @@ public class Board extends JPanel {
             h = pills.get(i);
             if(!h.isVisible()){
                 pills.remove(h);
-            } else {
-                h.move();
-            }       
-        }
-        
-        if(pills.size()<robots.size()/2){
-             pills.add(new HealthPill());
+            }
         }
         
          for (int i = 0; i < ovnis.size(); i++) {
