@@ -30,7 +30,7 @@ public class StatesDisplay extends JPanel {
 
     public static ArrayList<SimulatorRobot> robots;
 
-    public StatesDisplay(ArrayList<SimulatorRobot> r) {
+    public StatesDisplay(ArrayList<SimulatorRobot> r, int stateW,int stateH) {
         this.robots = r;
     }
 

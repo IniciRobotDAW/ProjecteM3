@@ -10,6 +10,7 @@ import inicirobot.HealthPill;
 import inicirobot.Obstacle;
 import inicirobot.Robot;
 import inicirobot.Ovni;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -55,10 +56,10 @@ public class Board extends JPanel {
     public int numObstacles;
     private BufferedImage explosionAnimImg;
     
-    public Board(ArrayList<SimulatorRobot> r, String theme, int taskBarSize) {
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        WIDTH = (int)screenSize.getWidth();
-        HEIGHT = (int)screenSize.getHeight()-taskBarSize*2;
+    public Board(ArrayList<SimulatorRobot> r, String theme, int boardW, int boardH) {
+       
+        WIDTH = boardW;
+        HEIGHT = boardH;
         
         setDoubleBuffered(true);
         this.bullets = new Vector();
@@ -202,8 +203,12 @@ public class Board extends JPanel {
             ovnis.get(j).paintObj(g, this);
         }
         
-        Toolkit.getDefaultToolkit().sync();
-        g.dispose();
+       
+//        Toolkit.getDefaultToolkit().sync();
+//        g.dispose();
+        
+        
+        
         
     }
     
