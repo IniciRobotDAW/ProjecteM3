@@ -144,6 +144,7 @@ public class ConfigMenu extends javax.swing.JFrame{
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         MenuPrincipal.setColor(this.getSelectedColor());
+        this.setVisible(false);
     }//GEN-LAST:event_buttonSaveActionPerformed
 
     private void redOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redOptionActionPerformed

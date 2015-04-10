@@ -1331,9 +1331,9 @@ public abstract class Robot extends GraphicObject implements SimulatorRobot {
      */
     private void aplicarColor() {
         
-
-        
-        
+        if(this.color != null){
+            System.out.println(this.color);
+        }
         
     }
     
