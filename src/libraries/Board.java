@@ -10,11 +10,13 @@ import inicirobot.HealthPill;
 import inicirobot.Obstacle;
 import inicirobot.Robot;
 import inicirobot.Ovni;
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Dimension;
+=======
+>>>>>>> parent of 6350f68... panell
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
@@ -35,11 +37,8 @@ import static libraries.Board.robots;
  */
 public class Board extends JPanel {
 
-    public static  Dimension screenSize;
-   
-   
-    public static int WIDTH;
-    public static int HEIGHT;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;   
     public static Vector<SimulatorBullet> bullets;
     public static ArrayList<SimulatorRobot> robots;
     public static ArrayList<SimulatorRobot> deadRobots;
@@ -56,11 +55,16 @@ public class Board extends JPanel {
     public int numObstacles;
     private BufferedImage explosionAnimImg;
     
+<<<<<<< HEAD
     public Board(ArrayList<SimulatorRobot> r, String theme, int boardW, int boardH) {
        
         WIDTH = boardW;
         HEIGHT = boardH;
         
+=======
+    public Board(ArrayList<SimulatorRobot> r, String theme) {
+
+>>>>>>> parent of 6350f68... panell
         setDoubleBuffered(true);
         this.bullets = new Vector();
         this.deadRobots = new ArrayList();
