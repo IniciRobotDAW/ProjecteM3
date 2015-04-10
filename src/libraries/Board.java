@@ -10,11 +10,7 @@ import inicirobot.HealthPill;
 import inicirobot.Obstacle;
 import inicirobot.Robot;
 import inicirobot.Ovni;
-<<<<<<< HEAD
-import java.awt.Color;
-import java.awt.Dimension;
-=======
->>>>>>> parent of 6350f68... panell
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -54,56 +50,7 @@ public class Board extends JPanel {
     public static String theme;
     public int numObstacles;
     private BufferedImage explosionAnimImg;
-    
-<<<<<<< HEAD
-    public Board(ArrayList<SimulatorRobot> r, String theme, int boardW, int boardH) {
-       
-        WIDTH = boardW;
-        HEIGHT = boardH;
-        
-=======
-    public Board(ArrayList<SimulatorRobot> r, String theme) {
-
->>>>>>> parent of 6350f68... panell
-        setDoubleBuffered(true);
-        this.bullets = new Vector();
-        this.deadRobots = new ArrayList();
-        this.pills = new ArrayList();
-        this.expAnim = new ArrayList();
-        this.obstacles = new ArrayList();
-        this.ovnis = new ArrayList();
-        this.robots = r;
-        this.theme = theme;
-
-        for (int i = 0; i < robots.size(); i++) {
-            if (robots.get(i) != null) {
-                new Thread(robots.get(i)).start();
-                pills.add(new HealthPill());
-            }
-        }
-
-        numObstacles = 1;
-        
-        for(int i=0; i<numObstacles; i++){
-           
-            boolean in = false;
-            while(!in){
-                Obstacle obs = new Obstacle();
-                Rectangle2D robstacle = new Rectangle((int)obs.getX(), (int)obs.getY(), obs.getWidth(), obs.getHeight());
-
-                for(int c=0; c<Board.robots.size(); c++){
-
-                    Rectangle2D rrobot = new Rectangle((int)Board.robots.get(c).getX(), (int)Board.robots.get(c).getY(), Board.robots.get(c).getWidth(), Board.robots.get(c).getHeight());
-
-                    if(!rrobot.intersects(robstacle)){
-                        obstacles.add(obs);
-                        in = true;
-                        return;
-                    } 
-                }
-            }
-        }
-
+ 
     }
     
     public static int getWIDTH() {
