@@ -21,18 +21,21 @@ public class BattleWindow extends JFrame implements ActionListener {
     
     public Board board;
     public StatesDisplay display;
-    public JPanel info;
+    public JPanel info; 
     
     private ImageIcon ii;
-    private int boardW;
-    private int boardH;
-    private int stateW;
-    private int stateH;
-    
     Timer timer;
 
     public BattleWindow(ArrayList<SimulatorRobot> r, String theme) {
 
+<<<<<<< HEAD
+=======
+        //mida de la finestra
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+        int taskBarSize = scnMax.bottom;
+        setSize((int)screenSize.getWidth(), (int)screenSize.getHeight()- taskBarSize);          
+>>>>>>> parent of f4468ed... Merda
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         
@@ -54,6 +57,7 @@ public class BattleWindow extends JFrame implements ActionListener {
                 break;                  
             
         }
+<<<<<<< HEAD
         //board
         //g.drawRect( 0,0, (int)screenSize.getWidth()-300, (int)screenSize.getHeight()-150);
 //        this.boardW = (int)screenSize.getWidth()-199;
@@ -65,25 +69,30 @@ public class BattleWindow extends JFrame implements ActionListener {
 //        this.stateH = (int)screenSize.getHeight()-150;
                 
                 
+=======
+        
+>>>>>>> parent of f4468ed... Merda
         JLabel background=new JLabel(new ImageIcon(ii.getImage()));
 	add(background);
-        
-        add(background);
-	setLocationRelativeTo(null);
-        background.setLayout(new FlowLayout());
+	background.setLayout(new FlowLayout());
             
+<<<<<<< HEAD
 
         board = new Board(r, theme, this.boardW, this.boardH);
+=======
+        board = new Board(r, theme, taskBarSize);
+>>>>>>> parent of f4468ed... Merda
         board.setLayout(new BorderLayout());
         
-        board.setBounds(0, 0, this.boardW, this.boardH);
-        
+        board.setBounds(0, 0, (int)screenSize.getWidth()-100, (int)screenSize.getHeight()- taskBarSize);
+       
 
         board.add(background);
 
-        display = new StatesDisplay(r, this.stateW, this.stateH);
+        display = new StatesDisplay(r);
        
         display.setLayout(null);
+<<<<<<< HEAD
         display.setBounds(this.boardW+1, 0, this.stateW, this.stateH);
                 board = new Board(r, theme);
         board.setLayout(new BorderLayout());
@@ -91,6 +100,13 @@ public class BattleWindow extends JFrame implements ActionListener {
 
         board = new Board(r, theme);
         board.setLayout(new BorderLayout());
+=======
+        display.setBounds(
+                1170,
+                0,
+                Board.getWIDTH(),
+                Board.getHEIGHT()- taskBarSize);
+>>>>>>> parent of f4468ed... Merda
         
  
         board.setBounds(0, 0, 800, 600);
@@ -123,7 +139,6 @@ public class BattleWindow extends JFrame implements ActionListener {
     public void paint(Graphics g) {
 
             Graphics2D g2d = (Graphics2D) g;
-            
             this.board.repaint();
             this.display.repaint();
     }
