@@ -11,10 +11,13 @@ import inicirobot.Obstacle;
 import inicirobot.Robot;
 import inicirobot.Ovni;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 import java.awt.Dimension;
 >>>>>>> parent of f4468ed... Merda
+=======
+>>>>>>> parent of 6350f68... panell
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -58,11 +61,8 @@ public class Board extends JPanel {
  
 =======
     
-    public Board(ArrayList<SimulatorRobot> r, String theme, int taskBarSize) {
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        WIDTH = (int)screenSize.getWidth();
-        HEIGHT = (int)screenSize.getHeight()-taskBarSize*2;
-        
+    public Board(ArrayList<SimulatorRobot> r, String theme) {
+
         setDoubleBuffered(true);
         this.bullets = new Vector();
         this.deadRobots = new ArrayList();

@@ -30,7 +30,12 @@ public class Robot1 extends KeyRobot {
     
     @Override
     public void onTouchWall() {
+<<<<<<< HEAD
   
+=======
+        this.movComp(new String[]{"left","turnTurretLeft"}, 90);
+//        this.left(90);        
+>>>>>>> parent of 6350f68... panell
     }
     
     @Override
@@ -52,8 +57,15 @@ public class Robot1 extends KeyRobot {
     public void run() {
         KeyEvent evt = null;
         while(true){         
+<<<<<<< HEAD
          
           this.go(evt);
+=======
+           this.movComp(new String[]{"right","back","turnTurretRight"}, 100);
+           this.movComp(new String[]{"left","back","turnTurretLeft"}, 200);
+//           this.fire();
+//           this.ahead(100);
+>>>>>>> parent of 6350f68... panell
         }
     }
 }
