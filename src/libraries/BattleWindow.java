@@ -29,6 +29,7 @@ public class BattleWindow extends JFrame implements ActionListener {
     public BattleWindow(ArrayList<SimulatorRobot> r, String theme) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         //mida de la finestra
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -36,6 +37,14 @@ public class BattleWindow extends JFrame implements ActionListener {
         int taskBarSize = scnMax.bottom;
         setSize((int)screenSize.getWidth(), (int)screenSize.getHeight()- taskBarSize);          
 >>>>>>> parent of f4468ed... Merda
+=======
+        Toolkit tk = Toolkit.getDefaultToolkit();  
+        int xSize = ((int) tk.getScreenSize().getWidth());  
+        int ySize = ((int) tk.getScreenSize().getHeight());  
+
+        setSize(1000, 628); 
+//        setSize(xSize, ySize);
+>>>>>>> parent of 4fae4f9... Revert "aaa"
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         

@@ -51,3 +51,4 @@ nbbuild/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+src/libraries/BattleWindow.java
